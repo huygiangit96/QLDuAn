@@ -7,47 +7,53 @@ using Model.EF;
 
 namespace Model.DAO
 {
-    public class KhachHangDAO
+    public class NhanVienDAO
     {
         QLDADbContext db = null;
-        
-        public KhachHangDAO()
+
+        public NhanVienDAO()
         {
             db = new QLDADbContext();
         }
 
-        public KhachHang GetByID(string id)
+        public NhanVien GetByID(string id)
         {
-            return db.KhachHangs.SingleOrDefault(x => x.MaKH == id);
+            return db.NhanViens.SingleOrDefault(x => x.MaNV == id);
         }
-        public List<KhachHang> ListAll()
+        public List<NhanVien> ListAll()
         {
-            return db.KhachHangs.ToList();
+            return db.NhanViens.ToList();
         }
-        public bool Insert(KhachHang item)
+        public bool Insert(NhanVien item)
         {
             try
             {
-                db.KhachHangs.Add(item);
+                db.NhanViens.Add(item);
                 db.SaveChanges();
                 return true;
             }
-            catch 
+            catch
             {
                 return false;
             }
         }
-        public bool Update(KhachHang item)
+        public bool Update(NhanVien item)
         {
-            var dbEntry = GetByID(item.MaKH);
+            var dbEntry = GetByID(item.MaNV);
             try
             {
-                dbEntry.NgaySua = item.NgaySua;
+                dbEntry.MaBP = item.MaBP;
+                dbEntry.MaPB = item.MaPB;
+                dbEntry.MatKhau = item.MatKhau;
+                dbEntry.MaVT = item.MaVT;
                 dbEntry.SoDT = item.SoDT;
                 dbEntry.SoTK = item.SoTK;
+                dbEntry.TaiKhoan = item.TaiKhoan;
                 dbEntry.Ten = item.Ten;
+                dbEntry.TrinhDo = item.TrinhDo;
+                dbEntry.Email = item.Email;
                 dbEntry.DiaChi = item.DiaChi;
-                db.SaveChanges();
+                db.SaveChanges();            
                 return true;
             }
             catch
@@ -60,7 +66,7 @@ namespace Model.DAO
             var dbEntry = GetByID(item);
             try
             {
-                db.KhachHangs.Remove(dbEntry);
+                db.NhanViens.Remove(dbEntry);
                 db.SaveChanges();
                 return true;
             }
@@ -68,6 +74,11 @@ namespace Model.DAO
             {
                 return false;
             }
+        }
+        public void ChangStatus(string id)
+        {
+            var dbEntry = GetByID(id);
+            dbEntry.Status = dbEntry.Status == 0 ? 1 : 0;
         }
     }
 }
