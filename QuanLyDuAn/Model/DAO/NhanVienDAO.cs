@@ -80,5 +80,15 @@ namespace Model.DAO
             var dbEntry = GetByID(id);
             dbEntry.Status = dbEntry.Status == 0 ? 1 : 0;
         }
+
+        public bool Login(string username, string password)
+        {
+            var dbEntry = db.NhanViens.SingleOrDefault(x => x.TaiKhoan == username || x.Email == username);
+            if(dbEntry != null)
+            {
+                if (dbEntry.MatKhau == password) return true;
+            }
+            return false;
+        }
     }
 }

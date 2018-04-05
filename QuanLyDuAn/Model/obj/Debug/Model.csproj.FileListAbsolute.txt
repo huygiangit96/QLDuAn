@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+=======
+D:\Tai lieu\MVC14\QuanLyDuAn\QuanLyDuAn\Model\bin\Debug\Model.exe.config
+>>>>>>> b3e0e3afadd83c5f49faa08e364b40894159be5f

@@ -145,7 +145,7 @@ namespace Model.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<NhanVienQuyen>()
-                .Property(e => e.MaNV)
+                .Property(e => e.MaVT)
                 .IsUnicode(false);
 
             modelBuilder.Entity<NhanVienQuyen>()
