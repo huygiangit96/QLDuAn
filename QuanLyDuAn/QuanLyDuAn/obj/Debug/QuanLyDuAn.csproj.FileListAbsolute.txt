@@ -65,3 +65,7 @@ D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\System.Web.Mvc.xml
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\obj\Debug\QuanLyDuAn.csprojResolveAssemblyReference.cache
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\obj\Debug\QuanLyDuAn.dll
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\obj\Debug\QuanLyDuAn.pdb
+D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\Model.dll
+D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\EntityFramework.dll
+D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\Model.pdb
+D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\EntityFramework.xml

@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using Model.DAO;
 using QuanLyDuAn.Models;
-using Common;
 
 namespace QuanLyDuAn.Controllers
 {
@@ -24,7 +23,7 @@ namespace QuanLyDuAn.Controllers
                 var result = Dao.Login(model.Username, model.Password);
                 if (result)
                 {
-                    Session.Add(CommonConstants.USER_SESSION);
+                   // Session.Add(CommonConstants.USER_SESSION);
                 }
                 else
                 {
