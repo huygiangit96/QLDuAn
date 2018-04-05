@@ -12,7 +12,7 @@ namespace Model.EF
         [Key]
         [Column(Order = 0)]
         [StringLength(10)]
-        public string MaNV { get; set; }
+        public string MaVT { get; set; }
 
         [Key]
         [Column(Order = 1)]
