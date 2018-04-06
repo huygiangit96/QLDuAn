@@ -28,10 +28,12 @@
         <div class="toggle">
         </div>
         <div class="form">
-            <form>
-                <input type="text" placeholder="Tài khoản hoặc Email" />
-                <input type="password" placeholder="Mật khẩu" />
-                <button>Đăng nhập</button>
+            <form action="/Login/Login" method="post">
+                <fieldset>
+                    <input type="text" name="username" placeholder="Tài khoản hoặc Email" />
+                    <input type="password" name="password" placeholder="Mật khẩu" />
+                    <button type="submit">Đăng nhập</button>
+                </fieldset>
             </form>
         </div>
         <div class="cta"><a href="http://andytran.me">Quên mật khẩu?</a></div>

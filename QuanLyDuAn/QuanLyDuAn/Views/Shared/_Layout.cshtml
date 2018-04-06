@@ -1,5 +1,6 @@
 ﻿
 @{
+    var session = (QuanLyDuAn.Common.UserLogin)Session[QuanLyDuAn.Common.CommonConstants.USER_SESSION];
     Layout = null;
 }
 
@@ -40,7 +41,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="/Home/Index" class="site_title"><i class="fa fa-paw"></i> <span>Hùng Bùi!</span></a>
+                        <a href="/Home/Index" class="site_title"><i class="fa fa-paw"></i> <span>Quản lý</span></a>
                     </div>
 
                     <div class="clearfix"></div>
@@ -52,7 +53,7 @@
                         </div>
                         <div class="profile_info">
                             <span>Xin chào,</span>
-                            <h2>Hùng Bùi</h2>
+                            <h2>@session.Name</h2>
                         </div>
                     </div>
                     <!-- /menu profile quick info -->
@@ -122,7 +123,7 @@
                         <a data-toggle="tooltip" data-placement="top" title="Lock">
                             <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                         </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Đăng xuất" href="dangnhap.html">
+                        <a data-toggle="tooltip" data-placement="top" title="Đăng xuất" href="/Login/LogOut">
                             <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                         </a>
                     </div>
@@ -141,7 +142,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="images/img.jpg" alt="">John Doe
+                                    <img src="images/img.jpg" alt="">@session.Name
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -153,7 +154,7 @@
                                         </a>
                                     </li>
                                     <li><a href="javascript:;">Help</a></li>
-                                    <li><a href="dangnhap.html"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
+                                    <li><a href="/Login/LogOut"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
                                 </ul>
                             </li>
 

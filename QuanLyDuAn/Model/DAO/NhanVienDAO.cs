@@ -20,6 +20,10 @@ namespace Model.DAO
         {
             return db.NhanViens.SingleOrDefault(x => x.MaNV == id);
         }
+        public NhanVien GetByUserName(string username)
+        {
+            return db.NhanViens.SingleOrDefault(x => x.TaiKhoan == username || x.Email == username);
+        }
         public List<NhanVien> ListAll()
         {
             return db.NhanViens.ToList();
@@ -89,6 +93,20 @@ namespace Model.DAO
                 if (dbEntry.MatKhau == password) return true;
             }
             return false;
+        }
+        public List<string> GetListCredential(string username)
+        {
+            var user = db.NhanViens.SingleOrDefault(x => x.TaiKhoan == username || x.Email == username);
+            var data = from a in db.NhanVienQuyens
+                       join b in db.VaiTroes on a.MaVT equals b.MaVT
+                       join c in db.Quyens on a.MaQuyen equals c.MaQuyen
+                       where b.MaVT == user.MaVT
+                       select new
+                       {
+                           RoleID = c.TenQuyen,
+                           UserGroupID = b.Ten
+                       };
+            return data.Select(x => x.RoleID).ToList();
         }
     }
 }
