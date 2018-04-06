@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace QuanLyDuAn.Common
 {
@@ -26,6 +27,18 @@ namespace QuanLyDuAn.Common
         }
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
+<<<<<<< HEAD
+=======
+            string Message = "Bạn không có quyền thực hiện thao tác này";
+
+            var values = new RouteValueDictionary(new
+            {
+                action = "Login",
+                controller = "Account",
+                exceptiontext = Message
+            });
+            filterContext.Result = new RedirectToRouteResult(values);
+>>>>>>> 9962297f98ab595dc513f659f041d29a6399123b
         }
         private List<string> GetCredentialByLoggedInUser(string username)
         {
