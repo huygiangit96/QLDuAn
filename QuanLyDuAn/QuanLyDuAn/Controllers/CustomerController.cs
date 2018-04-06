@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using QuanLyDuAn.Common;
 
 namespace QuanLyDuAn.Controllers
 {
-    public class CustomerController : Controller
+    public class CustomerController : SecurityController
     {
+        [HasCredential(RoleID ="CREATE_BANGCONG")]
         // GET: Customer
         public ActionResult Index()
         {
@@ -23,8 +25,7 @@ namespace QuanLyDuAn.Controllers
         {
             KhachHang item = new KhachHangDAO().GetByID(id);
             return Json(item, JsonRequestBehavior.AllowGet);
-        }
-
+        }       
         public JsonResult Delete(string id)
         {
             bool status = new KhachHangDAO().Delete(id);
