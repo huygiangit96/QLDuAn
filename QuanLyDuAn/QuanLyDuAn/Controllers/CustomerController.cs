@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using QuanLyDuAn.Common;
 
 namespace QuanLyDuAn.Controllers
 {
@@ -17,14 +18,13 @@ namespace QuanLyDuAn.Controllers
             model = new KhachHangDAO().ListAll();
             return View(model);
         }
-
         // get current customer show on modal
         public JsonResult Get(string id)
         {
             KhachHang item = new KhachHangDAO().GetByID(id);
             return Json(item, JsonRequestBehavior.AllowGet);
         }
-
+        [HasCredential(RoleID ="DELETE_KHACHHANG")]
         public JsonResult Delete(string id)
         {
             bool status = new KhachHangDAO().Delete(id);
