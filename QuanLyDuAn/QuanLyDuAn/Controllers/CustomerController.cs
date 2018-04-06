@@ -11,7 +11,6 @@ namespace QuanLyDuAn.Controllers
 {
     public class CustomerController : SecurityController
     {
-        [HasCredential(RoleID ="CREATE_BANGCONG")]
         // GET: Customer
         public ActionResult Index()
         {
@@ -24,12 +23,8 @@ namespace QuanLyDuAn.Controllers
         {
             KhachHang item = new KhachHangDAO().GetByID(id);
             return Json(item, JsonRequestBehavior.AllowGet);
-<<<<<<< HEAD
-        }       
-=======
         }
         [HasCredential(RoleID ="DELETE_KHACHHANG")]
->>>>>>> 8bba00466faf772a5ffaf5175bb9cdd559b09a71
         public JsonResult Delete(string id)
         {
             bool status = new KhachHangDAO().Delete(id);
