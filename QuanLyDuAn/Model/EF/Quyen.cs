@@ -10,8 +10,8 @@ namespace Model.EF
     public partial class Quyen
     {
         [Key]
-        [StringLength(10)]
-        public string MaQuyen { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int MaQuyen { get; set; }
 
         [StringLength(50)]
         public string TenQuyen { get; set; }

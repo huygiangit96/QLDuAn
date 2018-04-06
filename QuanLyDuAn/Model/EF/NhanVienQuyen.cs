@@ -16,8 +16,8 @@ namespace Model.EF
 
         [Key]
         [Column(Order = 1)]
-        [StringLength(10)]
-        public string MaQuyen { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int MaQuyen { get; set; }
 
         public DateTime? NgayTao { get; set; }
 

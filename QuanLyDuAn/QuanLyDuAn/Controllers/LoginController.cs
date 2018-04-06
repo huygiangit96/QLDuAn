@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Model.DAO;
 using QuanLyDuAn.Models;
+using QuanLyDuAn.Common;
 
 namespace QuanLyDuAn.Controllers
 {
@@ -15,22 +16,37 @@ namespace QuanLyDuAn.Controllers
         {
             return View();
         }
-        public ActionResult Login(LoginModel model)
+        [HttpPost]
+        public ActionResult Login(string username, string password)
         {
             if (ModelState.IsValid)
             {
                 var Dao = new NhanVienDAO();
-                var result = Dao.Login(model.Username, model.Password);
+                var result = Dao.Login(username, password);
                 if (result)
                 {
-                   // Session.Add(CommonConstants.USER_SESSION);
+                    var user = Dao.GetByUserName(username);
+                    var UserSession = new UserLogin();
+                    UserSession.UserID = user.MaNV;
+                    UserSession.Name = user.Ten;
+                    var ListCredentials = Dao.GetListCredential(username);
+                    Session.Add(CommonConstants.SESSION_CREDENTIAL, ListCredentials);
+                    Session.Add(CommonConstants.USER_SESSION, UserSession);
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Đăng nhập không thành công");
+                    var UserSession = new UserLogin();
+                    ModelState.AddModelError("LoginError", "Đăng nhập không thành công");
                 }
             }
             return View("Index");
+        }
+        public ActionResult LogOut()
+        {
+            Session[CommonConstants.USER_SESSION] = null;
+            return RedirectToAction("Index", "Home");
+            
         }
     }
 }

@@ -148,10 +148,6 @@ namespace Model.EF
                 .Property(e => e.MaVT)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<NhanVienQuyen>()
-                .Property(e => e.MaQuyen)
-                .IsUnicode(false);
-
             modelBuilder.Entity<PhongBan>()
                 .Property(e => e.MaPB)
                 .IsUnicode(false);
@@ -161,7 +157,7 @@ namespace Model.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<Quyen>()
-                .Property(e => e.MaQuyen)
+                .Property(e => e.TenQuyen)
                 .IsUnicode(false);
 
             modelBuilder.Entity<VaiTro>()
