@@ -19,13 +19,17 @@ namespace QuanLyDuAn.Controllers
             model = new KhachHangDAO().ListAll();
             return View(model);
         }
-
         // get current customer show on modal
         public JsonResult Get(string id)
         {
             KhachHang item = new KhachHangDAO().GetByID(id);
             return Json(item, JsonRequestBehavior.AllowGet);
+<<<<<<< HEAD
         }       
+=======
+        }
+        [HasCredential(RoleID ="DELETE_KHACHHANG")]
+>>>>>>> 8bba00466faf772a5ffaf5175bb9cdd559b09a71
         public JsonResult Delete(string id)
         {
             bool status = new KhachHangDAO().Delete(id);
