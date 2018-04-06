@@ -24,6 +24,10 @@ namespace QuanLyDuAn.Common
             }
 
         }
+        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        {
+            
+        }
         private List<string> GetCredentialByLoggedInUser(string username)
         {
             var credentials = (List<string>)HttpContext.Current.Session[CommonConstants.SESSION_CREDENTIAL];

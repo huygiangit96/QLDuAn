@@ -7,7 +7,6 @@ namespace Model.EF
     using System.Data.Entity.Spatial;
 
     [Table("NhanVienQuyen")]
-    [Serializable]
     public partial class NhanVienQuyen
     {
         [Key]
@@ -17,7 +16,7 @@ namespace Model.EF
 
         [Key]
         [Column(Order = 1)]
-        [StringLength(10)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaQuyen { get; set; }
 
         public DateTime? NgayTao { get; set; }
