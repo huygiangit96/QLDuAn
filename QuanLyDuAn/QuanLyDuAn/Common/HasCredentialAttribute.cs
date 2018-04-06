@@ -26,7 +26,6 @@ namespace QuanLyDuAn.Common
         }
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            
         }
         private List<string> GetCredentialByLoggedInUser(string username)
         {
