@@ -27,8 +27,6 @@ namespace QuanLyDuAn.Common
         }
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-<<<<<<< HEAD
-=======
             string Message = "Bạn không có quyền thực hiện thao tác này";
 
             var values = new RouteValueDictionary(new
@@ -38,7 +36,6 @@ namespace QuanLyDuAn.Common
                 exceptiontext = Message
             });
             filterContext.Result = new RedirectToRouteResult(values);
->>>>>>> 9962297f98ab595dc513f659f041d29a6399123b
         }
         private List<string> GetCredentialByLoggedInUser(string username)
         {

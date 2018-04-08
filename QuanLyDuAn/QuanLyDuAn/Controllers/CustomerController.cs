@@ -30,7 +30,7 @@ namespace QuanLyDuAn.Controllers
             bool status = new KhachHangDAO().Delete(id);
             return Json(status, JsonRequestBehavior.AllowGet);
         }
-        [HttpPost]
+        [HttpPost][HasCredential(RoleID ="CREATE_KHACHHANG")]
         public JsonResult Insert(string code, string name, string address, string bank, string phone)
         {
             KhachHang item = new KhachHang();
@@ -42,7 +42,7 @@ namespace QuanLyDuAn.Controllers
             bool result = new KhachHangDAO().Insert(item);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-        [HttpPost]
+        [HttpPost][HasCredential(RoleID ="UPDATE_KHACHHANG")]
         public JsonResult Edit(string code, string name, string address, string bank, string phone)
         {
             KhachHang item = new KhachHang();

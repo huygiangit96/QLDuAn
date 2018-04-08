@@ -19,7 +19,7 @@ $('.delete_cus').click(function () {
                 }
             },
             error: function (err) {
-                alert("Không thành công");
+                alert("Bạn không có quyền thực hiện tác vụ này");
             }
         })
     }
@@ -45,7 +45,7 @@ $('#Insert_Cus').click(function () {
             window.location.href = "/Customer/Index";
         },
         error: function () {
-            alert("Đã xảy ra lỗi");
+            alert("Bạn không có quyền thực hiện tác vụ này");
         }
     })
 });
@@ -70,7 +70,7 @@ $('#Edit_Cus').click(function () {
             window.location.href = "/Customer/Index";
         },
         error: function () {
-            alert("Đã xảy ra lỗi");
+            alert("Bạn không có quyền thực hiện tác vụ này");
         }
     })
 });
@@ -92,7 +92,7 @@ $('.btn_edit_cus').click(function () {
             $('#editModal').modal('show');
         },
         error: function (err) {
-            alert("Error: " + err.responseText);
+            alert("Bạn không có quyền thực hiện tác vụ này");
         }
     })
 });

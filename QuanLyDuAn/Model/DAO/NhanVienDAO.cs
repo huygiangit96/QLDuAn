@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model.EF;
+using Model.ViewModel;
 
 namespace Model.DAO
 {
@@ -24,9 +25,29 @@ namespace Model.DAO
         {
             return db.NhanViens.SingleOrDefault(x => x.TaiKhoan == username || x.Email == username);
         }
-        public List<NhanVien> ListAll()
+        public List<NhanVienViewModel> ListAll()
         {
-            return db.NhanViens.ToList();
+            var list = (from n in db.NhanViens
+                        join p in db.PhongBans
+                        on n.MaPB equals p.MaPB
+                        join v in db.VaiTroes
+                        on n.MaVT equals v.MaVT
+                        join b in db.BoPhans
+                        on n.MaBP equals b.MaBP
+                        select new NhanVienViewModel()
+                        {
+                            MaNV = n.MaNV,
+                            Ten = n.Ten,
+                            DiaChi = n.DiaChi,
+                            PhongBan = p.TenPB,
+                            BoPhan = b.Ten,
+                            VaiTro = v.Ten,
+                            SoDT = n.SoDT,
+                            SoTK = n.SoTK,
+                            TrinhDo = n.TrinhDo,
+                            Email = n.Email
+                        }).ToList();
+            return list;
         }
         public bool Insert(NhanVien item)
         {

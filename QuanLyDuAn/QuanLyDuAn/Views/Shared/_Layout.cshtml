@@ -75,29 +75,29 @@
                                 <li>
                                     <a><i class="fa fa-home"></i> Trang chủ <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="index.html">Thống kê</a></li>
+                                        <li><a href="/Home/Index">Thống kê</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a><i class="fa fa-desktop"></i> Quản lý lịch <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="tinnhan.html">Tin nhắn</a></li>
-                                        <li><a href="lichlamviec.html">Lịch làm việc</a></li>
-                                        <li><a href="chamcong.html">Lịch làm việc</a></li>
+                                        <li><a href="/Task/Message">Tin nhắn</a></li>
+                                        <li><a href="/Task/Assignment">Lịch làm việc</a></li>
+                                        <li><a href="/Task/Time_keeping">Chấm công</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a><i class="fa fa-table"></i> Quản lý người dùng <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="bang.html">Nhân viên</a></li>
+                                        <li><a href="/Employee/Index">Nhân viên</a></li>
                                         <li><a href="/Customer/Index">Khách hàng</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a><i class="fa fa-clone"></i>Cài đặt hiển thị <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="fixed_sidebar.html">Điều chỉnh Sidebar</a></li>
-                                        <li><a href="fixed_footer.html">Điều chỉnh  Footer</a></li>
+                                        <li><a href="/Display/Slider">Điều chỉnh Sidebar</a></li>
+                                        <li><a href="/Display/Slider">Điều chỉnh  Footer</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -300,10 +300,16 @@
     <script src="/Assets/vendors/jszip/dist/jszip.min.js"></script>
     <script src="/Assets/vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="/Assets/vendors/pdfmake/build/vfs_fonts.js"></script>
+    <!-- FullCalendar -->
+    <link href="/Assets/vendors/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+    <link href="/Assets/vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
+    <script src="/Assets/vendors/moment/min/moment.min.js"></script>
+    <script src="/Assets/vendors/fullcalendar/dist/fullcalendar.min.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="/Assets/build/js/custom.min.js"></script>
     @RenderSection("Customer", required: false)
+    @RenderSection("Employee", required: false)
 </body>
 </html>
 

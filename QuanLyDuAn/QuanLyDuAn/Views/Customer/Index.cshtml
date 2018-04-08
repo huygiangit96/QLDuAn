@@ -5,6 +5,14 @@
 }
 @section Customer{
     <script src="~/Assets/js/Customer.js"></script>
+    <script type="text/javascript">
+        $(window).bind("load",function () {
+            var row = "<button class='btn btn-primary' data-toggle='modal' data-target='#Category_Modal_Insert'>Thêm</button>";
+            $('.dataTables_filter').css({"width": "100%"})
+            $('#datatable-checkbox_filter > label').css({ "float": "left" })
+            $('#datatable-checkbox_filter').append(row);
+        })
+</script>
 }
 <div class="right_col" role="main">
     <div class="">
@@ -15,12 +23,12 @@
 
             <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                    <div class="input-group">
+                    @*<div class="input-group">
                         <input type="text" class="form-control" placeholder="Tìm kiếm...">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
                         </span>
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>
@@ -28,8 +36,6 @@
         <div class="clearfix"></div>
 
         <div class="row">
-
-
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title" style="margin-bottom: 0;">
@@ -56,9 +62,9 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <div class="col-md-12">
+                        @*<div class="col-md-12">
                             <button class="btn btn-primary" id="Add_Cus" data-toggle="modal" data-target="#Category_Modal_Insert" style="margin-top: 5px; float:right">Thêm</button>
-                        </div>
+                        </div>*@
 
                         <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
                             <thead>
@@ -613,25 +619,25 @@
                             <h4 class="modal-title">Sản phẩm</h4>
                         </div>
                         <div class="modal-body">
-                            <div class="form-control" style="border: 0px; margin-bottom: 2px;">
-                                <div class="col-md-3">Mã khách hàng</div>
-                                <div class="col-md-9"><input type="text" name="" id="Cus_code"></div>
+                            <div class="form-control form_modal_div">
+                                <div class="col-md-3 form_modal_label">Mã khách hàng</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Cus_code"></div>
                             </div>
-                            <div class="form-control" style="border: 0px; margin-bottom: 2px;">
-                                <div class="col-md-3">Tên khách hàng</div>
-                                <div class="col-md-9"><input type="text" name="" id="Cus_name"></div>
+                            <div class="form-control form_modal_div" style="border: 0px; margin-bottom: 2px;">
+                                <div class="col-md-3 ">Tên khách hàng</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Cus_name"></div>
                             </div>
-                            <div class="form-control" style="border: 0px; margin-bottom: 2px;">
-                                <div class="col-md-3">Địa chỉ</div>
-                                <div class="col-md-9"><input type="text" name="" id="Cus_address"></div>
+                            <div class="form-control form_modal_div" style="border: 0px; margin-bottom: 2px;">
+                                <div class="col-md-3 form_modal_label">Địa chỉ</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Cus_address"></div>
                             </div>
-                            <div class="form-control" style="border: 0px; margin-bottom: 2px;">
-                                <div class="col-md-3">Số tài khoản</div>
-                                <div class="col-md-9"><input type="text" name="" id="Cus_bank"></div>
+                            <div class="form-control form_modal_div" style="border: 0px; margin-bottom: 2px;">
+                                <div class="col-md-3 form_modal_label">Số tài khoản</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Cus_bank"></div>
                             </div>
-                            <div class="form-control" style="border: 0px; margin-bottom: 2px;">
-                                <div class="col-md-3">Số điện thoại</div>
-                                <div class="col-md-9"><input type="text" name="" id="Cus_phone"></div>
+                            <div class="form-control form_modal_div" style="border: 0px; margin-bottom: 2px;">
+                                <div class="col-md-3 form_modal_label">Số điện thoại</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Cus_phone"></div>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -651,25 +657,25 @@
                             <h4 class="modal-title">Sản phẩm</h4>
                         </div>
                         <div class="modal-body">
-                            <div class="form-control" style="border: 0px; margin-bottom: 2px;">
-                                <div class="col-md-3">Mã khách hàng</div>
-                                <div class="col-md-9"><input type="text" name="" id="Cus_code_E"></div>
+                            <div class="form-control form_modal_div">
+                                <div class="col-md-3 form_modal_label">Mã khách hàng</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Cus_code_E"></div>
                             </div>
-                            <div class="form-control" style="border: 0px; margin-bottom: 2px;">
-                                <div class="col-md-3">Tên khách hàng</div>
-                                <div class="col-md-9"><input type="text" name="" id="Cus_name_E"></div>
+                            <div class="form-control form_modal_div">
+                                <div class="col-md-3 form_modal_label">Tên khách hàng</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Cus_name_E"></div>
                             </div>
-                            <div class="form-control" style="border: 0px; margin-bottom: 2px;">
-                                <div class="col-md-3">Địa chỉ</div>
-                                <div class="col-md-9"><input type="text" name="" id="Cus_address_E"></div>
+                            <div class="form-control form_modal_div">
+                                <div class="col-md-3 form_modal_label">Địa chỉ</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Cus_address_E"></div>
                             </div>
-                            <div class="form-control" style="border: 0px; margin-bottom: 2px;">
-                                <div class="col-md-3">Số tài khoản</div>
-                                <div class="col-md-9"><input type="text" name="" id="Cus_bank_E"></div>
+                            <div class="form-control form_modal_div">
+                                <div class="col-md-3 form_modal_label">Số tài khoản</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Cus_bank_E"></div>
                             </div>
-                            <div class="form-control" style="border: 0px; margin-bottom: 2px;">
-                                <div class="col-md-3">Số điện thoại</div>
-                                <div class="col-md-9"><input type="text" name="" id="Cus_phone_E"></div>
+                            <div class="form-control form_modal_div">
+                                <div class="col-md-3 form_modal_label">Số điện thoại</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Cus_phone_E"></div>
                             </div>
                         </div>
                         <div class="modal-footer">

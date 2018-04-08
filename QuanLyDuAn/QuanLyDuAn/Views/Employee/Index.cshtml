@@ -1,0 +1,280 @@
+﻿@model List<Model.ViewModel.NhanVienViewModel>
+@{
+    ViewBag.Title = "Index";
+    var pb = ViewBag.PhongBan;
+    var bp = ViewBag.BoPhan;
+    var vt = ViewBag.VaiTro;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Employee{
+    <script src="~/Assets/js/Employee.js"></script>
+    <script type="text/javascript">
+        $(window).bind("load",function () {
+            var row = "<button class='btn btn-primary' data-toggle='modal' data-target='#Category_Modal_Insert'>Thêm</button>";
+            $('.dataTables_filter').css({"width": "100%"})
+            $('#datatable-checkbox_filter > label').css({ "float": "left" })
+            $('#datatable-checkbox_filter').append(row);
+        })
+    </script>
+}
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Xin chào <small>tên thằng đăng nhập</small></h3>
+            </div>
+
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                    @*<div class="input-group">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title" style="margin-bottom: 0;">
+                        <h2>
+                            Danh sách nhân viên</small>
+                        </h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li style="float: right">
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                            @*<li class="dropdown">
+                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                  <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#">Settings 1</a>
+                                    </li>
+                                    <li><a href="#">Settings 2</a>
+                                    </li>
+                                  </ul>
+                                </li>*@
+                            @*<li>
+                                    <a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>*@
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        @*<div class="col-md-12">
+                                <button class="btn btn-primary" id="Add_Cus" data-toggle="modal" data-target="#Category_Modal_Insert" style="margin-top: 5px; float:right">Thêm</button>
+                            </div>*@
+
+                        <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+                            <thead>
+                                <tr>
+                                    @*<th>
+                                          <th><input type="checkbox" id="check-all" class="flat"></th>
+                                        </th>*@
+                                    <th>Họ tên</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Phòng ban</th>
+                                    <th>Bộ phận</th>
+                                    <th>Vai trò</th>
+                                    <th>Điện thoại</th>
+                                    <th>Trình độ</th>
+                                    <th>Email</th>
+                                    <th>Tùy chọn</th>
+                                </tr>
+                            </thead>
+
+
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        @*<td>
+                                              <th><input type="checkbox" id="check-all" class="flat"></th>
+                                            </td>*@
+                                        <td>@item.Ten</td>
+                                        <td>@item.DiaChi</td>
+                                        <td>@item.PhongBan</td>
+                                        <td>@item.BoPhan</td>
+                                        <td>@item.VaiTro</td>
+                                        <td>@item.SoDT</td>
+                                        <td>@item.TrinhDo</td>
+                                        <td>@item.Email</td>
+                                        <td style="text-align: center"><button type="button" class="btn btn-primary btn_edit_emp" data-id="@item.MaNV" data-toggle="modal" data-target="#Category_Modal_Edit">Sửa</button> | <button class="btn btn-danger delete_emp" data-id="@item.MaNV">Xóa</button></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="Category_Modal_Insert" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Nhân viên</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-control form_modal_div">
+                                <div class="col-md-3 form_modal_label">Mã nhân viên</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" id="Emp_code"></div>
+                            </div>
+                            <div class="form-control form_modal_div">
+                                <div class="col-md-3 form_modal_label">Tên nhân viên</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Emp_name"></div>
+                            </div>
+                            <div class="form-control form_modal_div">
+                                <div class="col-md-3 form_modal_label">Địa chỉ</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Emp_address"></div>
+                            </div>
+                            <div class="form-control form_modal_div">
+                                <div class="col-md-3 form_modal_label">Số tài khoản</div>
+                                <div class="col-md-9"><input type="text" name="" id="Emp_bank"></div>
+                            </div>
+                            <div class="form-control form_modal_div">
+                                <div class="col-md-3 form_modal_label">Số điện thoại</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Emp_phone"></div>
+                            </div>
+                            <div class="form-control form_modal_div">
+                                <div class="col-md-3 form_modal_label">Trình độ</div>
+                                <div class="col-md-9"><input type="text"  class="form_modal_input" name="" id="Emp_level"></div>
+                            </div>
+                            <div class="form-control form_modal_div">
+                                <div class="col-md-3 form_modal_label">Email</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Emp_email"></div>
+                            </div>
+                            <div class="form-control form_modal_div">
+                                <div class="col-md-3 form_modal_label">Phòng ban</div>
+                                <div class="col-md-9">
+                                    <select id="Emp_select_pb" class="form_modal_input">
+                                        @foreach(var item in pb)
+                                        {
+                                            <option value="@item.MaPB">@item.TenPB</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-control form_modal_div">
+                                <div class="col-md-3 form_modal_label">Bộ phận</div>
+                                <div class="col-md-9">
+                                    <select id="Emp_select_bp" class="form_modal_input">
+                                        @foreach (var item in bp)
+                                        {
+                                            <option value="@item.MaBP">@item.Ten</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-control form_modal_div">
+                                <div class="col-md-3 form_modal_label">Vai trò</div>
+                                <div class="col-md-9">
+                                    <select id="Emp_select_vt" class="form_modal_input">
+                                        @foreach (var item in vt)
+                                        {
+                                            <option value="@item.MaVT">@item.Ten</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-success" id="Insert_Emp">Lưu</a>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal fade" id="Category_Modal_Edit" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Nhân viên</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-control form_modal_div" style="border: 0px; margin-bottom: 2px;">
+                                <div class="col-md-3 form_modal_label">Mã nhân viên</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Emp_code_E"></div>
+                            </div>
+                            <div class="form-control form_modal_div" style="border: 0px; margin-bottom: 2px;">
+                                <div class="col-md-3 form_modal_label">Tên nhân viên</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Emp_name_E"></div>
+                            </div>
+                            <div class="form-control form_modal_div" style="border: 0px; margin-bottom: 2px;">
+                                <div class="col-md-3 form_modal_label">Địa chỉ</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Emp_address_E"></div>
+                            </div>
+                            <div class="form-control form_modal_div" style="border: 0px; margin-bottom: 2px;">
+                                <div class="col-md-3 form_modal_label">Số tài khoản</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Emp_bank_E"></div>
+                            </div>
+                            <div class="form-control form_modal_div" style="border: 0px; margin-bottom: 2px;">
+                                <div class="col-md-3 form_modal_label">Số điện thoại</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Emp_phone_E"></div>
+                            </div>
+                            <div class="form-control form_modal_div" style="border: 0px; margin-bottom: 2px;">
+                                <div class="col-md-3 form_modal_label">Trình độ</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Emp_level_E"></div>
+                            </div>
+                            <div class="form-control form_modal_div" style="border: 0px; margin-bottom: 2px;">
+                                <div class="col-md-3 form_modal_label">Email</div>
+                                <div class="col-md-9"><input type="text" class="form_modal_input" name="" id="Emp_email_E"></div>
+                            </div>
+                            <div class="form-control form_modal_div" style="border: 0px; margin-bottom: 2px;">
+                                <div class="col-md-3 form_modal_label">Phòng ban</div>
+                                <div class="col-md-9">
+                                    <select id="Emp_select_pb_E" class="form_modal_input" >
+                                        @foreach (var item in pb)
+                                        {
+                                            <option value="@item.MaPB">@item.TenPB</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-control form_modal_div" style="border: 0px; margin-bottom: 2px;">
+                                <div class="col-md-3 form_modal_label">Bộ phận</div>
+                                <div class="col-md-9">
+                                    <select id="Emp_select_bp_E" class="form_modal_input" >
+                                        @foreach (var item in bp)
+                                        {
+                                            <option value="@item.MaBP">@item.Ten</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-control form_modal_div" style="border: 0px; margin-bottom: 2px;">
+                                <div class="col-md-3 form_modal_label">Vai trò</div>
+                                <div class="col-md-9">
+                                    <select id="Emp_select_vt_E" class="form_modal_input" >
+                                        @foreach (var item in vt)
+                                        {
+                                            <option value="@item.MaVT">@item.Ten</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-success" id="Edit_Emp">Lưu</a>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
