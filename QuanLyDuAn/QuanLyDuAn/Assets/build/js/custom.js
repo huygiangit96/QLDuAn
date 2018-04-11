@@ -1612,7 +1612,7 @@ if (typeof NProgress != 'undefined') {
 				toLabel: 'To',
 				customRangeLabel: 'Custom',
 				daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-				monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+				monthNames: ['Tháng Một', 'Tháng Hai', 'Tháng Ba', 'Tháng Tư', 'Tháng Năm', 'Tháng Sáu', 'Tháng Bảy', 'Tháng Tám', 'Tháng Chín', 'Tháng Mười', 'Tháng Mười Một', 'Tháng Mười Hai'],
 				firstDay: 1
 			  }
 			};
@@ -2420,39 +2420,43 @@ if (typeof NProgress != 'undefined') {
 				  },
 				  selectable: true,
 				  selectHelper: true,
-				  select: function(start, end, allDay) {
-					$('#fc_create').click();
+				  select: function (start, end, allDay) {
+				      $('#fc_create').click();
+				      $('#time_start').attr('value', moment(start).format() + 'T07:00');
+				      $('#time_end').attr('value', moment(start).format() + 'T07:00');
+				      //prompt(moment(start).format());
 
-					started = start;
-					ended = end;
+				      // Write code here
+					//started = start;
+					//ended = end;
 
-					$(".antosubmit").on("click", function() {
-					  var title = $("#title").val();
-					  if (end) {
-						ended = end;
-					  }
+					//$(".antosubmit").on("click", function() {
+					//  var title = $("#title").val();
+					//  if (end) {
+					//	ended = end;
+					//  }
 
-					  categoryClass = $("#event_type").val();
+					//  categoryClass = $("#event_type").val();
 
-					  if (title) {
-						calendar.fullCalendar('renderEvent', {
-							title: title,
-							start: started,
-							end: end,
-							allDay: allDay
-						  },
-						  true // make the event "stick"
-						);
-					  }
+					//  if (title) {
+					//	calendar.fullCalendar('renderEvent', {
+					//		title: title,
+					//		start: started,
+					//		end: end,
+					//		allDay: allDay
+					//	  },
+					//	  true // make the event "stick"
+					//	);
+					//  }
 
-					  $('#title').val('');
+					//  $('#title').val('');
 
-					  calendar.fullCalendar('unselect');
+					//  calendar.fullCalendar('unselect');
 
-					  $('.antoclose').click();
+					//  $('.antoclose').click();
 
-					  return false;
-					});
+					//  return false;
+					//});
 				  },
 				  eventClick: function(calEvent, jsEvent, view) {
 					$('#fc_edit').click();
@@ -2469,34 +2473,27 @@ if (typeof NProgress != 'undefined') {
 
 					calendar.fullCalendar('unselect');
 				  },
-				  editable: true,
-				  events: [{
-					title: 'Xây dựng chức năng đăng nhập',
-					start: new Date(y, m, 1)
-				  }, {
-					title: 'Xây dựng chức năng tìm kiếm',
-					start: new Date(y, m, d - 5),
-					end: new Date(y, m, d - 2)
-				  }, {
-					title: 'Họp',
-					start: new Date(y, m, d, 10, 30),
-					allDay: false
-				  }, {
-					title: 'Gặp khách hàng',
-					start: new Date(y, m, d + 14, 12, 0),
-					end: new Date(y, m, d, 14, 0),
-					allDay: false
-				  }, {
-					title: 'Đưa website lên',
-					start: new Date(y, m, d + 1, 19, 0),
-					end: new Date(y, m, d + 1, 22, 30),
-					allDay: false
-				  }, {
-					title: 'Test lại toàn bộ các chức năng',
-					start: new Date(y, m, 28),
-					end: new Date(y, m, 29),
-					url: 'http://google.com/'
-				  }]
+				  editable: false,
+                  locale: 'vi',
+				  events: function (start, end, timezone, callback) {
+				      $.ajax({
+				          url: '/Task/GetCalendar',
+				          dataType: 'json',
+				          type: 'get',
+				          success: function (data) {
+				              var events = [];
+				              $.each(data, function (i, item) {
+				                  events.push({
+				                      title: item.GhiChu,
+				                      start: item.ThoiGianBD + '+07:00',
+				                      end: item.ThoiGianKT + '+07:00',
+				                      allDay: false
+				                  });
+				              });
+				              callback(events);
+				          }
+				      })
+				  }
 				});
 				
 			};
