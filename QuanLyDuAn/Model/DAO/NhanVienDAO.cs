@@ -17,7 +17,7 @@ namespace Model.DAO
             db = new QLDADbContext();
         }
 
-        public NhanVien GetByID(string id)
+        public NhanVien GetByID(long id)
         {
             return db.NhanViens.SingleOrDefault(x => x.MaNV == id);
         }
@@ -86,7 +86,7 @@ namespace Model.DAO
                 return false;
             }
         }
-        public bool Delete(string item)
+        public bool Delete(long item)
         {
             var dbEntry = GetByID(item);
             try
@@ -100,7 +100,7 @@ namespace Model.DAO
                 return false;
             }
         }
-        public void ChangStatus(string id)
+        public void ChangStatus(long id)
         {
             var dbEntry = GetByID(id);
             dbEntry.Status = dbEntry.Status == 0 ? 1 : 0;
@@ -130,7 +130,7 @@ namespace Model.DAO
             return data.Select(x => x.RoleID).ToList();
         }
 
-        public List<NhanVien> GetByProjectID(string id)
+        public List<NhanVien> GetByProjectID(long id)
         {
             var list = (from c in db.ChiTietLichLamViecs.OrderBy(x=>x.VaiTro)
                        join n in db.NhanViens

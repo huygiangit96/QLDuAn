@@ -27,7 +27,6 @@ $('.delete_emp').click(function () {
 
 //Insert one Employee
 $('#Insert_Emp').click(function () {
-    var id = $('#Emp_code').val();
     var ten = $('#Emp_name').val();
     var diachi = $('#Emp_address').val();
     var phongban = $('#Emp_select_pb option:selected ').val();
@@ -41,7 +40,7 @@ $('#Insert_Emp').click(function () {
     $.ajax({
         url: '/Employee/Insert',
         data: {
-            code: id, name: ten, address: diachi, department: phongban, parts: bophan,
+            name: ten, address: diachi, department: phongban, parts: bophan,
             role: vaitro, bank: sotk, phone: sodt, level: trinhdo, email: email
         },
         type: 'POST',

@@ -27,7 +27,6 @@ $('.delete_cus').click(function () {
 
 //Insert one customer
 $('#Insert_Cus').click(function () {
-    var id = $('#Cus_code').val();
     var ten = $('#Cus_name').val();
     var diachi = $('#Cus_address').val();
     var sotk = $('#Cus_bank').val();
@@ -35,7 +34,7 @@ $('#Insert_Cus').click(function () {
 
     $.ajax({
         url: '/Customer/Insert',
-        data: { code: id, name: ten, address: diachi, bank: sotk, phone: phone },
+        data: {name: ten, address: diachi, bank: sotk, phone: phone },
         type: 'POST',
         datatype: 'json',
         success: function (data) {

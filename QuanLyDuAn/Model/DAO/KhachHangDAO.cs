@@ -16,7 +16,7 @@ namespace Model.DAO
             db = new QLDADbContext();
         }
 
-        public KhachHang GetByID(string id)
+        public KhachHang GetByID(long id)
         {
             return db.KhachHangs.SingleOrDefault(x => x.MaKH == id);
         }
@@ -55,7 +55,7 @@ namespace Model.DAO
                 return false;
             }
         }
-        public bool Delete(string item)
+        public bool Delete(long item)
         {
             var dbEntry = GetByID(item);
             try

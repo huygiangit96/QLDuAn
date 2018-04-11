@@ -9,7 +9,7 @@ namespace Model.ViewModel
 {
     public class DuAnViewModel
     {
-        public string ID { get; set; }
+        public long ID { get; set; }
         public string Ten { get; set; }
         public double? TienDo { get; set; }
         public int? TrangThai { get; set; }

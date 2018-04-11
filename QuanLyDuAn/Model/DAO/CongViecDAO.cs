@@ -35,7 +35,7 @@ namespace Model.DAO
             return list;
         }
 
-        public bool Delete(string id)
+        public bool Delete(long id)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace Model.DAO
             }
         }
 
-        public DuAnViewModel GetProjectByID(string id)
+        public DuAnViewModel GetProjectByID(long id)
         {
             var list = (from c in db.CongViecs
                         join k in db.KhachHangs
@@ -82,7 +82,7 @@ namespace Model.DAO
             return list;
         }
 
-        public List<GhiChuViewModel> GetNoteByProID(string id)
+        public List<GhiChuViewModel> GetNoteByProID(long id)
         {
             var list = (from c in db.ChiTietLichLamViecs.OrderBy(x => x.NgayTao)
                         join n in db.NhanViens

@@ -37,7 +37,7 @@ namespace QuanLyDuAn.Common
             });
             filterContext.Result = new RedirectToRouteResult(values);
         }
-        private List<string> GetCredentialByLoggedInUser(string username)
+        private List<string> GetCredentialByLoggedInUser(long username)
         {
             var credentials = (List<string>)HttpContext.Current.Session[CommonConstants.SESSION_CREDENTIAL];
             return credentials;
