@@ -69,25 +69,41 @@
 
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">Tạo công việc</h4>
+                <h4 class="modal-title" id="myModalLabel">Thêm công việc</h4>
             </div>
             <div class="modal-body">
                 <div id="testmodal" style="padding: 5px 20px;">
                     <form id="antoform" class="form-horizontal calender" role="form">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Tiêu đề</label>
+                            <label class="col-sm-3 control-label">Nhân viên</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="title" name="title">
+                                <select type="text" class="form-control" id="pick_emp" name="title">
+                                    <option selected>Chọn nhân viên</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Tiêu đề</label>
+                            <label class="col-sm-3 control-label">Dự án</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="title" name="title">
+                                <select type="text" class="form-control" id="pick_proj" name="title">
+                                    <option selected>Chọn dự án</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Mổ tả</label>
+                            <label class="col-sm-3 control-label">Thời gian bắt đầu</label>
+                            <div class="col-sm-9">
+                                <input type="datetime-local"  class="form-control" id="time_start"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Thời gian kết thúc</label>
+                            <div class="col-sm-9">
+                                <input type="datetime-local" class="form-control" id="time_end">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Nội dung</label>
                             <div class="col-sm-9">
                                 <textarea class="form-control" style="height:55px;" id="descr" name="descr"></textarea>
                             </div>

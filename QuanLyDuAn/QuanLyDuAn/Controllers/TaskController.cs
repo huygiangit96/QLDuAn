@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Model.DAO;
 
 namespace QuanLyDuAn.Controllers
 {
@@ -25,7 +26,11 @@ namespace QuanLyDuAn.Controllers
         {
             return View();
         }
-
+        public JsonResult GetCalendar()
+        {
+            var item = new ChiTietLichLamViecDAO().ListAll();
+            return Json(item, JsonRequestBehavior.AllowGet);
+        }
         // chấm công
         public ActionResult Time_keeping()
         {
