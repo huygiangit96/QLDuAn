@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace QuanLyDuAn.Controllers
 {
-    public class TaskController : Controller
+    public class TaskController : SecurityController
     {
         // GET: Task
         public ActionResult Index()

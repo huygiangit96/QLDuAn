@@ -1,7 +1,11 @@
-﻿
+﻿@model Model.ViewModel.DuAnViewModel
 @{
     ViewBag.Title = "Statistic";
+    double hours = ViewBag.hours;
+    double total_hours = ViewBag.total_hours;
+    List<Model.ViewModel.GhiChuViewModel> note = ViewBag.Note;
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 <div class="right_col" role="main">
@@ -13,12 +17,12 @@
 
             <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                    <div class="input-group">
+                    @*<div class="input-group">
                         <input type="text" class="form-control" placeholder="Search for...">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button">Go!</button>
                         </span>
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>
@@ -29,12 +33,12 @@
             <div class="col-md-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Xây dựng hệ thống đăng ký tín chỉ cho HVKTQS</h2>
+                        <h2>@Model.Ten</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li>
                                 <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
-                            <li class="dropdown">
+                            @*<li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
@@ -47,7 +51,7 @@
                             </li>
                             <li>
                                 <a class="close-link"><i class="fa fa-close"></i></a>
-                            </li>
+                            </li>*@
                         </ul>
                         <div class="clearfix"></div>
                     </div>
@@ -59,15 +63,15 @@
                             <ul class="stats-overview">
                                 <li>
                                     <span class="name"> Tổng số giờ làm </span>
-                                    <span class="value text-success"> 2300 </span>
+                                    <span class="value text-success"> @hours </span>
                                 </li>
                                 <li>
                                     <span class="name"> Số giờ dự kiến </span>
-                                    <span class="value text-success"> 2000 </span>
+                                    <span class="value text-success"> @total_hours </span>
                                 </li>
                                 <li class="hidden-phone">
                                     <span class="name"> Tổng số người làm </span>
-                                    <span class="value text-success"> 20 </span>
+                                    <span class="value text-success"> @Model.ThanhVien.Count </span>
                                 </li>
                             </ul>
                             <br />
@@ -83,12 +87,12 @@
                                     <li>
                                         <img src="images/img.jpg" class="avatar" alt="Avatar">
                                         <div class="message_date">
-                                            <h3 class="date text-info">24</h3>
-                                            <p class="month">May</p>
+                                            <h3 class="date text-info">@note[0].NgayTao.Value.Day</h3>
+                                            <p class="month">@note[0].NgayTao.Value.Month</p>
                                         </div>
                                         <div class="message_wrapper">
-                                            <h4 class="heading">Hùng Bùi</h4>
-                                            <blockquote class="message">Xây dựng chức năng chát nhóm.</blockquote>
+                                            <h4 class="heading">@note[0].Ten</h4>
+                                            <blockquote class="message">@note[0].NoiDung</blockquote>
                                             <br />
                                             <p class="url">
                                                 <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
@@ -99,12 +103,12 @@
                                     <li>
                                         <img src="images/img.jpg" class="avatar" alt="Avatar">
                                         <div class="message_date">
-                                            <h3 class="date text-error">21</h3>
-                                            <p class="month">May</p>
+                                            <h3 class="date text-error">@note[1].NgayTao.Value.Day</h3>
+                                            <p class="month">@note[1].NgayTao.Value.Month</p>
                                         </div>
                                         <div class="message_wrapper">
-                                            <h4 class="heading">Huyền Đỗ</h4>
-                                            <blockquote class="message">Tạo giao diện trang đăng nhập, đăng ký</blockquote>
+                                            <h4 class="heading">@note[1].Ten</h4>
+                                            <blockquote class="message">@note[1].NoiDung</blockquote>
                                             <br />
                                             <p class="url">
                                                 <span class="fs1" aria-hidden="true" data-icon=""></span>
@@ -131,19 +135,22 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="panel-body">
-                                    <h3 class="green"><i class="fa fa-paint-brush"></i> Xây dựng hệ thống đăng ký tín chỉ cho HVKTQS</h3>
+                                    <h3 class="green"><i class="fa fa-paint-brush"></i> @Model.Ten</h3>
 
-                                    <p>Đây là hệ thống yêu cầu kỹ thuật cao vì đáp ứng số lượng người dùng lớn</p>
+                                    <p>@Model.MoTa</p>
                                     <br />
 
                                     <div class="project_detail">
 
                                         <p class="title">Tên khách hàng</p>
-                                        <p>Học viện kỹ thuật quân sự</p>
+                                        <p>@Model.KhachHang</p>
                                         <p class="title">Trưởng nhóm dự án</p>
-                                        <p>Bùi Văn Hùng</p>
+                                        <p>@Model.ThanhVien[0].Ten</p>
                                         <p class="title">Thành viên</p>
-                                        <p>Đỗ Thị Huyền</p>
+                                        @foreach (var member in Model.ThanhVien)
+                                        {
+                                            <p>@member.Ten</p>
+                                        }
                                     </div>
 
                                     <br />

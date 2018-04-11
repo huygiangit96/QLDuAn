@@ -61,10 +61,6 @@ namespace Model.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<CongViec>()
-                .Property(e => e.MaNV)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<CongViec>()
                 .Property(e => e.MaKH)
                 .IsUnicode(false);
 

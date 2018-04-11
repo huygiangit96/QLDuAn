@@ -1,9 +1,11 @@
-﻿
+﻿@model List<Model.ViewModel.DuAnViewModel>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section Project{
+    <script src="~/Assets/js/Project.js"></script>
+    }
 <div class="right_col" role="main">
     <div class="">
         <div class="page-title">
@@ -13,12 +15,12 @@
 
             <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                    <div class="input-group">
+                    @*<div class="input-group">
                         <input type="text" class="form-control" placeholder="Search for...">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button">Go!</button>
                         </span>
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>
@@ -34,7 +36,7 @@
                             <li>
                                 <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
-                            <li class="dropdown">
+                            @*<li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
@@ -47,9 +49,12 @@
                             </li>
                             <li>
                                 <a class="close-link"><i class="fa fa-close"></i></a>
-                            </li>
+                            </li>*@
                         </ul>
                         <div class="clearfix"></div>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <button class="btn btn-primary" style="float: right">Thêm dự án</button>
                     </div>
                     <div class="x_content">
 
@@ -66,286 +71,43 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>#</td>
-                                    <td>
-                                        <a>Bùi Văn Hùng Code</a>
-                                        <br />
-                                        <small>Ngày 21/11/2017</small>
-                                    </td>
-                                    <td>
-                                        <ul class="list-inline">
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                        </ul>
-                                    </td>
-                                    <td class="project_progress">
-                                        <div class="progress progress_sm">
-                                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>
-                                        </div>
-                                        <small>57% hoàn thành</small>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-success btn-xs">Thành công</button>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Chi tiết </a>
-                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
-                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#</td>
-                                    <td>
-                                        <a>Đỗ Thị Huyền UI</a>
-                                        <br />
-                                        <small>Ngày 21/11/2017</small>
-                                    </td>
-                                    <td>
-                                        <ul class="list-inline">
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                        </ul>
-                                    </td>
-                                    <td class="project_progress">
-                                        <div class="progress progress_sm">
-                                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="47"></div>
-                                        </div>
-                                        <small>47% hoàn thành</small>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-success btn-xs">Thành công</button>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Chi tiết </a>
-                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
-                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#</td>
-                                    <td>
-                                        <a>Bùi Văn Hùng Code</a>
-                                        <br />
-                                        <small>Ngày 21/11/2017</small>
-                                    </td>
-                                    <td>
-                                        <ul class="list-inline">
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                        </ul>
-                                    </td>
-                                    <td class="project_progress">
-                                        <div class="progress progress_sm">
-                                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>
-                                        </div>
-                                        <small>57% hoàn thành</small>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-success btn-xs">Thành công</button>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Chi tiết </a>
-                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
-                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#</td>
-                                    <td>
-                                        <a>Đỗ Thị Huyền UI</a>
-                                        <br />
-                                        <small>Ngày 21/11/2017</small>
-                                    </td>
-                                    <td>
-                                        <ul class="list-inline">
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                        </ul>
-                                    </td>
-                                    <td class="project_progress">
-                                        <div class="progress progress_sm">
-                                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="47"></div>
-                                        </div>
-                                        <small>47% hoàn thành</small>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-success btn-xs">Thành công</button>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Chi tiết </a>
-                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
-                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#</td>
-                                    <td>
-                                        <a>Bùi Văn Hùng Code</a>
-                                        <br />
-                                        <small>Ngày 21/11/2017</small>
-                                    </td>
-                                    <td>
-                                        <ul class="list-inline">
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                        </ul>
-                                    </td>
-                                    <td class="project_progress">
-                                        <div class="progress progress_sm">
-                                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>
-                                        </div>
-                                        <small>57% hoàn thành</small>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-success btn-xs">Thành công</button>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Chi tiết </a>
-                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
-                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#</td>
-                                    <td>
-                                        <a>Đỗ Thị Huyền UI</a>
-                                        <br />
-                                        <small>Ngày 21/11/2017</small>
-                                    </td>
-                                    <td>
-                                        <ul class="list-inline">
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                        </ul>
-                                    </td>
-                                    <td class="project_progress">
-                                        <div class="progress progress_sm">
-                                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="47"></div>
-                                        </div>
-                                        <small>47% hoàn thành</small>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-success btn-xs">Thành công</button>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Chi tiết </a>
-                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
-                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#</td>
-                                    <td>
-                                        <a>Bùi Văn Hùng Code</a>
-                                        <br />
-                                        <small>Ngày 21/11/2017</small>
-                                    </td>
-                                    <td>
-                                        <ul class="list-inline">
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                        </ul>
-                                    </td>
-                                    <td class="project_progress">
-                                        <div class="progress progress_sm">
-                                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="57"></div>
-                                        </div>
-                                        <small>57% hoàn thành</small>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-success btn-xs">Thành công</button>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Chi tiết </a>
-                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
-                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>#</td>
-                                    <td>
-                                        <a>Đỗ Thị Huyền UI</a>
-                                        <br />
-                                        <small>Ngày 21/11/2017</small>
-                                    </td>
-                                    <td>
-                                        <ul class="list-inline">
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                            <li>
-                                                <img src="images/user.png" class="avatar" alt="Avatar">
-                                            </li>
-                                        </ul>
-                                    </td>
-                                    <td class="project_progress">
-                                        <div class="progress progress_sm">
-                                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="47"></div>
-                                        </div>
-                                        <small>47% hoàn thành</small>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-success btn-xs">Thành công</button>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Chi tiết </a>
-                                        <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
-                                        <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
-                                    </td>
-                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>#</td>
+                                        <td>
+                                            <a>@item.Ten</a>
+                                            <br />
+                                            <small>Ngày 21/11/2017</small>
+                                        </td>
+                                        <td>
+                                            <ul class="list-inline">
+                                                @foreach (var l in item.ThanhVien)
+                                                {
+                                                    <li>
+                                                        @*<img src="images/user.png" class="avatar" alt="Avatar">*@
+                                                        <span>@l.MaNV </span>
+                                                    </li>
+                                                }                      
+                                            </ul>
+                                        </td>
+                                        <td class="project_progress">
+                                            <div class="progress progress_sm">
+                                                <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="@item.TienDo"></div>
+                                            </div>
+                                            <small>@item.TienDo% hoàn thành</small>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-success btn-xs">Thành công</button>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-primary btn-xs" href="/Project/Statistic/@item.ID" id="detail_pro"><i class="fa fa-folder"></i> Chi tiết </a>
+                                            <button class="btn btn-info btn-xs" data-id="@item.ID" id="edit_pro"><i class="fa fa-pencil"></i> Sửa </button>
+                                            <button class="btn btn-danger btn-xs" data-id="@item.ID" id="delete_pro"><i class="fa fa-trash-o"></i> Xóa </button>
+                                        </td>
+                                    </tr>
+                                }
+                                
                             </tbody>
                         </table>
                         <!-- end project list -->

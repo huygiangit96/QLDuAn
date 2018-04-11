@@ -13,9 +13,6 @@ namespace Model.EF
         [StringLength(10)]
         public string MaCV { get; set; }
 
-        [StringLength(10)]
-        public string MaNV { get; set; }
-
         [StringLength(50)]
         public string MaKH { get; set; }
 
@@ -42,5 +39,8 @@ namespace Model.EF
         public DateTime? NgayTao { get; set; }
 
         public DateTime? NgaySua { get; set; }
+
+        [StringLength(500)]
+        public string MoTa { get; set; }
     }
 }

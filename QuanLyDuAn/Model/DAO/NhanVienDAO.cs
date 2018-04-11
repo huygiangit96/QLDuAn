@@ -129,5 +129,15 @@ namespace Model.DAO
                        };
             return data.Select(x => x.RoleID).ToList();
         }
+
+        public List<NhanVien> GetByProjectID(string id)
+        {
+            var list = (from c in db.ChiTietLichLamViecs.OrderBy(x=>x.VaiTro)
+                       join n in db.NhanViens
+                       on c.MaNV equals n.MaNV
+                       where c.MaCV == id 
+                       select n);
+            return list.ToList();
+        }
     }
 }

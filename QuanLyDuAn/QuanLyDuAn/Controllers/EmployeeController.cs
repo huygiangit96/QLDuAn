@@ -10,7 +10,7 @@ using Model.ViewModel;
 
 namespace QuanLyDuAn.Controllers
 {
-    public class EmployeeController : Controller
+    public class EmployeeController : SecurityController
     {
         // GET: Employee
         public ActionResult Index()
@@ -41,9 +41,19 @@ namespace QuanLyDuAn.Controllers
         }
 
         [HasCredential(RoleID = "UPDATE_NHANVIEN")][HttpPost]
-        public JsonResult Edit()
+        public JsonResult Edit(string code, string name, string address, string department, string parts, string role, string bank, string phone, string level, string email)
         {
             NhanVien item = new NhanVien();
+            item.MaNV = code;
+            item.Ten = name;
+            item.DiaChi = address;
+            item.MaPB = department;
+            item.MaBP = parts;
+            item.MaVT = role;
+            item.SoTK = bank;
+            item.SoDT = phone;
+            item.TrinhDo = level;
+            item.Email = email;
             bool result = new NhanVienDAO().Update(item);
             return Json(result, JsonRequestBehavior.AllowGet);
         }

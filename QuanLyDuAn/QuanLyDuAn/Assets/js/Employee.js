@@ -84,7 +84,7 @@ $('#Edit_Emp').click(function () {
         datatype: 'json',
         success: function (data) {
             if (data == true) {
-                alert("Thêm thành công");
+                alert("Sửa thành công");
             }
             window.location.href = "/Employee/Index";
         },

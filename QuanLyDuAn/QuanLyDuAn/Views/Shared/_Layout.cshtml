@@ -109,8 +109,8 @@
                                 <li>
                                     <a><i class="fa fa-bug"></i>Dự án <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="congviec.html">Danh sách dự án</a></li>
-                                        <li><a href="chitiet_congviec.html">Chi tiết công việc </a></li>
+                                        <li><a href="/Project/Index">Danh sách dự án</a></li>
+                                        <li><a href="/Project/Statistic">Chi tiết công việc </a></li>
                                     </ul>
                                 </li>
                                 <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Kê hoạch<span class="label label-success pull-right">chuẩn bị</span></a></li>
@@ -263,6 +263,7 @@
     <script src="/Assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
     <!-- iCheck -->
     <script src="/Assets/vendors/iCheck/icheck.min.js"></script>
+    <link href="/Assets/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
     <!-- Skycons -->
     <script src="/Assets/vendors/skycons/skycons.js"></script>
     <!-- Flot -->
@@ -305,11 +306,16 @@
     <link href="/Assets/vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
     <script src="/Assets/vendors/moment/min/moment.min.js"></script>
     <script src="/Assets/vendors/fullcalendar/dist/fullcalendar.min.js"></script>
+    <!-- ECharts -->
+    <script src="/Assets/vendors/echarts/dist/echarts.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="/Assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Custom Theme Scripts -->
     <script src="/Assets/build/js/custom.min.js"></script>
     @RenderSection("Customer", required: false)
     @RenderSection("Employee", required: false)
+    @RenderSection("Project", required: false)
 </body>
 </html>
 
