@@ -10,11 +10,9 @@ namespace Model.EF
     public partial class CongViec
     {
         [Key]
-        [StringLength(10)]
-        public string MaCV { get; set; }
+        public long MaCV { get; set; }
 
-        [StringLength(50)]
-        public string MaKH { get; set; }
+        public long? MaKH { get; set; }
 
         [StringLength(150)]
         public string Ten { get; set; }
@@ -40,7 +38,7 @@ namespace Model.EF
 
         public DateTime? NgaySua { get; set; }
 
-        [StringLength(500)]
+        [Column(TypeName = "ntext")]
         public string MoTa { get; set; }
     }
 }

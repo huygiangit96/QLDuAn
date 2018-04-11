@@ -28,49 +28,13 @@ namespace Model.EF
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<BangCong>()
-                .Property(e => e.MaCC)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<BangCong>()
-                .Property(e => e.MaCV)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<BangCong>()
-                .Property(e => e.MaNV)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<BoPhan>()
-                .Property(e => e.MaBP)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<ChiTietLichLamViec>()
-                .Property(e => e.MaCV)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<ChiTietLichLamViec>()
-                .Property(e => e.MaNV)
-                .IsUnicode(false);
-
             modelBuilder.Entity<ChiTietLichLamViec>()
                 .Property(e => e.GhiChu)
                 .IsUnicode(false);
 
             modelBuilder.Entity<CongViec>()
-                .Property(e => e.MaCV)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<CongViec>()
-                .Property(e => e.MaKH)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<CongViec>()
                 .Property(e => e.MaLCV)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<KhachHang>()
-                .Property(e => e.MaKH)
-                .IsFixedLength();
 
             modelBuilder.Entity<KhachHang>()
                 .Property(e => e.SoTK)
@@ -81,43 +45,7 @@ namespace Model.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<LichLamViec>()
-                .Property(e => e.MaLLV)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<LichLamViec>()
-                .Property(e => e.MaNV)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<LichLamViec>()
                 .Property(e => e.TGLam)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<LoaiCongViec>()
-                .Property(e => e.MaLCV)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<NhacNho>()
-                .Property(e => e.MaNN)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<NhacNho>()
-                .Property(e => e.MaNV)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<NhanVien>()
-                .Property(e => e.MaNV)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<NhanVien>()
-                .Property(e => e.MaPB)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<NhanVien>()
-                .Property(e => e.MaVT)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<NhanVien>()
-                .Property(e => e.MaBP)
                 .IsUnicode(false);
 
             modelBuilder.Entity<NhanVien>()
@@ -140,24 +68,12 @@ namespace Model.EF
                 .Property(e => e.Email)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<NhanVienQuyen>()
-                .Property(e => e.MaVT)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<PhongBan>()
-                .Property(e => e.MaPB)
-                .IsUnicode(false);
-
             modelBuilder.Entity<PhongBan>()
                 .Property(e => e.SoDT)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Quyen>()
                 .Property(e => e.TenQuyen)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<VaiTro>()
-                .Property(e => e.MaVT)
                 .IsUnicode(false);
         }
     }

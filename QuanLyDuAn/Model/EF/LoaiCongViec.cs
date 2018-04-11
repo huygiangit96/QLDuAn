@@ -10,8 +10,7 @@ namespace Model.EF
     public partial class LoaiCongViec
     {
         [Key]
-        [StringLength(10)]
-        public string MaLCV { get; set; }
+        public long MaLCV { get; set; }
 
         [StringLength(50)]
         public string Ten { get; set; }

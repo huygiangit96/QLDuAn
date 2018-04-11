@@ -10,8 +10,7 @@ namespace Model.EF
     public partial class BoPhan
     {
         [Key]
-        [StringLength(10)]
-        public string MaBP { get; set; }
+        public long MaBP { get; set; }
 
         [StringLength(150)]
         public string Ten { get; set; }

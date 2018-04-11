@@ -10,11 +10,9 @@ namespace Model.EF
     public partial class LichLamViec
     {
         [Key]
-        [StringLength(10)]
-        public string MaLLV { get; set; }
+        public long MaLLV { get; set; }
 
-        [StringLength(10)]
-        public string MaNV { get; set; }
+        public long? MaNV { get; set; }
 
         [StringLength(10)]
         public string TGLam { get; set; }

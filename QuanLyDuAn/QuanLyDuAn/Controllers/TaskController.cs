@@ -18,6 +18,7 @@ namespace QuanLyDuAn.Controllers
         // tin nhắn
         public ActionResult Message()
         {
+            var dao = new NhacNhoDAO();
             return View();
         }
 

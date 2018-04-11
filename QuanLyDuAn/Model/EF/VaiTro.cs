@@ -10,8 +10,7 @@ namespace Model.EF
     public partial class VaiTro
     {
         [Key]
-        [StringLength(10)]
-        public string MaVT { get; set; }
+        public long MaVT { get; set; }
 
         [StringLength(50)]
         public string Ten { get; set; }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model.EF;
+using Model.ViewModel;
 
 namespace Model.DAO
 {
@@ -48,6 +49,13 @@ namespace Model.DAO
             {
                 return false;
             }
+        }
+        public List<NhacNhoView> GetByNV(string id)
+        {
+            //var data_send = from a in db.NhacNhoes
+            //                join b in db.NhanViens on  a.MaNV equals b.MaNV
+            //                join c in db.NhanViens on a.
+            //                select new 
         }
     }
 }

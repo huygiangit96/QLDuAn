@@ -10,11 +10,9 @@ namespace Model.EF
     public partial class NhacNho
     {
         [Key]
-        [StringLength(10)]
-        public string MaNN { get; set; }
+        public long MaNN { get; set; }
 
-        [StringLength(50)]
-        public string MaNV { get; set; }
+        public long? MaNV { get; set; }
 
         public DateTime? ThoiGian { get; set; }
 
@@ -29,5 +27,7 @@ namespace Model.EF
         public string NoiDung { get; set; }
 
         public DateTime? NgayTao { get; set; }
+
+        public long? NguoiNhanID { get; set; }
     }
 }

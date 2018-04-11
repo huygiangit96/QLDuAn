@@ -11,13 +11,13 @@ namespace Model.EF
     {
         [Key]
         [Column(Order = 0)]
-        [StringLength(10)]
-        public string MaCV { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public long MaNV { get; set; }
 
         [Key]
         [Column(Order = 1)]
-        [StringLength(10)]
-        public string MaNV { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public long MaCV { get; set; }
 
         [StringLength(50)]
         public string GhiChu { get; set; }
