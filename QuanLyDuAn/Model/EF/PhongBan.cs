@@ -10,8 +10,7 @@ namespace Model.EF
     public partial class PhongBan
     {
         [Key]
-        [StringLength(10)]
-        public string MaPB { get; set; }
+        public long MaPB { get; set; }
 
         [StringLength(250)]
         public string TenPB { get; set; }

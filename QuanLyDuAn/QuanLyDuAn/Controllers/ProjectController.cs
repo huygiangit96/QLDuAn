@@ -23,14 +23,14 @@ namespace QuanLyDuAn.Controllers
         // xóa 1 dự án
         [HasCredential(RoleID ="DELETE_CHITIETLICHLAMVIEC")]
         [HasCredential(RoleID ="DELETE_CONGVIEC")]
-        public JsonResult Delete(string id /* ma cong viec*/)
+        public JsonResult Delete(long id /* ma cong viec*/)
         {
             bool result = new CongViecDAO().Delete(id);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         // ứng với "chi tiết công việc" ở trên giao diện
-        public ActionResult Statistic(string id)
+        public ActionResult Statistic(long id)
         {
             DuAnViewModel model = new CongViecDAO().GetProjectByID(id);
 

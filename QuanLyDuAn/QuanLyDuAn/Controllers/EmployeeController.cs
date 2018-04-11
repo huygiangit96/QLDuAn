@@ -23,10 +23,9 @@ namespace QuanLyDuAn.Controllers
         }
 
         [HasCredential(RoleID = "CREATE_NHANVIEN")][HttpPost]
-        public JsonResult Insert(string code, string name, string address, string department, string parts, string role, string bank, string phone, string level, string email)
+        public JsonResult Insert(string name, string address, long department, long parts, long role, string bank, string phone, string level, string email)
         {
             NhanVien item = new NhanVien();
-            item.MaNV = code;
             item.Ten = name;
             item.DiaChi = address;
             item.MaPB = department;
@@ -41,7 +40,7 @@ namespace QuanLyDuAn.Controllers
         }
 
         [HasCredential(RoleID = "UPDATE_NHANVIEN")][HttpPost]
-        public JsonResult Edit(string code, string name, string address, string department, string parts, string role, string bank, string phone, string level, string email)
+        public JsonResult Edit(long code, string name, string address, long department, long parts, long role, string bank, string phone, string level, string email)
         {
             NhanVien item = new NhanVien();
             item.MaNV = code;
@@ -59,14 +58,14 @@ namespace QuanLyDuAn.Controllers
         }
 
         [HasCredential(RoleID ="DELETE_NHANVIEN")]
-        public JsonResult Delete(string id)
+        public JsonResult Delete(long id)
         {
             bool result = new NhanVienDAO().Delete(id);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
-        public JsonResult Get(string id)
+        public JsonResult Get(long id)
         {
             NhanVien item = new NhanVienDAO().GetByID(id);
 

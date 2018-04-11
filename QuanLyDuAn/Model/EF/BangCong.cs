@@ -10,14 +10,11 @@ namespace Model.EF
     public partial class BangCong
     {
         [Key]
-        [StringLength(10)]
-        public string MaCC { get; set; }
+        public long MaCC { get; set; }
 
-        [StringLength(10)]
-        public string MaCV { get; set; }
+        public long? MaCV { get; set; }
 
-        [StringLength(10)]
-        public string MaNV { get; set; }
+        public long? MaNV { get; set; }
 
         [StringLength(50)]
         public string TenChucNang { get; set; }

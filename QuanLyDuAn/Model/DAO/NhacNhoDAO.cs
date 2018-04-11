@@ -18,7 +18,7 @@ namespace Model.DAO
         {
             return db.NhacNhoes.ToList();
         }
-        public NhacNho GetByID(string id)
+        public NhacNho GetByID(long id)
         {
             return db.NhacNhoes.SingleOrDefault(x => x.MaNN == id);
         }
@@ -35,7 +35,7 @@ namespace Model.DAO
                 return false;
             }
         }
-        public bool Delete(string item)
+        public bool Delete(long item)
         {
             var dbEntry = GetByID(item);
             try

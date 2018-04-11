@@ -11,8 +11,8 @@ namespace Model.EF
     {
         [Key]
         [Column(Order = 0)]
-        [StringLength(10)]
-        public string MaVT { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public long MaVT { get; set; }
 
         [Key]
         [Column(Order = 1)]

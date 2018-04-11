@@ -10,17 +10,13 @@ namespace Model.EF
     public partial class NhanVien
     {
         [Key]
-        [StringLength(10)]
-        public string MaNV { get; set; }
+        public long MaNV { get; set; }
 
-        [StringLength(10)]
-        public string MaPB { get; set; }
+        public long? MaPB { get; set; }
 
-        [StringLength(10)]
-        public string MaVT { get; set; }
+        public long? MaVT { get; set; }
 
-        [StringLength(10)]
-        public string MaBP { get; set; }
+        public long? MaBP { get; set; }
 
         [StringLength(150)]
         public string Ten { get; set; }

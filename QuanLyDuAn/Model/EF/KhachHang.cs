@@ -10,8 +10,7 @@ namespace Model.EF
     public partial class KhachHang
     {
         [Key]
-        [StringLength(10)]
-        public string MaKH { get; set; }
+        public long MaKH { get; set; }
 
         [StringLength(150)]
         public string Ten { get; set; }

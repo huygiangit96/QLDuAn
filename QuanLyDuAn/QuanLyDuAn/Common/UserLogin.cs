@@ -8,7 +8,7 @@ namespace QuanLyDuAn.Common
     [Serializable]
     public class UserLogin
     {
-        public string UserID { get; set; }
+        public long UserID { get; set; }
         public string Name { get; set; }
     }
 }

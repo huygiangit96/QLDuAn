@@ -8,7 +8,7 @@ namespace Model.ViewModel
 {
     public class NhanVienViewModel
     {
-        public string MaNV { get; set; }
+        public long MaNV { get; set; }
         public string Ten { get; set; }
         public string DiaChi { get; set; }
         public string PhongBan { get; set; }

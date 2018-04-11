@@ -48,7 +48,7 @@ namespace Model.DAO
             return true;
         }
         
-        public bool Delete(string id)
+        public bool Delete(long id)
         {
             var dbEntry = GetByID(id);
             try
@@ -60,7 +60,7 @@ namespace Model.DAO
             catch { }
             return false;
         }
-        public BangCong GetByID(string id)
+        public BangCong GetByID(long id)
         {
             return db.BangCongs.SingleOrDefault(x => x.MaCC == id);
         }
