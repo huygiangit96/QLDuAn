@@ -26,6 +26,7 @@ namespace Model.DAO
                             Ten = c.Ten,
                             TienDo = c.TienDo,
                             TrangThai = c.TrangThai,
+                            NgayTao = c.NgayTao
                             //ThanhVien = null
                         }).ToList();
             foreach(var item in list)
@@ -96,6 +97,20 @@ namespace Model.DAO
                             NgayTao = c.NgayTao
                         }).ToList();
             return list;
+        }
+
+        public bool Insert_project(CongViec item)
+        {
+            try
+            {
+                db.CongViecs.Add(item);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

@@ -18,5 +18,6 @@ namespace Model.ViewModel
         public string KhachHang { get; set; }
         public DateTime? NgayBatDau { get; set; }
         public DateTime? NgayKetThuc { get; set; }
+        public DateTime? NgayTao { get; set; }
     }
 }

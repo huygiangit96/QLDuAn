@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using QuanLyDuAn.Common;
+using Model.EF;
 
 namespace QuanLyDuAn.Controllers
 {
@@ -17,6 +18,7 @@ namespace QuanLyDuAn.Controllers
         public ActionResult Index()
         {
             List<DuAnViewModel> model = new CongViecDAO().ListAll();
+            ViewBag.Khachhang = new KhachHangDAO().ListAll();
             return View(model);
         }
 
@@ -32,6 +34,7 @@ namespace QuanLyDuAn.Controllers
         // ứng với "chi tiết công việc" ở trên giao diện
         public ActionResult Statistic(long id)
         {
+
             DuAnViewModel model = new CongViecDAO().GetProjectByID(id);
 
             DateTime now = DateTime.Now;
@@ -44,7 +47,34 @@ namespace QuanLyDuAn.Controllers
 
             ViewBag.Note = new CongViecDAO().GetNoteByProID(id);
 
+            ViewBag.NhanVien = new NhanVienDAO().ListAll();
+
             return View(model);
+        }
+        [HasCredential(RoleID = "CREATE_CHITIETLICHLAMVIEC")]
+        public JsonResult AddEmpInProject(long emp_id, long pro_id)
+        {
+            bool result = new ChiTietLichLamViecDAO().Insert_EmpID_ProID(emp_id, pro_id);
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        [HasCredential(RoleID = "CREATE_CONGVIEC")]
+        public JsonResult Insert(string name, long cus_id, DateTime time_start, DateTime time_end, string describe)
+        {
+            CongViec item = new CongViec();
+            item.Ten = name;
+            item.MaKH = cus_id;
+            item.ThoiGianBD = time_start;
+            item.ThoiGianKT = time_end;
+            item.MoTa = describe;
+            item.TienDo = 0;
+            item.NgayTao = DateTime.Today;
+            item.TrangThai = 1;
+
+            bool result = new CongViecDAO().Insert_project(item);
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+            //return Json(true, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -51,11 +51,11 @@ $('#Insert_Cus').click(function () {
 
 // Update one customer
 $('#Edit_Cus').click(function () {
-    var id = $('#Cus_code').val();
-    var ten = $('#Cus_name').val();
-    var diachi = $('#Cus_address').val();
-    var sotk = $('#Cus_bank').val();
-    var phone = $('#Cus_phone').val();
+    var id = $('#Cus_code_E').val();
+    var ten = $('#Cus_name_E').val();
+    var diachi = $('#Cus_address_E').val();
+    var sotk = $('#Cus_bank_E').val();
+    var phone = $('#Cus_phone_E').val();
 
     $.ajax({
         url: '/Customer/Edit',

@@ -1,6 +1,7 @@
 ﻿@model List<Model.ViewModel.DuAnViewModel>
 @{
     ViewBag.Title = "Index";
+    List<Model.EF.KhachHang> cus = ViewBag.KhachHang;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Project{
@@ -54,7 +55,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="col-md-12 form-group">
-                        <button class="btn btn-primary" style="float: right">Thêm dự án</button>
+                        <button class="btn btn-primary" style="float: right" data-toggle="modal" data-target="#CalenderModalNew">Thêm dự án</button>
                     </div>
                     <div class="x_content">
 
@@ -78,7 +79,7 @@
                                         <td>
                                             <a>@item.Ten</a>
                                             <br />
-                                            <small>Ngày 21/11/2017</small>
+                                            <small>@item.NgayTao</small>
                                         </td>
                                         <td>
                                             <ul class="list-inline">
@@ -114,6 +115,64 @@
 
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="CalenderModalNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Thêm dự án</h4>
+            </div>
+            <div class="modal-body">
+                <div id="testmodal" style="padding: 5px 20px;">
+                    <form id="antoform" class="form-horizontal calender" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Tên dự án</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="project_name"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Khách hàng</label>
+                            <div class="col-sm-9">
+                                <select type="text" class="form-control" id="select_customer" name="title">
+                                    @foreach (var i in cus)
+                                    {
+                                        <option value="@i.MaKH">@i.Ten</option>
+                                    }    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Thời gian bắt đầu</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" id="time_start_pro" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Thời gian kết thúc</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" id="time_end_pro">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Mô tả</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" style="height:55px;" id="descr_pro" name="descr"></textarea>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary antosubmit" id="Insert_Project">Thêm</button>
+                <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Đóng</button>                
             </div>
         </div>
     </div>
