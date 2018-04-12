@@ -19,21 +19,12 @@ namespace Model.EF
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long MaCV { get; set; }
 
-        [StringLength(50)]
-        public string GhiChu { get; set; }
-
-        public DateTime? NgayTao { get; set; }
-
-        public DateTime? NgaySua { get; set; }
-
         public DateTime? ThoiGianBD { get; set; }
 
         public DateTime? ThoiGianKT { get; set; }
 
         [StringLength(150)]
-        public string VaiTro { get; set; }
-
-        public double? TienDo { get; set; }
+        public string ViTri { get; set; }
 
         public int? Status { get; set; }
     }

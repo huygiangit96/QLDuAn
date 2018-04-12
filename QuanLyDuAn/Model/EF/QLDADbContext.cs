@@ -8,44 +8,34 @@ namespace Model.EF
     public partial class QLDADbContext : DbContext
     {
         public QLDADbContext()
+<<<<<<< HEAD
             : base("name=QLDADbContext")
+=======
+            : base("name=QLDADbContext2")
+>>>>>>> 6c76e148f3028fb66f99de017b677362bf7fa518
         {
         }
 
-        public virtual DbSet<BangCong> BangCongs { get; set; }
-        public virtual DbSet<BoPhan> BoPhans { get; set; }
         public virtual DbSet<ChiTietLichLamViec> ChiTietLichLamViecs { get; set; }
         public virtual DbSet<CongViec> CongViecs { get; set; }
+        public virtual DbSet<DuAn> DuAns { get; set; }
         public virtual DbSet<KhachHang> KhachHangs { get; set; }
-        public virtual DbSet<LichLamViec> LichLamViecs { get; set; }
-        public virtual DbSet<LoaiCongViec> LoaiCongViecs { get; set; }
         public virtual DbSet<NhacNho> NhacNhoes { get; set; }
         public virtual DbSet<NhanVien> NhanViens { get; set; }
         public virtual DbSet<NhanVienQuyen> NhanVienQuyens { get; set; }
         public virtual DbSet<PhongBan> PhongBans { get; set; }
         public virtual DbSet<Quyen> Quyens { get; set; }
         public virtual DbSet<VaiTro> VaiTroes { get; set; }
+        public virtual DbSet<ViTri> ViTris { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<ChiTietLichLamViec>()
-                .Property(e => e.GhiChu)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<CongViec>()
-                .Property(e => e.MaLCV)
-                .IsUnicode(false);
-
             modelBuilder.Entity<KhachHang>()
                 .Property(e => e.SoTK)
                 .IsUnicode(false);
 
             modelBuilder.Entity<KhachHang>()
                 .Property(e => e.SoDT)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<LichLamViec>()
-                .Property(e => e.TGLam)
                 .IsUnicode(false);
 
             modelBuilder.Entity<NhanVien>()
@@ -67,6 +57,10 @@ namespace Model.EF
             modelBuilder.Entity<NhanVien>()
                 .Property(e => e.Email)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<NhanVien>()
+                .Property(e => e.Luong)
+                .HasPrecision(18, 0);
 
             modelBuilder.Entity<PhongBan>()
                 .Property(e => e.SoDT)

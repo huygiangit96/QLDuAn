@@ -8,21 +8,21 @@ using Model.ViewModel;
 
 namespace Model.DAO
 {
-    public class CongViecDAO
+    public class DuAnDAO
     {
         QLDADbContext db = null;
 
-        public CongViecDAO()
+        public DuAnDAO()
         {
             db = new QLDADbContext();
         }
 
         public List<DuAnViewModel> ListAll()
         {
-            var list = (from c in db.CongViecs
+            var list = (from c in db.DuAns
                         select new DuAnViewModel()
                         {
-                            ID = c.MaCV,
+                            ID = c.MaDA,
                             Ten = c.Ten,
                             TienDo = c.TienDo,
                             TrangThai = c.TrangThai,
@@ -48,7 +48,7 @@ namespace Model.DAO
                 }
                 db.SaveChanges();
 
-                db.CongViecs.Remove(db.CongViecs.Find(id));
+                db.DuAns.Remove(db.DuAns.Find(id));
 
                 db.SaveChanges();
 
@@ -62,13 +62,13 @@ namespace Model.DAO
 
         public DuAnViewModel GetProjectByID(long id)
         {
-            var list = (from c in db.CongViecs
+            var list = (from c in db.DuAns
                         join k in db.KhachHangs
                         on c.MaKH equals k.MaKH
-                        where(c.MaCV == id)
+                        where(c.MaDA == id)
                         select new DuAnViewModel()
                         {
-                            ID = c.MaCV,
+                            ID = c.MaDA,
                             Ten = c.Ten,
                             TienDo = c.TienDo,
                             TrangThai = c.TrangThai,
@@ -83,27 +83,11 @@ namespace Model.DAO
             return list;
         }
 
-        public List<GhiChuViewModel> GetNoteByProID(long id)
-        {
-            var list = (from c in db.ChiTietLichLamViecs.OrderBy(x => x.NgayTao)
-                        join n in db.NhanViens
-                        on c.MaNV equals n.MaNV
-                        where (c.MaCV == id)
-                        select new GhiChuViewModel()
-                        {
-                            ID = n.MaNV,
-                            Ten = n.Ten,
-                            NoiDung = c.GhiChu,
-                            NgayTao = c.NgayTao
-                        }).ToList();
-            return list;
-        }
-
-        public bool Insert_project(CongViec item)
+        public bool Insert_project(DuAn item)
         {
             try
             {
-                db.CongViecs.Add(item);
+                db.DuAns.Add(item);
                 db.SaveChanges();
                 return true;
             }

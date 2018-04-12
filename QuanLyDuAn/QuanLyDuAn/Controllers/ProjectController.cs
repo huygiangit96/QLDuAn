@@ -17,7 +17,7 @@ namespace QuanLyDuAn.Controllers
         // ~ mục danh sách dự án
         public ActionResult Index()
         {
-            List<DuAnViewModel> model = new CongViecDAO().ListAll();
+            List<DuAnViewModel> model = new DuAnDAO().ListAll();
             ViewBag.Khachhang = new KhachHangDAO().ListAll();
             return View(model);
         }
@@ -27,7 +27,7 @@ namespace QuanLyDuAn.Controllers
         [HasCredential(RoleID ="DELETE_CONGVIEC")]
         public JsonResult Delete(long id /* ma cong viec*/)
         {
-            bool result = new CongViecDAO().Delete(id);
+            bool result = new DuAnDAO().Delete(id);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
@@ -35,7 +35,7 @@ namespace QuanLyDuAn.Controllers
         public ActionResult Statistic(long id)
         {
 
-            DuAnViewModel model = new CongViecDAO().GetProjectByID(id);
+            DuAnViewModel model = new DuAnDAO().GetProjectByID(id);
 
             DateTime now = DateTime.Now;
 
@@ -45,7 +45,6 @@ namespace QuanLyDuAn.Controllers
 
             ViewBag.percent = ((now - model.NgayBatDau).Value.TotalHours) / ((model.NgayKetThuc - model.NgayBatDau).Value.TotalHours);
 
-            ViewBag.Note = new CongViecDAO().GetNoteByProID(id);
 
             ViewBag.NhanVien = new NhanVienDAO().ListAll();
 
@@ -54,27 +53,23 @@ namespace QuanLyDuAn.Controllers
         [HasCredential(RoleID = "CREATE_CHITIETLICHLAMVIEC")]
         public JsonResult AddEmpInProject(long emp_id, long pro_id)
         {
-            bool result = new ChiTietLichLamViecDAO().Insert_EmpID_ProID(emp_id, pro_id);
+            //bool result = new ChiTietLichLamViecDAO().Insert_EmpID_ProID(emp_id, pro_id);
 
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
         [HasCredential(RoleID = "CREATE_CONGVIEC")]
-        public JsonResult Insert(string name, long cus_id, DateTime time_start, DateTime time_end, string describe)
+        public JsonResult Insert(string name, long cus_id, DateTime time_start, DateTime time_end, string desc )
         {
-            CongViec item = new CongViec();
+            DuAn item = new DuAn();
             item.Ten = name;
             item.MaKH = cus_id;
+            item.NgayTao = DateTime.Today;
             item.ThoiGianBD = time_start;
             item.ThoiGianKT = time_end;
-            item.MoTa = describe;
+            item.MoTa = desc;
             item.TienDo = 0;
-            item.NgayTao = DateTime.Today;
-            item.TrangThai = 1;
-
-            bool result = new CongViecDAO().Insert_project(item);
-
+            bool result = new DuAnDAO().Insert_project(item);
             return Json(result, JsonRequestBehavior.AllowGet);
-            //return Json(true, JsonRequestBehavior.AllowGet);
         }
     }
 }

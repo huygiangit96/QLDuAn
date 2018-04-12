@@ -50,6 +50,7 @@ namespace Model.DAO
                 return false;
             }
         }
+<<<<<<< HEAD
         public List<NhacNhoView> GetByNV(long id)
         {
             var data = from a in db.NhacNhoes
@@ -70,5 +71,14 @@ namespace Model.DAO
                             };
             return data.ToList();
         }
+=======
+        //public List<NhacNhoView> GetByNV(string id)
+        //{
+            //var data_send = from a in db.NhacNhoes
+            //                join b in db.NhanViens on  a.MaNV equals b.MaNV
+            //                join c in db.NhanViens on a.
+            //                select new 
+        //}
+>>>>>>> 6c76e148f3028fb66f99de017b677362bf7fa518
     }
 }
