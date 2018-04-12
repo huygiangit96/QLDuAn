@@ -12,7 +12,7 @@ namespace Model.EF
         [Key]
         public long MaNN { get; set; }
 
-        public long? MaNV { get; set; }
+        public long MaNV { get; set; }
 
         public DateTime? ThoiGian { get; set; }
 
@@ -28,6 +28,6 @@ namespace Model.EF
 
         public DateTime? NgayTao { get; set; }
 
-        public long? NguoiNhanID { get; set; }
+        public long NguoiNhanID { get; set; }
     }
 }

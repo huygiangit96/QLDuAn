@@ -50,12 +50,25 @@ namespace Model.DAO
                 return false;
             }
         }
-        public List<NhacNhoView> GetByNV(string id)
+        public List<NhacNhoView> GetByNV(long id)
         {
-            //var data_send = from a in db.NhacNhoes
-            //                join b in db.NhanViens on  a.MaNV equals b.MaNV
-            //                join c in db.NhanViens on a.
-            //                select new 
+            var data = from a in db.NhacNhoes
+                            join b in db.NhanViens on a.MaNV equals b.MaNV
+                            join c in db.NhanViens on a.NguoiNhanID equals c.MaNV
+                            where (a.MaNV == id || a.NguoiNhanID == id)
+                            select new NhacNhoView()
+                            {
+                                MaNN = a.MaNN,
+                                MaNV = a.MaNV,
+                                Ten = b.Ten,
+                                TieuDe = a.TieuDe,
+                                NoiDung = a.NoiDung,
+                                NgayTao = a.NgayTao,
+                                NguoiNhanID = a.NguoiNhanID,
+                                NguoiNhan = c.Ten,
+                                Status = a.Status
+                            };
+            return data.ToList();
         }
     }
 }
