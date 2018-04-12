@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Model.DAO;
+using QuanLyDuAn.Common;
 
 namespace QuanLyDuAn.Controllers
 {
@@ -19,6 +20,8 @@ namespace QuanLyDuAn.Controllers
         public ActionResult Message()
         {
             var dao = new NhacNhoDAO();
+            var session = (UserLogin)Session[CommonConstants.USER_SESSION];
+            ViewBag.MessageList = dao.GetByNV(session.UserID);
             return View();
         }
 
