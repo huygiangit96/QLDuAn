@@ -32,15 +32,12 @@ namespace Model.DAO
                         on n.MaPB equals p.MaPB
                         join v in db.VaiTroes
                         on n.MaVT equals v.MaVT
-                        join b in db.BoPhans
-                        on n.MaBP equals b.MaBP
                         select new NhanVienViewModel()
                         {
                             MaNV = n.MaNV,
                             Ten = n.Ten,
                             DiaChi = n.DiaChi,
                             PhongBan = p.TenPB,
-                            BoPhan = b.Ten,
                             VaiTro = v.Ten,
                             SoDT = n.SoDT,
                             SoTK = n.SoTK,
@@ -67,7 +64,6 @@ namespace Model.DAO
             var dbEntry = GetByID(item.MaNV);
             try
             {
-                dbEntry.MaBP = item.MaBP;
                 dbEntry.MaPB = item.MaPB;
                 dbEntry.MatKhau = item.MatKhau;
                 dbEntry.MaVT = item.MaVT;
@@ -132,10 +128,12 @@ namespace Model.DAO
 
         public List<NhanVien> GetByProjectID(long id)
         {
-            var list = (from c in db.ChiTietLichLamViecs.OrderBy(x=>x.VaiTro)
+            var list = (from c in db.ChiTietLichLamViecs
+                       join cv in db.CongViecs
+                       on c.MaCV equals cv.MaCV
                        join n in db.NhanViens
                        on c.MaNV equals n.MaNV
-                       where c.MaCV == id 
+                       where cv.MaDA == id 
                        select n);
             return list.ToList();
         }

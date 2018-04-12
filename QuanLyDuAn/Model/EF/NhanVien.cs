@@ -16,8 +16,6 @@ namespace Model.EF
 
         public long? MaVT { get; set; }
 
-        public long? MaBP { get; set; }
-
         [StringLength(150)]
         public string Ten { get; set; }
 
@@ -43,5 +41,9 @@ namespace Model.EF
 
         [StringLength(150)]
         public string Email { get; set; }
+
+        public double? TongCong { get; set; }
+
+        public decimal? Luong { get; set; }
     }
 }

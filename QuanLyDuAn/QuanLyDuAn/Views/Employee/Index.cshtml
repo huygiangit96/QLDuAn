@@ -79,7 +79,6 @@
                                     <th>Họ tên</th>
                                     <th>Địa chỉ</th>
                                     <th>Phòng ban</th>
-                                    <th>Bộ phận</th>
                                     <th>Vai trò</th>
                                     <th>Điện thoại</th>
                                     <th>Trình độ</th>
@@ -99,7 +98,6 @@
                                         <td>@item.Ten</td>
                                         <td>@item.DiaChi</td>
                                         <td>@item.PhongBan</td>
-                                        <td>@item.BoPhan</td>
                                         <td>@item.VaiTro</td>
                                         <td>@item.SoDT</td>
                                         <td>@item.TrinhDo</td>
@@ -153,17 +151,6 @@
                                         @foreach(var item in pb)
                                         {
                                             <option value="@item.MaPB">@item.TenPB</option>
-                                        }
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-control form_modal_div">
-                                <div class="col-md-3 form_modal_label">Bộ phận</div>
-                                <div class="col-md-9">
-                                    <select id="Emp_select_bp" class="form_modal_input">
-                                        @foreach (var item in bp)
-                                        {
-                                            <option value="@item.MaBP">@item.Ten</option>
                                         }
                                     </select>
                                 </div>
@@ -233,17 +220,6 @@
                                         @foreach (var item in pb)
                                         {
                                             <option value="@item.MaPB">@item.TenPB</option>
-                                        }
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-control form_modal_div" style="border: 0px; margin-bottom: 2px;">
-                                <div class="col-md-3 form_modal_label">Bộ phận</div>
-                                <div class="col-md-9">
-                                    <select id="Emp_select_bp_E" class="form_modal_input" >
-                                        @foreach (var item in bp)
-                                        {
-                                            <option value="@item.MaBP">@item.Ten</option>
                                         }
                                     </select>
                                 </div>

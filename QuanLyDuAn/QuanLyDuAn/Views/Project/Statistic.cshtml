@@ -3,7 +3,6 @@
     ViewBag.Title = "Statistic";
     double hours = ViewBag.hours;
     double total_hours = ViewBag.total_hours;
-    List<Model.ViewModel.GhiChuViewModel> note = ViewBag.Note;
     List<Model.ViewModel.NhanVienViewModel> nv = ViewBag.NhanVien;
     Layout = "~/Views/Shared/_Layout.cshtml";
 
@@ -87,7 +86,7 @@
 
                                 <!-- end of user messages -->
                                 @{
-                                    if(note.Count > 0)
+                                    @*if(note.Count > 0)
                                     {
                                         <ul class="messages">
                                             <li>
@@ -130,7 +129,7 @@
                                     else
                                     {
                                         <p>Chưa có hoạt động nào gần đây</p>
-                                    }
+                                    }*@
                                 }
                                 
                                 <!-- end of user messages -->

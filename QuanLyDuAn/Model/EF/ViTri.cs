@@ -6,17 +6,15 @@ namespace Model.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("LoaiCongViec")]
-    public partial class LoaiCongViec
+    [Table("ViTri")]
+    public partial class ViTri
     {
         [Key]
-        public long MaLCV { get; set; }
+        public long MaVTri { get; set; }
 
-        [StringLength(50)]
+        [StringLength(200)]
         public string Ten { get; set; }
 
-        public DateTime? NgayTao { get; set; }
-
-        public DateTime? NgaySua { get; set; }
+        public double? HeSo { get; set; }
     }
 }

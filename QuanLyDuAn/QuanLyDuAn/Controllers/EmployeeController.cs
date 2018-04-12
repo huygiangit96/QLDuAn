@@ -17,19 +17,17 @@ namespace QuanLyDuAn.Controllers
         {
             List<NhanVienViewModel> modal = new NhanVienDAO().ListAll();
             ViewBag.PhongBan = new PhongBanDAO().ListAll();
-            ViewBag.BoPhan = new BoPhanDAO().ListAll();
             ViewBag.VaiTro = new VaiTroDAO().ListAll();
             return View(modal);
         }
 
         [HasCredential(RoleID = "CREATE_NHANVIEN")][HttpPost]
-        public JsonResult Insert(string name, string address, long department, long parts, long role, string bank, string phone, string level, string email)
+        public JsonResult Insert(string name, string address, long department, long role, string bank, string phone, string level, string email)
         {
             NhanVien item = new NhanVien();
             item.Ten = name;
             item.DiaChi = address;
             item.MaPB = department;
-            item.MaBP = parts;
             item.MaVT = role;
             item.SoTK = bank;
             item.SoDT = phone;
@@ -40,14 +38,13 @@ namespace QuanLyDuAn.Controllers
         }
 
         [HasCredential(RoleID = "UPDATE_NHANVIEN")][HttpPost]
-        public JsonResult Edit(long code, string name, string address, long department, long parts, long role, string bank, string phone, string level, string email)
+        public JsonResult Edit(long code, string name, string address, long department, long role, string bank, string phone, string level, string email)
         {
             NhanVien item = new NhanVien();
             item.MaNV = code;
             item.Ten = name;
             item.DiaChi = address;
             item.MaPB = department;
-            item.MaBP = parts;
             item.MaVT = role;
             item.SoTK = bank;
             item.SoDT = phone;

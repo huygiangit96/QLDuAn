@@ -19,32 +19,5 @@ namespace Model.DAO
         {
             return db.ChiTietLichLamViecs.ToList();
         }
-
-        public bool Insert_EmpID_ProID(long emp_id, long pro_id)
-        {
-            try
-            {
-                ChiTietLichLamViec check = db.ChiTietLichLamViecs.Where(x => x.MaNV == emp_id && x.MaCV == pro_id).SingleOrDefault();
-                if(check == null)
-                {
-                    ChiTietLichLamViec item = new ChiTietLichLamViec();
-
-                    item.MaNV = emp_id;
-                    item.MaCV = pro_id;
-                    item.NgayTao = DateTime.Today;
-                    db.ChiTietLichLamViecs.Add(item);
-                    db.SaveChanges();
-                }
-                else
-                {
-                    return false;
-                }
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
     }
 }

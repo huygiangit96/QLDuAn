@@ -12,33 +12,16 @@ namespace Model.EF
         [Key]
         public long MaCV { get; set; }
 
-        public long? MaKH { get; set; }
-
-        [StringLength(150)]
-        public string Ten { get; set; }
-
-        public DateTime? ThoiGianBD { get; set; }
-
-        public DateTime? ThoiGianKT { get; set; }
-
-        public double? TienDo { get; set; }
+        public long MaDA { get; set; }
 
         [StringLength(200)]
-        public string DiaChi { get; set; }
+        public string Ten { get; set; }
 
-        [StringLength(250)]
-        public string TaiLieu { get; set; }
-
-        public int? TrangThai { get; set; }
-
-        [StringLength(10)]
-        public string MaLCV { get; set; }
-
-        public DateTime? NgayTao { get; set; }
-
-        public DateTime? NgaySua { get; set; }
+        public int? Status { get; set; }
 
         [Column(TypeName = "ntext")]
-        public string MoTa { get; set; }
+        public string NoiDung { get; set; }
+
+        public int? Cong { get; set; }
     }
 }

@@ -23,9 +23,5 @@ namespace Model.EF
 
         [StringLength(250)]
         public string MoTa { get; set; }
-
-        public DateTime? NgayTao { get; set; }
-
-        public DateTime? NgaySua { get; set; }
     }
 }

@@ -14,9 +14,5 @@ namespace Model.EF
 
         [StringLength(50)]
         public string Ten { get; set; }
-
-        public DateTime? NgayTao { get; set; }
-
-        public DateTime? NgaySua { get; set; }
     }
 }
