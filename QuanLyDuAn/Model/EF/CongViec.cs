@@ -23,5 +23,8 @@ namespace Model.EF
         public string NoiDung { get; set; }
 
         public int? Cong { get; set; }
+        public DateTime? ThoiGianBD { get; set; }
+
+        public DateTime? ThoiGianKT { get; set; }
     }
 }

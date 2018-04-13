@@ -8,11 +8,7 @@ namespace Model.EF
     public partial class QLDADbContext : DbContext
     {
         public QLDADbContext()
-<<<<<<< HEAD
             : base("name=QLDADbContext")
-=======
-            : base("name=QLDADbContext2")
->>>>>>> 6c76e148f3028fb66f99de017b677362bf7fa518
         {
         }
 

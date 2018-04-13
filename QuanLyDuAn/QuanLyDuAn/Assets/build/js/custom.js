@@ -6,6 +6,16 @@
  *     // code here
  * });
  */
+$.formattedDate = function (dateToFormat) {
+    var dateObject = new Date(dateToFormat);
+    var day = dateObject.getDate();
+    var month = dateObject.getMonth() + 1;
+    var year = dateObject.getFullYear();
+    day = day < 10 ? "0" + day : day;
+    month = month < 10 ? "0" + month : month;
+    var formattedDate = day + "/" + month + "/" + year;
+    return formattedDate;
+};
 (function($,sr){
     // debouncing function from John Hann
     // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
@@ -2458,20 +2468,60 @@ if (typeof NProgress != 'undefined') {
 					//  return false;
 					//});
 				  },
-				  eventClick: function(calEvent, jsEvent, view) {
-					$('#fc_edit').click();
-					$('#title2').val(calEvent.title);
+				  eventClick: function (calEvent, jsEvent, view) {
+				      
+				      
+				      $('#fc_edit').click();
 
-					categoryClass = $("#event_type").val();
+				      $('#cvv_TenDA').text('');
+				      $('#cvv_TenCV').text('');
+				      $('#cvv_NoiDung').text('');;
+				      $('#cvv_start_time').text('');
+				      $('#cvv_end_time').text('');
+				      $('#cvv_cong').text('');
 
-					$(".antosubmit2").on("click", function() {
-					  calEvent.title = $("#title2").val();
+				      $('#cvv_TenDA').append(calEvent.TenDA);
+				      $('#cvv_TenCV').append(calEvent.TenCV);
+				      $('#cvv_NoiDung').append(calEvent.NoiDung);
+				      $('#cvv_start_time').val($.formattedDate(new Date(parseInt(calEvent.ThoiGianBD.substr(6)))).split("/").reverse().join("-"));
+				      $('#cvv_end_time').val($.formattedDate(new Date(parseInt(calEvent.ThoiGianKT.substr(6)))).split("/").reverse().join("-"));
+				      $('#cvv_cong').append(calEvent.SoCong);
 
-					  calendar.fullCalendar('updateEvent', calEvent);
-					  $('.antoclose2').click();
-					});
+				      var XX = calEvent.MaCV;
 
-					calendar.fullCalendar('unselect');
+				      $.ajax({
+				          url: '/Task/GetNV_CV_Vtri',
+				          type: 'GET',
+				          dataType: 'json',
+				          data: { macv: calEvent.MaCV },
+				          success: function (data) {
+				              var rows="";
+				              var count = 0;
+				              $.each(data, function (i, item) {
+				                  count++;
+				                  rows+=   '<tr><th scope="row">' + count + '</th>' 
+                                      + '<td>' + item.TenNV + '</td>'
+                                      + '<td>' +  item.ViTri + '</td>'
+                                      + '<td data-id="' + item.MaNV + '"><i class="fix_vitri fa fa-wrench" role="button" data-toggle="modal" data-target="#Modal_sua_vt" data-id1=' + item.MaNV + ' data-id2=' + item.MaCV + '></td></tr>';
+				              })
+				              $('#edit_cv_nv').empty();
+				              $('#edit_cv_nv').attr('data-id', calEvent.MaCV);
+				              $('#edit_cv_nv').append(rows);
+				          }
+				      })
+				    // prompt(calEvent.id);
+					//$('#title2').val(calEvent.title);
+
+					//categoryClass = $("#event_type").val();
+
+					//$(".antosubmit2").on("click", function() {
+					//  calEvent.title = $("#title2").val();
+
+					//  calendar.fullCalendar('updateEvent', calEvent);
+					//  $('.antoclose2').click();
+					//});
+
+					//calendar.fullCalendar('unselect');
 				  },
 				  editable: false,
                   locale: 'vi',
@@ -2484,10 +2534,18 @@ if (typeof NProgress != 'undefined') {
 				              var events = [];
 				              $.each(data, function (i, item) {
 				                  events.push({
-				                      title: item.GhiChu,
-				                      start: item.ThoiGianBD + '+07:00',
-				                      end: item.ThoiGianKT + '+07:00',
-				                      allDay: false
+				                      title: item.TenCV + ' \n(' + item.TenDA + ')',
+				                      start: item.ThoiGianBD +'+24:00',
+				                      end: item.ThoiGianKT + '+31:00',
+				                      allDay: false,
+				                      MaCV: item.MaCV,
+				                      TenCV: item.TenCV,
+				                      MaDA: item.MaDA,
+				                      TenDA: item.TenDA,
+				                      SoCong: item.SoCong,
+				                      NoiDung: item.NoiDung,
+				                      ThoiGianBD: item.ThoiGianBD,
+				                      ThoiGianKT: item.ThoiGianKT
 				                  });
 				              });
 				              callback(events);

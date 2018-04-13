@@ -5,7 +5,9 @@
     var user = (QuanLyDuAn.Common.UserLogin)Session[QuanLyDuAn.Common.CommonConstants.USER_SESSION];
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section Message{
+    <script src="~/Assets/js/Task.js"></script>
+}
 <div class="right_col" role="main">
     <div class="">
 
@@ -58,13 +60,16 @@
                         <div class="row">
                             <div class="col-sm-3 mail_list_column">
                                 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Tạo nhắc nhở</button>
-                                @foreach (var item in MessageList)
+                                @if (MessageList.Count == 0) { <p>Không có tin nhắn để hiển thị</p> }
+                                else
                                 {
-                                    var act = "Gửi đến:";
-                                    var sender = item.NguoiNhan;
-                                    string content = "";
-                                    if (item.NoiDung.Length > 99) { content = item.NoiDung.Substring(0, 98) + "..."; }
-                                    if (item.MaNV != user.UserID) { act = "Nhận từ: "; sender = item.Ten; }
+                                    foreach (var item in MessageList)
+                                    {
+                                        var act = "Gửi đến:";
+                                        var sender = item.NguoiNhan;
+                                        string content = "";
+                                        if (item.NoiDung.Length > 99) { content = item.NoiDung.Substring(0, 98) + "..."; }
+                                        if (item.MaNV != user.UserID) { act = "Nhận từ: "; sender = item.Ten; }
                                         <a class="mail_title" data-id=@item.MaNN role="button">
                                             <div class="mail_list">
                                                 <div class="left">
@@ -77,6 +82,7 @@
                                                 </div>
                                             </div>
                                         </a>
+                                    }
                                 }
                             </div>
                             <!-- /MAIL LIST -->
@@ -87,41 +93,29 @@
                                         <div class="col-md-8">
                                             <div class="btn-group">
                                                 <button class="btn btn-sm btn-primary" type="button"><i class="fa fa-reply"></i> Reply</button>
-                                                <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Forward"><i class="fa fa-share"></i></button>
-                                                <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Print"><i class="fa fa-print"></i></button>
                                                 <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Trash"><i class="fa fa-trash-o"></i></button>
                                             </div>
                                         </div>
                                         <div class="col-md-4 text-right">
-                                            <p class="date"> 8:02 PM 12 FEB 2014</p>
+                                            <p class="date" id="viewMessTime"></p>
                                         </div>
                                         <div class="col-md-12">
-                                            <h4> Donec vitae leo at sem lobortis porttitor eu consequat risus. Mauris sed congue orci. Donec ultrices faucibus rutrum.</h4>
+                                            <h4 id="viewMessTitle"></h4>
                                         </div>
                                     </div>
                                     <div class="sender-info">
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <strong>Jon Doe</strong>
-                                                <span>(jon.doe@gmail.com)</span> to
-                                                <strong>me</strong>
-                                                <a class="sender-dropdown"><i class="fa fa-chevron-down"></i></a>
+                                                <span id="viewMessFrom"></span>
+                                                <strong id="viewMessSender"></strong>
+                                                <span id="viewMessTo"></span>
+                                                <strong id="viewMessReceived"></strong>                                              
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="view-mail">
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                        </p>
-                                        <p>
-                                            Riusmod tempor incididunt ut labor erem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                                            nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                            mollit anim id est laborum.
-                                        </p>
-                                        <p>
-                                            Modesed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                                            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                    <div class="view-mail" >
+                                        <p id="viewMessContent">
+                                        
                                         </p>
                                     </div>
                                 </div>
