@@ -53,13 +53,14 @@ $('#Insert_Project').click(function () {
     alert("dsasshjfdshfgsdfds");
     var name = $('#project_name').val();
     var cus_id = $('#select_customer option:selected ').val();
+    var emp_id = $('#select_leader option:selected ').val();
     var time_start = $('#time_start_pro').val();
     var time_end = $('#time_end_pro').val();
     var desc = $('#descr_pro').val();
 
     $.ajax({
         url: '/Project/Insert',
-        data: { name: name, cus_id: cus_id, time_start: time_start, time_end: time_end, describe: desc },
+        data: { name: name, emp_id: emp_id, cus_id: cus_id, time_start: time_start, time_end: time_end, describe: desc },
         type: 'POST',
         datatype: 'json',
         success: function (data) {

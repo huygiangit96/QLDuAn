@@ -19,6 +19,7 @@ namespace QuanLyDuAn.Controllers
         {
             List<DuAnViewModel> model = new DuAnDAO().ListAll();
             ViewBag.Khachhang = new KhachHangDAO().ListAll();
+            ViewBag.NhanVien = new NhanVienDAO().ListAll();
             return View(model);
         }
 
@@ -58,11 +59,12 @@ namespace QuanLyDuAn.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
         [HasCredential(RoleID = "CREATE_CONGVIEC")]
-        public JsonResult Insert(string name, long cus_id, DateTime time_start, DateTime time_end, string desc )
+        public JsonResult Insert(string name, long emp_id, long cus_id, DateTime time_start, DateTime time_end, string desc )
         {
             DuAn item = new DuAn();
             item.Ten = name;
             item.MaKH = cus_id;
+            item.TruongDuAn = emp_id;
             item.NgayTao = DateTime.Today;
             item.ThoiGianBD = time_start;
             item.ThoiGianKT = time_end;
