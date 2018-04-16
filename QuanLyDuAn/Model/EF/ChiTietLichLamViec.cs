@@ -19,12 +19,7 @@ namespace Model.EF
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long MaCV { get; set; }
 
-        public DateTime? ThoiGianBD { get; set; }
-
-        public DateTime? ThoiGianKT { get; set; }
-
-        [StringLength(150)]
-        public string ViTri { get; set; }
+        public long? MaVTri { get; set; }
 
         public int? Status { get; set; }
     }

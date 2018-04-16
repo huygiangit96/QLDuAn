@@ -70,5 +70,14 @@ namespace Model.DAO
                             };
             return data.ToList();
         }
+<<<<<<< HEAD
+=======
+        public void ChangeStatus(long id)
+        {
+            var dbEntry = db.NhacNhoes.SingleOrDefault(x => x.MaNN == id);
+            dbEntry.Status = 0;
+            db.SaveChanges();
+        }
+>>>>>>> 6da6ec281aa286296b2d609a63430e0efb307f40
     }
 }
