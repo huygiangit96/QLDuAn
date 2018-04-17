@@ -22,13 +22,14 @@ namespace QuanLyDuAn.Controllers
             if (ModelState.IsValid)
             {
                 var Dao = new NhanVienDAO();
-                var result = Dao.Login(username, password);
-                if (result)
+                long result = Dao.Login(username, password);
+                if (result != 0)
                 {
                     var user = Dao.GetByUserName(username);
                     var UserSession = new UserLogin();
                     UserSession.UserID = user.MaNV;
                     UserSession.Name = user.Ten;
+                    UserSession.DuAn = Dao.GetProjbyNV(result);
                     var ListCredentials = Dao.GetListCredential(username);
                     Session.Add(CommonConstants.SESSION_CREDENTIAL, ListCredentials);
                     Session.Add(CommonConstants.USER_SESSION, UserSession);
@@ -46,7 +47,7 @@ namespace QuanLyDuAn.Controllers
         {
             Session[CommonConstants.USER_SESSION] = null;
             return RedirectToAction("Index", "Home");
-            
+
         }
     }
 }

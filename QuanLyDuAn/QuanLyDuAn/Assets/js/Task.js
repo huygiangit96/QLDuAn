@@ -75,12 +75,12 @@ $('#cv_calendar_submit').off('click').on('click', function () {
 
 $('#save_them_nvcv').off('click').on('click', function () {
     var manv = $('#cv_pick_emp_add').val();
-    var macv = $('#edit_cv_nv').data('id');
+    var macv = document.getElementById('edit_cv_nv').getAttribute('data-id');
     $.ajax({
         url: '/Task/Insert_NV_CV',
         dataType: 'json',
         type: 'POST',
-        data: { manv: manv, macv: macv},
+        data: { manv: manv, macv: macv },
         success: function (res) {
             if (res.status == true) {
                 alert('Thêm member thành công !');
@@ -95,9 +95,9 @@ $('#save_them_nvcv').off('click').on('click', function () {
                         $.each(data, function (i, item) {
                             count++;
                             rows += '<tr><th scope="row">' + count + '</th>'
-                                + '<td>' + item.TenNV + '</td>'
-                                + '<td>' + item.ViTri + '</td>'
-                                + '<td data-id="' + item.MaNV + '"><i class="fix_vitri fa fa-wrench" role="button" data-toggle="modal" data-target="#Modal_sua_vt" data-id1=' + item.MaNV + ' data-id2=' + item.MaCV + '></td></tr>';
+                            + '<td>' + item.TenNV + '</td>'
+                            + '<td>' + item.ViTri + '</td>'
+                            + '<td data-id="' + item.MaNV + '"><i class="fix_vitri fa fa-wrench" role="button" data-toggle="modal" data-target="#Modal_sua_vt" data-id1=' + item.MaNV + ' data-id2=' + item.MaCV + '></td></tr>';
                         })
                         $('#edit_cv_nv').empty();
                         $('#edit_cv_nv').attr('data-id', macv);
@@ -105,6 +105,7 @@ $('#save_them_nvcv').off('click').on('click', function () {
                     }
                 })
                 $('#Modal_them_nv').modal('toggle');
+                $('#cv_pick_emp_add option:first').attr('selected', true);
             }
             else {
                 alert('Nhân viên này đã là member!');
@@ -112,6 +113,43 @@ $('#save_them_nvcv').off('click').on('click', function () {
         }
     })
 })
-$('#save_sua_vt').off('click').on('click', function () {
+$(document).on("click", ".fix_vitri", function () {
+    $('#save_sua_vt').attr('data-id1', $(this).data('id1'));
+    $('#save_sua_vt').attr('data-id2', $(this).data('id2'));
+});
 
+$('#save_sua_vt').off('click').on('click', function () {
+    var manv = $(this).data('id1');
+    var macv = $(this).data('id2');
+    var mavtri = $('#cv_pick_vtri_change').val();
+    $.ajax({
+        url: '/Task/Edit_VT',
+        dataType: 'json',
+        type: 'GET',
+        data: { manv: manv, macv: macv, mavtri: mavtri },
+        success: function (data) {
+            alert(data);
+            $.ajax({
+                url: '/Task/GetNV_CV_Vtri',
+                type: 'GET',
+                dataType: 'json',
+                data: { macv: macv },
+                success: function (data) {
+                    var rows = "";
+                    var count = 0;
+                    $.each(data, function (i, item) {
+                        count++;
+                        rows += '<tr><th scope="row">' + count + '</th>'
+                            + '<td>' + item.TenNV + '</td>'
+                            + '<td>' + item.ViTri + '</td>'
+                            + '<td data-id="' + item.MaNV + '"><i class="fix_vitri fa fa-wrench" role="button" data-toggle="modal" data-target="#Modal_sua_vt" data-id1=' + item.MaNV + ' data-id2=' + item.MaCV + '></td></tr>';
+                    })
+                    $('#edit_cv_nv').empty();
+                    $('#edit_cv_nv').attr('data-id', macv);
+                    $('#edit_cv_nv').append(rows);
+                }
+            })
+            $('#Modal_sua_vt').modal('toggle');
+        }
+    })
 })

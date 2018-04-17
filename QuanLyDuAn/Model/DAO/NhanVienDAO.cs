@@ -102,14 +102,14 @@ namespace Model.DAO
             dbEntry.Status = dbEntry.Status == 0 ? 1 : 0;
         }
 
-        public bool Login(string username, string password)
+        public long Login(string username, string password)
         {
             var dbEntry = db.NhanViens.SingleOrDefault(x => x.TaiKhoan == username || x.Email == username);
             if(dbEntry != null)
             {
-                if (dbEntry.MatKhau == password) return true;
+                if (dbEntry.MatKhau == password) return dbEntry.MaNV;
             }
-            return false;
+            return 0;
         }
         public List<string> GetListCredential(string username)
         {
@@ -136,6 +136,16 @@ namespace Model.DAO
                        where cv.MaDA == id 
                        select n);
             return list.ToList();
+        }
+        public List<long> GetProjbyNV(long id)
+        {
+            var data = from a in db.ChiTietLichLamViecs
+                       join b in db.CongViecs on a.MaCV equals b.MaCV
+                       join c in db.DuAns on b.MaDA equals c.MaDA
+                       join d in db.NhanViens on a.MaNV equals d.MaNV
+                       where a.MaNV == id
+                       select b.MaDA;
+            return data.ToList(); 
         }
     }
 }

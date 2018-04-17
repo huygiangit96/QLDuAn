@@ -2499,10 +2499,18 @@ if (typeof NProgress != 'undefined') {
 				              var count = 0;
 				              $.each(data, function (i, item) {
 				                  count++;
-				                  rows+=   '<tr><th scope="row">' + count + '</th>' 
+				                  if (1 == 0) {
+				                      rows += '<tr><th scope="row">' + count + '</th>'
                                       + '<td>' + item.TenNV + '</td>'
-                                      + '<td>' +  item.ViTri + '</td>'
+                                      + '<td>' + item.ViTri + '</td>'
                                       + '<td data-id="' + item.MaNV + '"><i class="fix_vitri fa fa-wrench" role="button" data-toggle="modal" data-target="#Modal_sua_vt" data-id1=' + item.MaNV + ' data-id2=' + item.MaCV + '></td></tr>';
+				                  }
+				                  else {
+				                      rows += '<tr><th scope="row">' + count + '</th>'
+                                      + '<td>' + item.TenNV + '</td>'
+                                      + '<td>' + item.ViTri + '</td>'
+                                      + '<td ></td></tr>';
+				                  }
 				              })
 				              $('#edit_cv_nv').empty();
 				              $('#edit_cv_nv').attr('data-id', calEvent.MaCV);

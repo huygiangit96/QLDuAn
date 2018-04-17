@@ -93,6 +93,14 @@ namespace QuanLyDuAn.Controllers
                 status = result
             });
         }
+        public JsonResult Edit_VT(long manv, long macv, long mavtri)
+        {
+            var result = new ChiTietLichLamViecDAO().ChangeViTri(manv, macv, mavtri);
+            string notif = "Sửa thành công";
+            if (result == 1) notif = "Đã thay đổi vai trò thành LEADER !\nLEADER hiện tại thay đổi thành MEMBER";
+            if (result == 2 || result == 3) notif = "Chọn LEADER mới trước !";
+            return Json(notif, JsonRequestBehavior.AllowGet);
+        }
         // chấm công
         public ActionResult Time_keeping()
         {

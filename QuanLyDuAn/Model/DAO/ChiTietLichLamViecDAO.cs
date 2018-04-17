@@ -45,15 +45,40 @@ namespace Model.DAO
                        };
             return data.ToList();
         }
-        //public int ChangeViTri(long manv, long macv, long mavtri)
-        //{
-        //    if(mavtri == 1)
-        //    {
-        //        var dbEntry = db.ChiTietLichLamViecs.SingleOrDefault(x => x.MaCV == macv && x.MaVTri == 1);
-        //        dbEntry.MaVTri = 2;
-        //        var dbEntry2 = db.ChiTietLichLamViecs.SingleOrDefault(x => x.MaCV == macv && x.MaCV == cv);
-
-        //    }
-        //}
+        public int ChangeViTri(long manv, long macv, long mavtri)
+        {
+            if (mavtri == 1)
+            {
+                var dbEntry = db.ChiTietLichLamViecs.SingleOrDefault(x => x.MaCV == macv && x.MaVTri == 1);
+                dbEntry.MaVTri = 2;
+                var dbEntry2 = db.ChiTietLichLamViecs.SingleOrDefault(x => x.MaCV == macv && x.MaNV == manv);
+                dbEntry2.MaVTri = 1;
+                db.SaveChanges();
+                return 1;
+            }
+            if(mavtri == 2)
+            {
+                var dbEntry = db.ChiTietLichLamViecs.SingleOrDefault(x => x.MaCV == macv && x.MaNV == manv);
+                if (dbEntry.MaVTri == 1) return 2;
+                else
+                {
+                    dbEntry.MaVTri = 2;
+                    db.SaveChanges();
+                    return 4;
+                }
+            }
+            if(mavtri == 3)
+            {
+                var dbEntry = db.ChiTietLichLamViecs.SingleOrDefault(x => x.MaCV == macv && x.MaNV == manv);
+                if (dbEntry.MaVTri == 1) return 3;
+                else
+                {
+                    dbEntry.MaVTri = 3;
+                    db.SaveChanges();
+                    return 4;
+                }
+            }
+            return 0;
+        }
     }
 }

@@ -158,43 +158,48 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Dự án</label>
                             <div class="col-sm-9">
-                                <span class="form-control" id="cvv_TenDA"></span>
-                                @*<input type="text" class="form-control" id="title2" name="title2" disabled>*@
+                                <select type="text" class="has_author_change form-control" id="cv_pick_proj" name="title" disabled>
+                                    <option selected>Chọn dự án</option>
+                                    @foreach (var item in list_da)
+                                    {
+                                        <option value=@item.ID>@item.Ten</option>
+                                    }
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Công việc</label>
                             <div class="col-sm-9">
-                                <span class="form-control" id="cvv_TenCV"></span>
+                                <input class="has_author_change form-control" id="cvv_TenCV" disabled/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Thời gian bắt đầu</label>
                             <div class="col-sm-9">
-                                <input type="date" class="form-control" id="cvv_start_time"></input>
+                                <input type="date" class="has_author_change form-control" id="cvv_start_time" disabled/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Thời gian kết thúc</label>
                             <div class="col-sm-9">
-                                <input type="date" class="form-control" id="cvv_end_time"></input>
+                                <input type="date" class="has_author_change form-control" id="cvv_end_time" disabled/>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Công</label>
                             <div class="col-sm-9">
-                                <span class="form-control" id="cvv_cong"></span>
+                                <input class="has_author_change form-control" id="cvv_cong" disabled />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Nội dung</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" style="height:55px;" id="cvv_NoiDung" name="descr" disabled></textarea>
+                                <textarea class="has_author_change form-control" style="height:55px;" id="cvv_NoiDung" name="descr" disabled></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Danh sách nhân viên</label>
-                            <button type="button" class="btn btn-primary" style="float:right" id="edit_them_nv" data-toggle="modal" data-target="#Modal_them_nv">Thêm nhân viên</button>
+                            <button type="button" class="has_author_change btn btn-primary" style="float:right" id="edit_them_nv" data-toggle="modal" data-target="#Modal_them_nv" disabled>Thêm nhân viên</button>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -214,7 +219,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Đóng</button>
-                <button type="button" class="btn btn-primary antosubmit2">Lưu</button>
+                <button type="button" class="has_author_change btn btn-primary antosubmit2" disabled>Lưu</button>
             </div>
         </div>
     </div>
@@ -269,8 +274,8 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Nhân viên</label>
                             <div class="col-sm-9">
-                                <select type="text" class="form-control" id="cv_pick_emp_add" name="title">
-                                    <option selected>Chọn nhân viên</option>
+                                <select type="text" class="form-control" id="cv_pick_vtri_change" name="title">
+                                    <option selected>Chọn vị trí</option>
                                     @foreach (var item in list_vt)
                                     {
                                         <option value=@item.MaVTri>@item.Ten</option>
