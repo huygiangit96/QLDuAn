@@ -29,5 +29,6 @@ namespace Model.EF
         public DateTime? NgayTao { get; set; }
 
         public long? NguoiNhanID { get; set; }
+
     }
 }

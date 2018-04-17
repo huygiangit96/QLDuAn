@@ -19,5 +19,6 @@ namespace Model.ViewModel
         public DateTime? NgayBatDau { get; set; }
         public DateTime? NgayKetThuc { get; set; }
         public DateTime? NgayTao { get; set; }
+        public long TruongDuAn { get; set; }
     }
 }

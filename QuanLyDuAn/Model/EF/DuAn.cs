@@ -35,5 +35,7 @@ namespace Model.EF
 
         [Column(TypeName = "ntext")]
         public string MoTa { get; set; }
+
+        public long TruongDuAn { get; set; }
     }
 }
