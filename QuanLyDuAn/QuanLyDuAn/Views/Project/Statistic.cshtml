@@ -3,13 +3,16 @@
     ViewBag.Title = "Statistic";
     double hours = ViewBag.hours;
     double total_hours = ViewBag.total_hours;
-    List<Model.ViewModel.NhanVienViewModel> nv = ViewBag.NhanVien;
+    List<Model.ViewModel.CongViecViewModel> cv = ViewBag.CongViec;
+    Model.EF.NhanVien leader = ViewBag.Leader;
+    List<Model.ViewModel.NhanVienViewModel> emp = ViewBag.NhanVien;
+    List<Model.EF.NhanVien> ThanhVien = ViewBag.ThanhVien;
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
 @section Project{
     <script src="~/Assets/js/Project.js"></script>
-    }
+}
 <div class="right_col" role="main">
     <div class="">
         <div class="page-title">
@@ -20,11 +23,11 @@
             <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                     @*<div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
-                        </span>
-                    </div>*@
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">Go!</button>
+                            </span>
+                        </div>*@
                 </div>
             </div>
         </div>
@@ -41,19 +44,19 @@
                                 <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
                             @*<li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="#">Settings 1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Settings 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="close-link"><i class="fa fa-close"></i></a>
-                            </li>*@
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <a href="#">Settings 1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Settings 2</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>*@
                         </ul>
                         <div class="clearfix"></div>
                     </div>
@@ -78,7 +81,59 @@
                             </ul>
                             <br />
 
-                            <div id="mainb" style="height:350px;"></div>
+                            @*<div id="mainb" style="height:350px;"></div>*@
+
+                            <!-- Đây là bảng công việc -->
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 0;">
+                                    <div class="x_title">
+                                        <h2>Công việc</h2>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li>
+                                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a class="dropdown-toggle" data-toggle="modal" role="button" data-target="#CalenderModalNew"><i class="fa fa-plus"></i></a>
+                                            </li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Tên</th>
+                                                    <th>Nội dung</th>
+                                                    <th>Leader</th>
+                                                    <th>Bắt đầu</th>
+                                                    <th>Kết thúc</th>
+                                                    <th>Công</th>
+                                                    <th>Tác vụ</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in cv)
+                                                {
+                                                <tr>
+                                                    <td>@item.Ten</td>
+                                                    <td>@item.NoiDung</td>
+                                                    <td>@item.Leader</td>
+                                                    <td>@item.TgBatDau.Value.ToShortDateString()</td>
+                                                    <td>@item.TgKetThuc.Value.ToShortDateString()</td>
+                                                    <td>@item.Cong</td>
+                                                    <td style="text-align:center; width: 110px;">
+                                                        <button class="btn btn-primary btn-xs">Sửa</button> |
+                                                        <button class="btn btn-danger btn-xs Delete_CV" data-id="@item.ID" data-pro="@Model.ID">Xóa</button>
+                                                    </td>
+                                                </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
 
                             <div>
 
@@ -87,51 +142,51 @@
                                 <!-- end of user messages -->
                                 @{
                                     @*if(note.Count > 0)
-                                    {
-                                        <ul class="messages">
-                                            <li>
-                                                <img src="images/img.jpg" class="avatar" alt="Avatar">
-                                                <div class="message_date">
-                                                    <h3 class="date text-info">@(note[0].NgayTao.Value.Day)</h3>
-                                                    <p class="month">@note[0].NgayTao.Value.Month</p>
-                                                </div>
-                                                <div class="message_wrapper">
-                                                    <h4 class="heading">@note[0].Ten</h4>
-                                                    <blockquote class="message">@note[0].NoiDung</blockquote>
-                                                    <br />
-                                                    <p class="url">
-                                                        <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                                                        <a href="#"><i class="fa fa-paperclip"></i> chitiet.doc </a>
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            @if (note.Count > 1)
-                                            {
+                                        {
+                                            <ul class="messages">
                                                 <li>
                                                     <img src="images/img.jpg" class="avatar" alt="Avatar">
                                                     <div class="message_date">
-                                                        <h3 class="date text-error">@note[1].NgayTao.Value.Day</h3>
-                                                        <p class="month">@note[1].NgayTao.Value.Month</p>
+                                                        <h3 class="date text-info">@(note[0].NgayTao.Value.Day)</h3>
+                                                        <p class="month">@note[0].NgayTao.Value.Month</p>
                                                     </div>
                                                     <div class="message_wrapper">
-                                                        <h4 class="heading">@note[1].Ten</h4>
-                                                        <blockquote class="message">@note[1].NoiDung</blockquote>
+                                                        <h4 class="heading">@note[0].Ten</h4>
+                                                        <blockquote class="message">@note[0].NoiDung</blockquote>
                                                         <br />
                                                         <p class="url">
-                                                            <span class="fs1" aria-hidden="true" data-icon=""></span>
-                                                            <a href="#" data-original-title="">chitiet.doc</a>
+                                                            <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
+                                                            <a href="#"><i class="fa fa-paperclip"></i> chitiet.doc </a>
                                                         </p>
                                                     </div>
                                                 </li>
-                                            }
-                                        </ul>
-                                    }
-                                    else
-                                    {
-                                        <p>Chưa có hoạt động nào gần đây</p>
-                                    }*@
+                                                @if (note.Count > 1)
+                                                {
+                                                    <li>
+                                                        <img src="images/img.jpg" class="avatar" alt="Avatar">
+                                                        <div class="message_date">
+                                                            <h3 class="date text-error">@note[1].NgayTao.Value.Day</h3>
+                                                            <p class="month">@note[1].NgayTao.Value.Month</p>
+                                                        </div>
+                                                        <div class="message_wrapper">
+                                                            <h4 class="heading">@note[1].Ten</h4>
+                                                            <blockquote class="message">@note[1].NoiDung</blockquote>
+                                                            <br />
+                                                            <p class="url">
+                                                                <span class="fs1" aria-hidden="true" data-icon=""></span>
+                                                                <a href="#" data-original-title="">chitiet.doc</a>
+                                                            </p>
+                                                        </div>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        }
+                                        else
+                                        {
+                                            <p>Chưa có hoạt động nào gần đây</p>
+                                        }*@
                                 }
-                                
+
                                 <!-- end of user messages -->
 
 
@@ -160,20 +215,12 @@
                                         <p class="title">Tên khách hàng</p>
                                         <p>@Model.KhachHang</p>
                                         <p class="title">Trưởng nhóm dự án</p>
-                                        @{
-                                            try
-                                            {
-                                                <p>@Model.ThanhVien[0].Ten</p>
-                                            }
-                                            catch
-                                            {
 
-                                            }
+                                        <p>@leader.Ten</p>
 
-                                        }
-                                        
+
                                         <p class="title"><a role="button" data-toggle='modal' data-target='#Category_Modal_Insert'>Thành viên</a></p>
-                                        
+
                                         @foreach (var member in Model.ThanhVien)
                                         {
                                             try
@@ -220,33 +267,67 @@
     </div>
 </div>
 
-<div class="modal fade" id="Category_Modal_Insert" role="dialog">
+<div id="CalenderModalNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <!-- Modal content-->
         <div class="modal-content">
+
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Thêm nhân viên</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Thêm công việc</h4>
             </div>
             <div class="modal-body">
-                <div class="form-control form_modal_div">
-                    <div class="col-md-3 form_modal_label">Nhân viên</div>
-                    <div class="col-md-9">
-                        <select id="Emp_select" class="form_modal_input">
-                            @foreach (var item in nv)
-                            {
-                                <option value="@item.MaNV">@item.Ten</option>
-                            }
-                        </select>
-                    </div>
+                <div id="testmodal" style="padding: 5px 20px;">
+                    <form id="antoform" class="form-horizontal calender" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Tên công việc</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="name_cv" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Công</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="cong_cv" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Trưởng nhóm</label>
+                            <div class="col-sm-9">
+                                <select type="text" class="form-control" id="select_leader_cv" name="title">
+                                    @foreach (var i in emp)
+                                    {
+                                        <option value="@i.MaNV">@i.Ten</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Thời gian bắt đầu</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" id="time_start_cv" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Thời gian kết thúc</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" id="time_end_cv">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Nội dung</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" style="height:55px;" id="cong_noidung"></textarea>
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
             </div>
             <div class="modal-footer">
-                <a class="btn btn-success" id="Insert_Emp_Pro" data-id="@Model.ID">Thêm</a>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary antosubmit" id="Insert_CV" data-id="@Model.ID">Thêm</button>
+                <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Đóng</button>
             </div>
         </div>
-
     </div>
 </div>
 

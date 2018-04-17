@@ -45,6 +45,23 @@ namespace Model.DAO
                        };
             return data.ToList();
         }
+        public bool Insert_CTLLV(long ma_cv, long ma_nv)
+        {
+            try
+            {
+                ChiTietLichLamViec temp = new ChiTietLichLamViec();
+                temp.MaCV = ma_cv;
+                temp.MaNV = ma_nv;
+                temp.MaVTri = 1;
+                db.ChiTietLichLamViecs.Add(temp);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         //public int ChangeViTri(long manv, long macv, long mavtri)
         //{
         //    if(mavtri == 1)

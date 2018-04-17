@@ -26,7 +26,8 @@ namespace Model.DAO
                             Ten = c.Ten,
                             TienDo = c.TienDo,
                             TrangThai = c.TrangThai,
-                            NgayTao = c.NgayTao
+                            NgayTao = c.NgayTao,
+                            TruongDuAn = c.TruongDuAn,                    
                             //ThanhVien = null
                         }).ToList();
             foreach(var item in list)
@@ -75,7 +76,8 @@ namespace Model.DAO
                             NgayBatDau = c.ThoiGianBD,
                             NgayKetThuc = c.ThoiGianKT,
                             MoTa = c.MoTa,
-                            KhachHang = k.Ten
+                            KhachHang = k.Ten,
+                            TruongDuAn = c.TruongDuAn
                         }).Single();
 
                 list.ThanhVien = new NhanVienDAO().GetByProjectID(list.ID);

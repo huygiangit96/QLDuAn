@@ -133,7 +133,7 @@ namespace Model.DAO
                        on c.MaCV equals cv.MaCV
                        join n in db.NhanViens
                        on c.MaNV equals n.MaNV
-                       where cv.MaDA == id 
+                       where (cv.MaDA == id && c.MaVTri == 1)
                        select n);
             return list.ToList();
         }
