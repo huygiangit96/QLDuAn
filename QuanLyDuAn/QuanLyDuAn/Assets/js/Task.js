@@ -119,8 +119,8 @@ $(document).on("click", ".fix_vitri", function () {
 });
 
 $('#save_sua_vt').off('click').on('click', function () {
-    var manv = $(this).data('id1');
-    var macv = $(this).data('id2');
+    var manv = document.getElementById('save_sua_vt').getAttribute('data-id1');
+    var macv = document.getElementById('save_sua_vt').getAttribute('data-id2');
     var mavtri = $('#cv_pick_vtri_change').val();
     $.ajax({
         url: '/Task/Edit_VT',
@@ -150,6 +150,27 @@ $('#save_sua_vt').off('click').on('click', function () {
                 }
             })
             $('#Modal_sua_vt').modal('toggle');
+        }
+    })
+})
+$('#save_cv').off('click').on('click', function () {
+    var macv = document.getElementById('edit_cv_nv').getAttribute('data-id');
+    var ten = $('#cvv_TenCV').val();
+    var noidung = $('#cvv_NoiDung').val();
+    var cong = $('#cvv_cong').val();
+    var start_time = $('#cvv_start_time').val();
+    var end_time = $('#cvv_end_time').val();
+    $.ajax({
+        url: '/Task/Edit_CV',
+        dataType: 'json',
+        type: 'post',
+        data: { macv: macv, ten: ten, noidung: noidung, cong: cong, start_time: start_time, end_time: end_time },
+        success: function (res) {
+            if (res.status == true) {
+                alert('Sửa thành công !');
+                window.location.href = '/Task/Assignment';
+            }
+            else { alert('Có lỗi xảy ra ! Xem lại các giá trị !');}
         }
     })
 })

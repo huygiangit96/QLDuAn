@@ -34,10 +34,11 @@ namespace Model.DAO
         {
             return db.CongViecs.ToList();
         }
-        public List<LichLamViecView> ListCV()
+        public List<LichLamViecView> ListCV(long manv)
         {
             var data = from a in db.CongViecs
                        join b in db.DuAns on a.MaDA equals b.MaDA
+                       where b.TruongDuAn == manv
                        select new LichLamViecView()
                        {
                            MaCV = a.MaCV,
@@ -49,7 +50,42 @@ namespace Model.DAO
                            ThoiGianKT = a.ThoiGianKT,
                            SoCong = a.Cong
                        };
-            return data.ToList();
+
+            if (manv != 0)
+            {
+                var data1 = from a in db.CongViecs
+                           join b in db.DuAns on a.MaDA equals b.MaDA
+                           join c in db.ChiTietLichLamViecs on a.MaCV equals c.MaCV
+                           where c.MaNV == manv
+                           select new LichLamViecView()
+                           {
+                               MaCV = a.MaCV,
+                               TenCV = a.Ten,
+                               MaDA = a.MaDA,
+                               TenDA = b.Ten,
+                               NoiDung = a.NoiDung,
+                               ThoiGianBD = a.ThoiGianBD,
+                               ThoiGianKT = a.ThoiGianKT,
+                               SoCong = a.Cong
+                           };
+                data1.ToList().AddRange(data.ToList());
+                return data1.ToList();
+            }
+
+                var data2 = from a in db.CongViecs
+                           join b in db.DuAns on a.MaDA equals b.MaDA
+                           select new LichLamViecView()
+                           {
+                               MaCV = a.MaCV,
+                               TenCV = a.Ten,
+                               MaDA = a.MaDA,
+                               TenDA = b.Ten,
+                               NoiDung = a.NoiDung,
+                               ThoiGianBD = a.ThoiGianBD,
+                               ThoiGianKT = a.ThoiGianKT,
+                               SoCong = a.Cong
+                           };
+            return data2.ToList();
         }
         public List<CongViecViewModel> GetByProID(long id)
         {
@@ -103,6 +139,24 @@ namespace Model.DAO
                 db.CongViecs.Remove(db.CongViecs.Find(id));
                 db.SaveChanges();
 
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool Edit_CV(CongViec item)
+        {
+            var dbEntry = db.CongViecs.SingleOrDefault(x => x.MaCV == item.MaCV);
+            try
+            {
+                dbEntry.NoiDung = item.NoiDung;
+                dbEntry.Ten = item.Ten;
+                dbEntry.ThoiGianBD = item.ThoiGianBD;
+                dbEntry.ThoiGianKT = item.ThoiGianKT;
+                dbEntry.Cong = item.Cong;
+                db.SaveChanges();
                 return true;
             }
             catch

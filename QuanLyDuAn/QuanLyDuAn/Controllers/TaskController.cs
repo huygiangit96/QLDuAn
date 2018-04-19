@@ -28,13 +28,13 @@ namespace QuanLyDuAn.Controllers
         public JsonResult ViewMessage(long id)
         {
             var session = (UserLogin)Session[CommonConstants.USER_SESSION];
-            var data = new NhacNhoDAO().GetByNV(session.UserID).SingleOrDefault(x=>x.MaNN == id);
+            var data = new NhacNhoDAO().GetByNV(session.UserID).SingleOrDefault(x => x.MaNN == id);
             return Json(data, JsonRequestBehavior.AllowGet);
         }
         public JsonResult ChangeMessStatus(long id)
         {
             new NhacNhoDAO().ChangeStatus(id);
-            return  Json(new
+            return Json(new
             {
                 status = true
             });
@@ -47,9 +47,9 @@ namespace QuanLyDuAn.Controllers
             ViewBag.list_vt = new ViTriDAO().ListAll();
             return View();
         }
-        public JsonResult GetCalendar()
+        public JsonResult GetCalendar(long manv)
         {
-            var item = new CongViecDAO().ListCV();
+            var item = new CongViecDAO().ListCV(manv);
             return Json(item, JsonRequestBehavior.AllowGet);
         }
         //Thêm Công việc vào lịch
@@ -100,6 +100,20 @@ namespace QuanLyDuAn.Controllers
             if (result == 1) notif = "Đã thay đổi vai trò thành LEADER !\nLEADER hiện tại thay đổi thành MEMBER";
             if (result == 2 || result == 3) notif = "Chọn LEADER mới trước !";
             return Json(notif, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult Edit_CV(long macv, string ten, string noidung, string cong, DateTime start_time, DateTime end_time)
+        {
+            CongViec item = new CongViec();
+            item.MaCV = macv;
+            item.Ten = ten;
+            item.NoiDung = noidung;
+            item.ThoiGianBD = start_time;
+            item.ThoiGianKT = end_time;
+            return Json(new
+            {
+                status = new CongViecDAO().Edit_CV(item)
+
+            });
         }
         // chấm công
         public ActionResult Time_keeping()

@@ -29,7 +29,8 @@ namespace QuanLyDuAn.Controllers
                     var UserSession = new UserLogin();
                     UserSession.UserID = user.MaNV;
                     UserSession.Name = user.Ten;
-                    UserSession.DuAn = Dao.GetProjbyNV(result);
+                    UserSession.DuAn = new DuAnDAO().GetProjLead(user.MaNV);
+                    UserSession.VaiTro = user.MaVT;
                     var ListCredentials = Dao.GetListCredential(username);
                     Session.Add(CommonConstants.SESSION_CREDENTIAL, ListCredentials);
                     Session.Add(CommonConstants.USER_SESSION, UserSession);

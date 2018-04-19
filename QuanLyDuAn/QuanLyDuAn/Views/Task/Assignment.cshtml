@@ -3,6 +3,7 @@
     ViewBag.Title = "Assignment";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var list_nv = ViewBag.list_nv;
+    var session = (QuanLyDuAn.Common.UserLogin)Session[QuanLyDuAn.Common.CommonConstants.USER_SESSION];
     var list_da = ViewBag.list_da;
     var list_vt = ViewBag.list_vt;
 }
@@ -86,7 +87,7 @@
                                     <option selected>Chọn nhân viên làm leader</option>
                                     @foreach (var item in list_nv)
                                     {
-                                        <option value= @item.MaNV>@item.Ten</option>
+                                            <option value=@item.MaNV>@item.Ten</option>
                                     }
                                 </select>
                             </div>
@@ -98,7 +99,17 @@
                                     <option selected>Chọn dự án</option>
                                     @foreach (var item in list_da)
                                     {
-                                        <option value=@item.ID>@item.Ten</option>
+                                        if (session.VaiTro == 3)
+                                        {
+                                            if (session.DuAn.Contains(item.ID))
+                                            {
+                                                <option value=@item.ID>@item.Ten</option>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <option value=@item.ID>@item.Ten</option>
+                                        }
                                     }
                                 </select>
                             </div>
@@ -158,13 +169,7 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Dự án</label>
                             <div class="col-sm-9">
-                                <select type="text" class="has_author_change form-control" id="cv_pick_proj" name="title" disabled>
-                                    <option selected>Chọn dự án</option>
-                                    @foreach (var item in list_da)
-                                    {
-                                        <option value=@item.ID>@item.Ten</option>
-                                    }
-                                </select>
+                                <input class="form-control" id="cvv_TenDA" disabled />
                             </div>
                         </div>
                         <div class="form-group">
@@ -219,7 +224,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Đóng</button>
-                <button type="button" class="has_author_change btn btn-primary antosubmit2" disabled>Lưu</button>
+                <button type="button" class="has_author_change btn btn-primary antosubmit2" id="save_cv" disabled>Lưu</button>
             </div>
         </div>
     </div>

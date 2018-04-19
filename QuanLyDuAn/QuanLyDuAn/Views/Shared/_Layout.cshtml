@@ -61,6 +61,12 @@
                         <div class="profile_info">
                             <span>Xin chào,</span>
                             <h2>@session.Name</h2>
+                            <input type="hidden" id="user_authorization" value=@session.VaiTro />
+                            <input type="hidden" id="user_identification" value=@session.UserID />
+                            @foreach(var item in session.DuAn)
+                            {
+                                <input type="hidden" class="user_project_manager" value= @item />
+                            }
                         </div>
                     </div>
                     <!-- /menu profile quick info -->

@@ -98,5 +98,13 @@ namespace Model.DAO
                 return false;
             }
         }
+        //Lấy danh sách dự án nhân viên làm trưởng dự án
+        public List<long> GetProjLead(long manv)
+        {
+            var data = from a in db.DuAns
+                       where a.TruongDuAn == manv
+                       select a.MaDA;
+            return data.ToList();
+        }
     }
 }

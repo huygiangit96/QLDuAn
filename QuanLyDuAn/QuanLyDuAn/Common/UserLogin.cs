@@ -11,5 +11,6 @@ namespace QuanLyDuAn.Common
         public long UserID { get; set; }
         public string Name { get; set; }
         public List<long> DuAn { get; set; }
+        public long? VaiTro { get; set; }
     }
 }

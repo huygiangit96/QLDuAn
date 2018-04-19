@@ -45,7 +45,6 @@ namespace Model.DAO
                        };
             return data.ToList();
         }
-<<<<<<< HEAD
         public int ChangeViTri(long manv, long macv, long mavtri)
         {
             if (mavtri == 1)
@@ -81,7 +80,6 @@ namespace Model.DAO
             }
             return 0;
         }
-=======
         public bool Insert_CTLLV(long ma_cv, long ma_nv)
         {
             try
@@ -99,16 +97,5 @@ namespace Model.DAO
                 return false;
             }
         }
-        //public int ChangeViTri(long manv, long macv, long mavtri)
-        //{
-        //    if(mavtri == 1)
-        //    {
-        //        var dbEntry = db.ChiTietLichLamViecs.SingleOrDefault(x => x.MaCV == macv && x.MaVTri == 1);
-        //        dbEntry.MaVTri = 2;
-        //        var dbEntry2 = db.ChiTietLichLamViecs.SingleOrDefault(x => x.MaCV == macv && x.MaCV == cv);
-
-        //    }
-        //}
->>>>>>> 399fd7339d086614108b092f6d6b9e68524e00e2
     }
 }

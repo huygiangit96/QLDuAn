@@ -145,7 +145,7 @@ namespace Model.DAO
                        join d in db.NhanViens on a.MaNV equals d.MaNV
                        where a.MaNV == id
                        select b.MaDA;
-            return data.ToList(); 
+            return data.Distinct().ToList(); 
         }
     }
 }
