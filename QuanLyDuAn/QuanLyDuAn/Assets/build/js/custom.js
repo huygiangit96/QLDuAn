@@ -2474,7 +2474,7 @@ function init_calendar() {
 
             $('#fc_edit').click();
 
-            if ($('#user_authentication').val() != 3 || $('input[type="hidden"]').hasClass('user_project_manager')) {
+            if ($('#user_authorization').val() != 3 || $('input[type="hidden"]').hasClass('user_project_manager')) {
                 $('.has_author_change').prop('disabled', false);
             }
 
