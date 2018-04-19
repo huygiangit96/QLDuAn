@@ -2503,7 +2503,7 @@ function init_calendar() {
                     var count = 0;
                     $.each(data, function (i, item) {
                         count++;
-                        if ($('#user_authentication').val() != 3 || $('input[type="hidden"]').hasClass('user_project_manager')) {
+                        if ($('#user_authorization').val() != 3 || $('input[type="hidden"]').hasClass('user_project_manager')) {
                             rows += '<tr><th scope="row">' + count + '</th>'
                             + '<td>' + item.TenNV + '</td>'
                             + '<td>' + item.ViTri + '</td>'
