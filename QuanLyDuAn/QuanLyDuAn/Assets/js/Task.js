@@ -47,7 +47,20 @@ $('.mail_title').off('click').on('click', function () {
     })
 })
 
+//validate
+function check() {
+    var manv = $('#cv_pick_emp').val();
+    var mada = $('#cv_pick_proj').val();
+    var ten = $('#cv_name').val();
+    var noidung = $('#cv_descr').val();
+    var cong = $('#cv_cong').val();
+    var start_time = $('#cv_time_start').val();
+    var end_time = $('#cv_time_end').val();
 
+    if (manv == "" || mada == "" || ten == "" || cong == "" || start_time == "" || end_time == "") {
+        return false;
+    }
+}
 //calendar
 
 $('#cv_calendar_submit').off('click').on('click', function () {
@@ -68,6 +81,19 @@ $('#cv_calendar_submit').off('click').on('click', function () {
             if (res.status = true) {
                 alert('Thêm công việc thành công !');
                 window.location.href = '/Task/Assignment';
+            }
+            else {
+                alert('Có lỗi trong quá trình thêm');
+            }
+        },
+        error: function () {
+            if (check() == false)
+            {
+                alert('Dữ liệu nhập chưa chính xác, bạn hãy kiểm tra lại');
+            }
+            else
+            {
+                alert('Bạn không có quyền thực hiện tác vụ này');
             }
         }
     })

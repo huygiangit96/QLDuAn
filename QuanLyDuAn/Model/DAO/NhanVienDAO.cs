@@ -70,7 +70,7 @@ namespace Model.DAO
                 dbEntry.MaVT = item.MaVT;
                 dbEntry.SoDT = item.SoDT;
                 dbEntry.SoTK = item.SoTK;
-                dbEntry.TaiKhoan = item.TaiKhoan;
+                //dbEntry.TaiKhoan = item.TaiKhoan;
                 dbEntry.Ten = item.Ten;
                 dbEntry.TrinhDo = item.TrinhDo;
                 dbEntry.Email = item.Email;
@@ -136,7 +136,7 @@ namespace Model.DAO
                         on c.MaNV equals n.MaNV
                         where (cv.MaDA == id && c.MaVTri == 1)
                         select n);
-            return list.ToList();
+            return list.Distinct().ToList();
         }
         public List<long> GetProjbyNV(long id)
         {
@@ -159,7 +159,7 @@ namespace Model.DAO
         }
         public List<NhanVienCCPro_ViewModel> GetProj_CCNone_NV()
         {
-            var data = from a in db.ChiTietLichLamViecs
+            var data = (from a in db.ChiTietLichLamViecs
                        join b in db.CongViecs on a.MaCV equals b.MaCV
                        join c in db.DuAns on b.MaDA equals c.MaDA
                        join d in db.NhanViens on a.MaNV equals d.MaNV
@@ -170,13 +170,13 @@ namespace Model.DAO
                            Ten = d.Ten,
                            MaDA = b.MaDA,
                            TenDA = c.Ten                           
-                       };
+                       }).ToList();
             foreach(var item in data)
             {
                 item.TongDA = new NhanVienDAO().GetProjbyNV(item.MaNV).Count;
                 item.Cong = new NhanVienDAO().GetCongNVbyDA(item.MaNV, item.MaDA);
             }
-            return data.ToList();
+            return data;
         }
     }
 }

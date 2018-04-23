@@ -99,7 +99,7 @@ namespace QuanLyDuAn.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-        [HasCredential(RoleID = "DELETE_CONGVIEC, DELETE_CHITIETLICHLAMVIEC")]
+        [HasCredential(RoleID = "DELETE_CONGVIEC,DELETE_CHITIETLICHLAMVIEC")]
         public JsonResult Delete_CV(long id)
         {
             bool result = new CongViecDAO().Delete_CV(id);

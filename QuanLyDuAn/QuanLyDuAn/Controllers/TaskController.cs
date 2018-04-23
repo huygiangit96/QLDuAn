@@ -55,24 +55,33 @@ namespace QuanLyDuAn.Controllers
         //Thêm Công việc vào lịch
         public JsonResult InsertCalendar(long manv, long mada, string ten, string noidung, int cong, DateTime start_time, DateTime end_time, long Vitri)
         {
-            CongViec cv = new CongViec();
-            cv.MaDA = mada;
-            cv.Ten = ten;
-            cv.NoiDung = noidung;
-            cv.Cong = cong;
-            cv.ThoiGianBD = start_time;
-            cv.ThoiGianKT = end_time;
-            CongViecDAO cv_dao = new CongViecDAO();
-            cv_dao.Insert(cv);
-            ChiTietLichLamViec ct = new ChiTietLichLamViec();
-            ct.MaNV = manv;
-            ct.MaCV = cv_dao.GetCvIDByNameAndDaID(mada, ten).MaCV;
-            ct.MaVTri = Vitri;
-            new ChiTietLichLamViecDAO().Insert(ct);
-            return Json(new
+            try
             {
-                status = true
-            });
+                CongViec cv = new CongViec();
+                cv.MaDA = mada;
+                cv.Ten = ten;
+                cv.NoiDung = noidung;
+                cv.Cong = cong;
+                cv.ThoiGianBD = start_time;
+                cv.ThoiGianKT = end_time;
+                CongViecDAO cv_dao = new CongViecDAO();
+                cv_dao.Insert(cv);
+                ChiTietLichLamViec ct = new ChiTietLichLamViec();
+                ct.MaNV = manv;
+                ct.MaCV = cv_dao.GetCvIDByNameAndDaID(mada, ten).MaCV;
+                ct.MaVTri = Vitri;
+                new ChiTietLichLamViecDAO().Insert(ct);
+                return Json(new
+                {
+                    status = true
+                });
+            }
+            catch
+            {
+                return Json(new {
+                    status = false
+                });
+            }
         }
         //Lấy NV theo Công việc
         public JsonResult GetNV_CV_Vtri(long macv)

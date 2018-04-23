@@ -47,6 +47,21 @@ $('#Insert_Emp_Pro').click(function () {
     })
 })
 
+//validate project
+function check_project() {
+    var name = $('#project_name').val();
+    var cus_id = $('#select_customer option:selected ').val();
+    var emp_id = $('#select_leader option:selected ').val();
+    var time_start = $('#time_start_pro').val();
+    var time_end = $('#time_end_pro').val();
+    var desc = $('#descr_pro').val();
+
+    if(name = "" || cus_id == "" || emp_id == "" || time_start == "" || time_end == "")
+    {
+        return false;
+    }
+}
+// thêm dự án
 $('#Insert_Project').click(function () {
     var name = $('#project_name').val();
     var cus_id = $('#select_customer option:selected ').val();
@@ -70,7 +85,14 @@ $('#Insert_Project').click(function () {
             }
         },
         error: function () {
-            alert("Bạn không có quyền thực hiện tác vụ này")
+            if (check_project() == false)
+            {
+                alert("Dữ liệu nhập chưa chính xác, bạn hãy kiểm tra lại");
+            }
+            else
+            {
+                alert("Bạn không có quyền thực hiện tác vụ này");
+            } 
         }
     })
 })
@@ -98,7 +120,7 @@ $('#Insert_CV').click(function () {
             }
         },
         error: function () {
-            alert("Có lỗi trong quá trình thêm");
+            alert("Bạn không có quyền thực hiện tác vụ này");
         }
     })
 })
@@ -126,7 +148,7 @@ $('.Delete_CV').click(function () {
                 }
             },
             error: function () {
-                alert("Có lỗi trong qua trình xóa");
+                alert("Bạn không có quyền thực hiện tác vụ này");
             }
         })
     }
@@ -144,7 +166,7 @@ $('.btn_status_cv').click(function () {
                 window.location.href = "/Project/Statistic/" + pro_id;
         },
         error: function () {
-            alert("sai r");
+            alert("Bạn không có quyền thực hiện tác vụ này");
         }
     })
 })

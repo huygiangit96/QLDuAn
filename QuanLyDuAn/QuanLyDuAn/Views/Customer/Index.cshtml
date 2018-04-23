@@ -17,9 +17,9 @@
 <div class="right_col" role="main">
     <div class="">
         <div class="page-title">
-            <div class="title_left">
+            @*<div class="title_left">
                 <h3>Xin chào <small>tên thằng đăng nhập</small></h3>
-            </div>
+            </div>*@
 
             <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
@@ -76,7 +76,6 @@
                                     <th>Địa chỉ</th>
                                     <th>Số tài khoản</th>
                                     <th>Số điện thoại</th>
-                                    <th></th>
                                     <th>Tùy chọn</th>
                                 </tr>
                             </thead>
@@ -93,7 +92,6 @@
                                         <td>@item.DiaChi</td>
                                         <td>@item.SoTK</td>
                                         <td>@item.SoDT</td>
-                                        <td></td>
                                         <td style="text-align: center"><button type="button" class="btn btn-primary btn_edit_cus" data-id="@item.MaKH" data-toggle="modal" data-target="#Category_Modal_Edit">Sửa</button> | <button class="btn btn-danger delete_cus" data-id="@item.MaKH" onclick="">Xóa</button></td>
                                     </tr>
                                 }

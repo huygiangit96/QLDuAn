@@ -68,8 +68,7 @@
                                     <th style="width: 20%">Tên dự án</th>
                                     <th>Thành viên</th>
                                     <th>Tiến độ</th>
-                                    <th>Trạng thái</th>
-                                    <th style="width: 20%">Hành động</th>
+                                    <th style="width: 30%">Hành động</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -100,12 +99,9 @@
                                             <small>@item.TienDo% hoàn thành</small>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-success btn-xs">Thành công</button>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-primary btn-xs" href="/Project/Statistic/@item.ID" id="detail_pro"><i class="fa fa-folder"></i> Chi tiết </a>
-                                            <button class="btn btn-info btn-xs" data-id="@item.ID" id="edit_pro"><i class="fa fa-pencil"></i> Sửa </button>
-                                            <button class="btn btn-danger btn-xs" data-id="@item.ID" id="delete_pro"><i class="fa fa-trash-o"></i> Xóa </button>
+                                            <a class="btn btn-primary" href="/Project/Statistic/@item.ID" id="detail_pro"><i class="fa fa-folder"></i> Chi tiết </a>
+                                            <button class="btn btn-info" data-id="@item.ID" id="edit_pro"><i class="fa fa-pencil"></i> Sửa </button>
+                                            <button class="btn btn-danger" data-id="@item.ID" id="delete_pro"><i class="fa fa-trash-o"></i> Xóa </button>
                                         </td>
                                     </tr>
                                 }
