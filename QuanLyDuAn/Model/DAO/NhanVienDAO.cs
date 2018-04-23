@@ -20,6 +20,7 @@ namespace Model.DAO
         public NhanVien GetByID(long id)
         {
             return db.NhanViens.SingleOrDefault(x => x.MaNV == id);
+
         }
         public NhanVien GetByUserName(string username)
         {

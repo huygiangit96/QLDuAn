@@ -98,9 +98,20 @@ namespace QuanLyDuAn.Controllers
             bool result = new ChiTietLichLamViecDAO().Insert_CTLLV(cv_id, emp_id);
             return Json(true, JsonRequestBehavior.AllowGet);
         }
+
+        [HasCredential(RoleID = "DELETE_CONGVIEC, DELETE_CHITIETLICHLAMVIEC")]
         public JsonResult Delete_CV(long id)
         {
             bool result = new CongViecDAO().Delete_CV(id);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        // truyền vào id của công việc, sửa đổi trạng thái của công việc đã xong hay chưa
+        [HasCredential(RoleID = "UPDATE_CONGVIEC")]
+        public JsonResult Change_status_cv(long id)
+        {
+            bool result = new CongViecDAO().Change_status(id);
+
             return Json(result, JsonRequestBehavior.AllowGet);
         }
     }

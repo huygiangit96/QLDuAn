@@ -15,5 +15,6 @@ namespace Model.ViewModel
         public DateTime? TgBatDau { get; set; }
         public DateTime? TgKetThuc { get; set; }
         public int? Cong { get; set; }
+        public int? TrangThai { get; set; }
     }
 }

@@ -106,7 +106,7 @@ namespace Model.DAO
                             Cong = c.Cong,
                             TgBatDau = c.ThoiGianBD,
                             TgKetThuc = c.ThoiGianKT,
-
+                            TrangThai = c.Status
                         }).ToList();
             return list;
         }
@@ -156,6 +156,20 @@ namespace Model.DAO
                 dbEntry.ThoiGianBD = item.ThoiGianBD;
                 dbEntry.ThoiGianKT = item.ThoiGianKT;
                 dbEntry.Cong = item.Cong;
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public bool Change_status(long id)
+        {
+            try
+            {
+                var item = db.CongViecs.Find(id);
+                item.Status = item.Status == 0 ? 1 : 0;
                 db.SaveChanges();
                 return true;
             }
