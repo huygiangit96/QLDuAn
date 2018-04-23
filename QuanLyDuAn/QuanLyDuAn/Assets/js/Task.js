@@ -194,7 +194,7 @@ $('#save_cv').off('click').on('click', function () {
         success: function (res) {
             if (res.status == true) {
                 alert('Sửa thành công !');
-                window.location.href = '/Task/Assignment';
+                window.location.reload();
             }
             else { alert('Có lỗi xảy ra ! Xem lại các giá trị !'); }
         }

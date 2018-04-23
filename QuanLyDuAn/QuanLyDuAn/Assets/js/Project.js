@@ -170,3 +170,69 @@ $('.btn_status_cv').click(function () {
         }
     })
 })
+$('.btn_SuaVC').off('click').on('click', function () {
+    $('#CalenderModalEdit').modal('show');
+    var macv = $(this).data('id');
+    if ($('#user_authorization').val() != 3 || $('input[type="hidden"]').hasClass('user_project_manager')) {
+        $('.has_author_change').prop('disabled', false);
+    }
+
+    $('#cvv_TenDA').text('');
+    $('#cvv_TenCV').text('');
+    $('#cvv_NoiDung').text('');;
+    $('#cvv_start_time').text('');
+    $('#cvv_end_time').text('');
+    $('#cvv_cong').text('');
+
+    //$('#cvv_TenDA').val(calEvent.TenDA);
+    //$('#cvv_TenCV').val(calEvent.TenCV);
+    //$('#cvv_NoiDung').append(calEvent.NoiDung);
+    //$('#cvv_start_time').val($.formattedDate(new Date(parseInt(calEvent.ThoiGianBD.substr(6)))).split("/").reverse().join("-"));
+    //$('#cvv_end_time').val($.formattedDate(new Date(parseInt(calEvent.ThoiGianKT.substr(6)))).split("/").reverse().join("-"));
+    //$('#cvv_cong').val(calEvent.SoCong);
+
+    $.ajax({
+        url: '/Project/GetCVbyID',
+        dataType: 'json',
+        data: { macv: macv },
+        type: 'get',
+        success: function (data) {
+            $('#cvv_TenDA').val(data.TenDA);
+            $('#cvv_TenCV').val(data.TenCV);
+            $('#cvv_NoiDung').append(data.NoiDung);
+            $('#cvv_start_time').val($.formattedDate(new Date(parseInt(data.ThoiGianBD.substr(6)))).split("/").reverse().join("-"));
+            $('#cvv_end_time').val($.formattedDate(new Date(parseInt(data.ThoiGianKT.substr(6)))).split("/").reverse().join("-"));
+            $('#cvv_cong').val(data.SoCong);
+        }
+    })
+
+    $.ajax({
+        url: '/Task/GetNV_CV_Vtri',
+        type: 'GET',
+        dataType: 'json',
+        data: { macv: macv},
+        success: function (data) {
+            var rows = "";
+            var count = 0;
+            $.each(data, function (i, item) {
+                count++;
+                if ($('#user_authorization').val() != 3 || $('input[type="hidden"]').hasClass('user_project_manager')) {
+                    rows += '<tr><th scope="row">' + count + '</th>'
+                    + '<td>' + item.TenNV + '</td>'
+                    + '<td>' + item.ViTri + '</td>'
+                    + '<td data-id="' + item.MaNV + '"><i class="fix_vitri fa fa-wrench" role="button" data-toggle="modal" data-target="#Modal_sua_vt" data-id1=' + item.MaNV + ' data-id2=' + item.MaCV + '></td></tr>';
+                }
+                else {
+                    rows += '<tr><th scope="row">' + count + '</th>'
+                    + '<td>' + item.TenNV + '</td>'
+                    + '<td>' + item.ViTri + '</td>'
+                    + '<td ></td></tr>';
+                }
+            })
+            $('#edit_cv_nv').empty();
+            $('#edit_cv_nv').attr('data-id', macv);
+            $('#edit_cv_nv').append(rows);
+        }
+    })
+
+})

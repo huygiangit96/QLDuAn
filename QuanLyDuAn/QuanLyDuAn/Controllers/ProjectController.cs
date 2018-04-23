@@ -57,6 +57,10 @@ namespace QuanLyDuAn.Controllers
 
             ViewBag.total_hours = (model.NgayKetThuc - model.NgayBatDau).Value.TotalHours;
 
+            ViewBag.list_vt = new ViTriDAO().ListAll();
+
+            ViewBag.list_nv = new NhanVienDAO().ListAll();
+
             double percent = ((now - model.NgayBatDau).Value.TotalHours) / ((model.NgayKetThuc - model.NgayBatDau).Value.TotalHours);
 
             return View(model);
@@ -113,6 +117,11 @@ namespace QuanLyDuAn.Controllers
             bool result = new CongViecDAO().Change_status(id);
 
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        [HasCredential(RoleID = "UPDATE_CONGVIEC")]
+        public JsonResult GetCVbyID(long macv)
+        {
+            return Json(new CongViecDAO().ListCV(0).SingleOrDefault(x => x.MaCV == macv), JsonRequestBehavior.AllowGet);
         }
     }
 }

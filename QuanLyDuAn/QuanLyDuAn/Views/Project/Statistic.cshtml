@@ -8,10 +8,13 @@
     List<Model.ViewModel.NhanVienViewModel> emp = ViewBag.NhanVien;
     List<Model.EF.NhanVien> ThanhVien = ViewBag.ThanhVien;
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var list_vt = ViewBag.list_vt;
+    var list_nv = ViewBag.list_nv;
 
 }
 @section Project{
     <script src="~/Assets/js/Project.js"></script>
+    <script src="~/Assets/js/Task.js"></script>
 }
 <div class="right_col" role="main">
     <div class="">
@@ -134,7 +137,7 @@
                                                         }
                                                     </td>
                                                     <td style="text-align:center; width: 110px;">
-                                                        <button class="btn btn-primary btn-xs">Sửa</button> |
+                                                        <button class="btn btn-primary btn-xs btn_SuaVC" data-id="@item.ID">Sửa</button> |
                                                         <button class="btn btn-danger btn-xs Delete_CV" data-id="@item.ID" data-pro="@Model.ID">Xóa</button>
                                                     </td>
                                                 </tr>
@@ -337,6 +340,148 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary antosubmit" id="Insert_CV" data-id="@Model.ID">Thêm</button>
                 <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="CalenderModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel2">Công việc</h4>
+            </div>
+            <div class="modal-body">
+                <div id="testmodal2" style="padding: 5px 20px;">
+                    <form id="antoform2" class="form-horizontal calender" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Dự án</label>
+                            <div class="col-sm-9">
+                                <input class="form-control" id="cvv_TenDA" disabled />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Công việc</label>
+                            <div class="col-sm-9">
+                                <input class="has_author_change form-control" id="cvv_TenCV" disabled />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Thời gian bắt đầu</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="has_author_change form-control" id="cvv_start_time" disabled />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Thời gian kết thúc</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="has_author_change form-control" id="cvv_end_time" disabled />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Công</label>
+                            <div class="col-sm-9">
+                                <input class="has_author_change form-control" id="cvv_cong" disabled />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Nội dung</label>
+                            <div class="col-sm-9">
+                                <textarea class="has_author_change form-control" style="height:55px;" id="cvv_NoiDung" name="descr" disabled></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Danh sách nhân viên</label>
+                            <button type="button" class="has_author_change btn btn-primary" style="float:right" id="edit_them_nv" data-toggle="modal" data-target="#Modal_them_nv" disabled>Thêm nhân viên</button>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nhân Viên</th>
+                                        <th>Vai trò</th>
+                                        <th>Fix</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="edit_cv_nv">
+                                    @*Table Content*@
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Đóng</button>
+                <button type="button" class="has_author_change btn btn-primary antosubmit2" id="save_cv" disabled>Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Sửa vai trò-->
+<div id="Modal_sua_vt" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Thêm Member vào dự án</h4>
+            </div>
+            <div class="modal-body">
+                <div id="testmodal" style="padding: 5px 20px;">
+                    <form id="antoform" class="form-horizontal calender" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Nhân viên</label>
+                            <div class="col-sm-9">
+                                <select type="text" class="form-control" id="cv_pick_vtri_change" name="title">
+                                    <option selected>Chọn vị trí</option>
+                                    @foreach (var item in list_vt)
+                                    {
+                                        <option value=@item.MaVTri>@item.Ten</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default antoclose" data-dismiss="modal" id="close_sua_vt">Đóng</button>
+                <button type="button" class="btn btn-primary antosubmit" id="save_sua_vt">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Thêm nhân viên vào công việc-->
+<div id="Modal_them_nv" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Thêm Member vào dự án</h4>
+            </div>
+            <div class="modal-body">
+                <div id="testmodal" style="padding: 5px 20px;">
+                    <form id="antoform" class="form-horizontal calender" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Nhân viên</label>
+                            <div class="col-sm-9">
+                                <select type="text" class="form-control" id="cv_pick_emp_add" name="title">
+                                    <option selected>Chọn nhân viên</option>
+                                    @foreach (var item in list_nv)
+                                    {
+                                        <option value=@item.MaNV>@item.Ten</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default antoclose" data-dismiss="modal" id="close_them_nvcv">Đóng</button>
+                <button type="button" class="btn btn-primary antosubmit" id="save_them_nvcv">Lưu</button>
             </div>
         </div>
     </div>
