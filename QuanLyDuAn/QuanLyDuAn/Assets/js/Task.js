@@ -207,5 +207,73 @@ $('#save_cv').off('click').on('click', function () {
 // CHẤM CÔNG
 
 $('#choose_project').on('change', function () {
-
+    var mada = $(this).val();
+    if (mada == 0) {
+        $.ajax({
+            url: '/Task/ViewAll',
+            dataType: 'json',
+            type: 'get',
+            success: function (data) {
+                $('#tr_byproject').empty();
+                $('#tr_bynone').html('<th style="width:100px;">Mã NV</th><th style="width:200px;">Họ tên</th><th style="width:100px;">Mã dự án tham gia</th><th style="width:350px;">Tên dự án</th><thstyle="width:100px;">Số công</th><thstyle="width:100px;">Tổng công</th>');
+                $('#chamcong_table').empty();
+                var rows = '';
+                if (data.Count == 0) rows += '<tr><td colspan="5">Không có dữ liệu hiển thị</td></tr>';
+                else {
+                    var prev_nv = 0;
+                    $.each(data, function (i, item) {
+                        rows += '<tr>';
+                        if (item.MaNV != prev_nv) {
+                            rows += '<td rowspan= ' + item.TongDA + '>' + item.MaNV + '</td>' +
+                                   '<td rowspan=' + item.TongDA + '>' + item.Ten + '</td>';
+                        }
+                        rows += '<td>' + item.MaDA + '</td>' +
+                                '<td>' + item.TenDA + '</td>' +
+                                '<td>' + Math.round(item.Cong * 100) / 100 + '</td>';
+                        if (item.MaNV != prev_nv) {
+                            rows += '<td rowspan=' + item.TongDA + '>' + Math.round(item.TongCong * 100) / 100 + '</td>';
+                        }
+                        rows += '</tr>';
+                        prev_nv = item.MaNV;
+                    })
+                }
+                $('#chamcong_table').html(rows);
+            }
+        })
+    }
+    else {
+        $.ajax({
+            url: '/Task/ViewByProject',
+            dataType: 'json',
+            data: { mada: mada },
+            type: 'get',
+            success: function (data) {
+                $('#tr_bynone').empty();
+                $('#tr_byproject').html('<th>Mã NV</th><th>Họ tên</th><th>Công việc tham gia</th><th> Vị trí</th><th>Số công</th><th>Tổng Công</th>');
+                $('#chamcong_table').empty();
+                var rows = '';
+                if (data.Count == 0) rows += '<tr><td colspan="5">Không có dữ liệu hiển thị</td></tr>';
+                else {
+                    var prev_nv = 0;
+                    $.each(data, function (i, item) {
+                        rows += '<tr>';
+                        if (item.MaNV != prev_nv) {
+                            rows += '<td rowspan= ' + item.TongCV + '>' + item.MaNV + '</td>' +
+                                   '<td rowspan=' + item.TongCV + '>' + item.Ten + '</td>';
+                        }
+                        rows += '<td>' + item.TenCV + '</td>' +
+                                '<td>' + item.ViTri + '</td>';
+                        if (item.CVStatus == 1) rows += '<td>' + Math.round(item.SoCong*100)/100 + '</td>';
+                        else { rows += '<td>Chưa hoàn thành </td>'; }
+                        if (item.MaNV != prev_nv) {
+                            rows += '<td rowspan= ' + item.TongCV + '>' + Math.round(item.TongCong*100)/100 + '</td>';
+                        }
+                        rows += '</tr>';
+                        prev_nv = item.MaNV;
+                    })
+                }
+                $('#chamcong_table').html(rows);
+            }
+        })
+    }
 })
