@@ -30,6 +30,13 @@ $('.mail_title').off('click').on('click', function () {
         type: 'GET',
         data: { id: id },
         success: function (data) {
+            $('#viewMessTime').empty();
+            $('#viewMessTitle').empty();
+            $('#viewMessTo').empty();
+            $('#viewMessFrom').empty();
+            $('#viewMessSender').empty();
+            $('#viewMessReceived').empty();
+            $('#viewMessContent').empty();
             $('#viewMessTime').append($.formattedDate(new Date(parseInt(data.NgayTao.substr(6)))));
             $('#viewMessTitle').append(data.TieuDe);
             $('#viewMessTo').append('đến');
@@ -43,6 +50,40 @@ $('.mail_title').off('click').on('click', function () {
                 $('#viewMessReceived').append('me');
             }
             $('#viewMessContent').append(data.NoiDung);
+            $('#del_mess').attr('data-id', id);
+        }
+    })
+})
+$('#send_message').off('click').on('click', function () {
+    var manv = $('#user_identification').attr('value');
+    var tieude = $('#mess_title').val();
+    if (tieude == "") tieude = '(Không tiêu đề)';
+    var noidung = $('#mess_content').val();
+    var nguoinhan = $('#receiver_mess').val();
+    $.ajax({
+        url: '/Task/SendMessage',
+        dataType: 'json',
+        type: 'post',
+        data: { manv: manv, tieude: tieude, noidung: noidung, nguoinhan: nguoinhan },
+        success: function (res) {
+            if (res.status == true) {
+                alert('Gửi thành công !');
+            }
+        }
+    })
+})
+$('#del_mess').off('click').on('click', function () {
+    var mann = $(this).data('id');
+    $.ajax({
+        url: '/Task/DelMessage',
+        dataType: 'json',
+        type: 'post',
+        data: { mann: mann },
+        success: function (res) {
+            if (res.status == true) {
+                alert('Xóa thành công');
+                window.location.href = '/Task/Message';
+            }
         }
     })
 })

@@ -23,6 +23,7 @@ namespace QuanLyDuAn.Controllers
             var dao = new NhacNhoDAO();
             var session = (UserLogin)Session[CommonConstants.USER_SESSION];
             ViewBag.MessageList = dao.GetByNV(session.UserID);
+            ViewBag.list_nv = new NhanVienDAO().ListAll();
             return View();
         }
         public JsonResult ViewMessage(long id)
@@ -30,6 +31,27 @@ namespace QuanLyDuAn.Controllers
             var session = (UserLogin)Session[CommonConstants.USER_SESSION];
             var data = new NhacNhoDAO().GetByNV(session.UserID).SingleOrDefault(x => x.MaNN == id);
             return Json(data, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult SendMessage(long manv, string tieude, string noidung, long nguoinhan)
+        {
+            NhacNho item = new NhacNho();
+            item.MaNV = manv;
+            item.ThoiGian = DateTime.Now;
+            item.TieuDe = tieude;
+            item.NoiDung = noidung;
+            item.NguoiNhanID = nguoinhan;
+            item.NgayTao = DateTime.Now;
+            return Json(new
+            {
+                status = new NhacNhoDAO().Insert(item)
+            });
+        }
+        public JsonResult DelMessage(long mann)
+        {
+            return Json(new
+            {
+                status = new NhacNhoDAO().Delete(mann)
+            });
         }
         public JsonResult ChangeMessStatus(long id)
         {
@@ -110,12 +132,13 @@ namespace QuanLyDuAn.Controllers
             if (result == 2 || result == 3) notif = "Chọn LEADER mới trước !";
             return Json(notif, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult Edit_CV(long macv, string ten, string noidung, string cong, DateTime start_time, DateTime end_time)
+        public JsonResult Edit_CV(long macv, string ten, string noidung, int cong, DateTime start_time, DateTime end_time)
         {
             CongViec item = new CongViec();
             item.MaCV = macv;
             item.Ten = ten;
             item.NoiDung = noidung;
+            item.Cong = cong;
             item.ThoiGianBD = start_time;
             item.ThoiGianKT = end_time;
             return Json(new

@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Message";
     var MessageList = ViewBag.MessageList;
+    var list_nv = ViewBag.list_nv;
     var user = (QuanLyDuAn.Common.UserLogin)Session[QuanLyDuAn.Common.CommonConstants.USER_SESSION];
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -13,19 +14,10 @@
 
         <div class="page-title">
             <div class="title_left">
-                <h3>Inbox Design <small>Some examples to get you started</small></h3>
+                <h3>Hộp thư </h3>
             </div>
 
-            <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
-                        </span>
-                    </div>
-                </div>
-            </div>
+
         </div>
 
         <div class="clearfix"></div>
@@ -34,7 +26,7 @@
             <div class="col-md-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Inbox Design<small>User Mail</small></h2>
+                        <h2>Tin nhắn</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li>
                                 <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -59,8 +51,9 @@
                     <div class="x_content">
                         <div class="row">
                             <div class="col-sm-3 mail_list_column">
-                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Tạo nhắc nhở</button>
-                                @if (MessageList.Count == 0) { <p>Không có tin nhắn để hiển thị</p> }
+                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Soạn tin nhắn</button><br /><br />
+                                @if (MessageList.Count == 0)
+                                { <p>Không có tin nhắn để hiển thị</p> }
                                 else
                                 {
                                     foreach (var item in MessageList)
@@ -69,6 +62,7 @@
                                         var sender = item.NguoiNhan;
                                         string content = "";
                                         if (item.NoiDung.Length > 99) { content = item.NoiDung.Substring(0, 98) + "..."; }
+                                        else { content = item.NoiDung; }
                                         if (item.MaNV != user.UserID) { act = "Nhận từ: "; sender = item.Ten; }
                                         <a class="mail_title" data-id=@item.MaNN role="button">
                                             <div class="mail_list">
@@ -77,6 +71,7 @@
                                                 </div>
                                                 <div class="right">
                                                     <h3> @act @sender <small>@item.NgayTao</small></h3>
+                                                    <h5>@item.TieuDe</h5>
                                                     @*98*@
                                                     <p>@content</p>
                                                 </div>
@@ -93,7 +88,7 @@
                                         <div class="col-md-8">
                                             <div class="btn-group">
                                                 <button class="btn btn-sm btn-primary" type="button"><i class="fa fa-reply"></i> Reply</button>
-                                                <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Trash"><i class="fa fa-trash-o"></i></button>
+                                                <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Trash" id="del_mess"><i class="fa fa-trash-o"></i></button>
                                             </div>
                                         </div>
                                         <div class="col-md-4 text-right">
@@ -109,13 +104,13 @@
                                                 <span id="viewMessFrom"></span>
                                                 <strong id="viewMessSender"></strong>
                                                 <span id="viewMessTo"></span>
-                                                <strong id="viewMessReceived"></strong>                                              
+                                                <strong id="viewMessReceived"></strong>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="view-mail" >
+                                    <div class="view-mail">
                                         <p id="viewMessContent">
-                                        
+
                                         </p>
                                     </div>
                                 </div>
@@ -136,13 +131,40 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
+                    <h4 class="modal-title">Soạn tin nhắn</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Some text in the modal.</p>
+                    <form id="antoform" class="form-horizontal calender" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Chọn người nhận</label>
+                            <div class="col-sm-9">
+                                <select type="text" class="form-control" id="receiver_mess" name="title">
+                                    <option selected value="0">Người nhận</option>
+                                    @foreach (var item in list_nv)
+                                    {
+                                        //if(item.MaNV != )
+                                        <option value=@item.MaNV>@item.Ten</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Tiêu đề</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="mess_title" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Nội dung</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" style="height:55px;" id="mess_content" name="descr"></textarea>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="send_message">Gửi</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
 
@@ -150,4 +172,4 @@
         <!-- Modal -->
     </div>
 
-    </div>
+</div>

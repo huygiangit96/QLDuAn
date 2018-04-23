@@ -2425,7 +2425,7 @@ function init_calendar() {
         header: {
             left: 'prev,next today',
             center: 'title',
-            right: 'month,agendaWeek,agendaDay,listMonth'
+            right: 'month,listMonth'
         },
         selectable: true,
         selectHelper: true,
