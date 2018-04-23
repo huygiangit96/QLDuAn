@@ -178,20 +178,6 @@ namespace Model.DAO
         public List<NhanVienCCPro_ViewModel> GetProj_CCNone_NV()
         {
             var data = (from a in db.ChiTietLichLamViecs
-<<<<<<< HEAD
-                       join b in db.CongViecs on a.MaCV equals b.MaCV
-                       join c in db.DuAns on b.MaDA equals c.MaDA
-                       join d in db.NhanViens on a.MaNV equals d.MaNV
-                       where b.Status == 1
-                       select new NhanVienCCPro_ViewModel()
-                       {
-                           MaNV = a.MaNV,
-                           Ten = d.Ten,
-                           MaDA = b.MaDA,
-                           TenDA = c.Ten                           
-                       }).ToList();
-            foreach(var item in data)
-=======
                         join b in db.CongViecs on a.MaCV equals b.MaCV
                         join c in db.DuAns on b.MaDA equals c.MaDA
                         join d in db.NhanViens on a.MaNV equals d.MaNV
@@ -262,16 +248,11 @@ namespace Model.DAO
             data.AddRange(data1);
             var data2 = data.OrderBy(x => x.MaNV).ToList();
             foreach (var item in data2)
->>>>>>> aa3eda32cc1718eade58981654e775e2dcb3b115
             {
                 item.TongCong = data.Where(x => x.MaNV == item.MaNV && x.CVStatus == 1).Select(n => n.SoCong).Sum();
                 item.TongCV = data.Where(x => x.MaNV == item.MaNV).Select(n => n.MaNV).Count();
             }
-<<<<<<< HEAD
-            return data;
-=======
             return data2;
->>>>>>> aa3eda32cc1718eade58981654e775e2dcb3b115
         }
     }
 }
