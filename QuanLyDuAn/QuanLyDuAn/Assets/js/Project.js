@@ -120,7 +120,7 @@ $('#Insert_CV').click(function () {
             }
         },
         error: function () {
-            alert("Bạn không có quyền thực hiện tác vụ này");
+            alert("Dữ liệu nhập chưa chính xác, bạn hãy kiểm tra lại");
         }
     })
 })

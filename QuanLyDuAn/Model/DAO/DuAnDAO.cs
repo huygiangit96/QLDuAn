@@ -24,7 +24,7 @@ namespace Model.DAO
                         {
                             ID = c.MaDA,
                             Ten = c.Ten,
-                            TienDo = c.TienDo,
+                            //TienDo = c.TienDo,
                             TrangThai = c.TrangThai,
                             NgayTao = c.NgayTao,
                             TruongDuAn = c.TruongDuAn,                    
@@ -32,7 +32,9 @@ namespace Model.DAO
                         }).ToList();
             foreach(var item in list)
             {
+                item.TienDo = TienDo(item.ID);
                 item.ThanhVien = new NhanVienDAO().GetByProjectID(item.ID);
+
             }
             return list;
         }
@@ -122,6 +124,23 @@ namespace Model.DAO
                            Ten = c.Ten
                        };
             return data.Distinct().ToList();
+        }
+
+        public double TienDo(long id)
+        {
+            int total_cv = db.CongViecs.Where(x => x.MaDA == id).Count();
+            int suc_cv = db.CongViecs.Where(x => x.MaDA == id && x.Status == 1).Count();
+            return (double)suc_cv / total_cv * 100;
+        }
+        // truyền vào id của dự án
+        public bool Auto_change_tiendo(long id)
+        {
+            int total_cv = db.CongViecs.Where(x => x.MaDA == id).Count();
+            int suc_cv = db.CongViecs.Where(x => x.MaDA == id && x.Status == 1).Count();
+            var item = db.DuAns.Find(id); 
+            item.TienDo = Convert.ToDouble(suc_cv / total_cv * 100);
+            db.SaveChanges();
+            return true;
         }
     }
 }

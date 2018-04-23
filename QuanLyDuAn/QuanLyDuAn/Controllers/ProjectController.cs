@@ -94,12 +94,12 @@ namespace QuanLyDuAn.Controllers
             temp.Cong = cong;
             temp.ThoiGianBD = time_start;
             temp.ThoiGianKT = time_end;
+            temp.Status = 0;
             long cv_id = new CongViecDAO().Insert_CV(temp);
             bool result = new ChiTietLichLamViecDAO().Insert_CTLLV(cv_id, emp_id);
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-        [HasCredential(RoleID = "DELETE_CONGVIEC,DELETE_CHITIETLICHLAMVIEC")]
         public JsonResult Delete_CV(long id)
         {
             bool result = new CongViecDAO().Delete_CV(id);

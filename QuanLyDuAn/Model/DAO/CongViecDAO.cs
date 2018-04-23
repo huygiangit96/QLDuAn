@@ -96,7 +96,7 @@ namespace Model.DAO
                         on c.MaCV equals ct.MaCV
                         join n in db.NhanViens
                         on ct.MaNV equals n.MaNV
-                        where (ct.MaVTri == 1)
+                        where (ct.MaVTri == 1 && c.MaDA == id)
                         select new CongViecViewModel
                         {
                             ID = c.MaCV,
@@ -164,13 +164,17 @@ namespace Model.DAO
                 return false;
             }
         }
+        // truyền vào ID của công việc
         public bool Change_status(long id)
         {
             try
             {
                 var item = db.CongViecs.Find(id);
                 item.Status = item.Status == 0 ? 1 : 0;
+
                 db.SaveChanges();
+
+                var result = new DuAnDAO().Auto_change_tiendo(item.MaDA);
                 return true;
             }
             catch
