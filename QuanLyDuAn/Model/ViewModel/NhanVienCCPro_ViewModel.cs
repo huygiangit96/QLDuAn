@@ -13,6 +13,7 @@ namespace Model.ViewModel
         public long MaDA { get; set; }
         public string TenDA { get; set; }
         public int TongDA { get; set; }
-        public int? Cong { get; set; }
+        public double? Cong { get; set; }
+        public double? TongCong { get; set; }
     }
 }

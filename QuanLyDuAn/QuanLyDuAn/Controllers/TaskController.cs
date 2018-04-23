@@ -123,6 +123,15 @@ namespace QuanLyDuAn.Controllers
             ViewBag.FirstShow = data;
             return View();
         }
+        public JsonResult ViewAll()
+        {
+            return Json(new NhanVienDAO().GetProj_CCNone_NV(), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult ViewByProject (long mada)
+        {
+            var data = new NhanVienDAO().GetProj_CC_NV(mada);
+            return Json(new NhanVienDAO().GetProj_CC_NV(mada), JsonRequestBehavior.AllowGet);
+        }
         public JsonResult GetNVProj(long mada)
         {
             return Json(new DuAnDAO().GetNVjoinProject(mada), JsonRequestBehavior.AllowGet);

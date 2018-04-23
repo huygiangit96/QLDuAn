@@ -47,60 +47,49 @@
                                         }
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <label for="datefrom">Từ :</label>
-                                    <input type="date" class="form-control" value=@DateTime.Today.ToString("yyyy-MM-dd") style="width:150px;">
-                                </div>
-                                <div class="form-group">
-                                    <label for="dateto">Đến :</label>
-                                    <input type="date" class="form-control" value=@DateTime.Today.ToString("yyyy-MM-dd") style="width:150px;">
-                                </div>
-
-                                <button type="submit" class="btn btn-primary btnSearch" id="btn_chamcong" style="float:right;">Chấm công</button>
                             </form>
                             <!--end form search advanced-->
 
                         </th>
                     </tr>
                     <tr id="tr_bynone">
-                        <th>Mã NV</th>
-                        <th>Họ tên</th>
-                        <th>Mã dự án tham gia</th>
-                        <th>Tên dự án</th>
-                        <th>Số công</th>
-                        <th>Tổng công</th>
+                        <th style="width:100px;">Mã NV</th>
+                        <th style="width:200px;">Họ tên</th>
+                        <th style="width:100px;">Mã dự án tham gia</th>
+                        <th style="width:350px;">Tên dự án</th>
+                        <th style="width:100px;">Số công</th>
+                        <th style="width:100px;">Tổng công</th>
                     </tr>
                     <tr id="tr_byproject">
-                        @*<th>Mã NV</th>
-                            <th>Họ tên</th>
-                            <th>Công việc tham gia</th>
-                            <th> Vai trò</th>
-                            <th>Số công</th>
-                            <th>Thành tiền</th>*@
                     </tr>
                 </thead>
-                <tbody>
-                    @if(FirstShow.Count == 0) { <tr><td colspan="5">Không có dữ liệu hiển thị</td></tr> }
+                <tbody id="chamcong_table">
+                    @if (FirstShow.Count == 0)
+                    {
+                    <tr><td colspan="5">Không có dữ liệu hiển thị</td></tr> }
                     else
                     {
-                        var prev_nv = 0;
-                        foreach(var item in FirstShow)
+                        long prev_nv = 0;
+                        foreach (var item in FirstShow)
                         {
                             <tr>
                                 @if (item.MaNV != prev_nv)
                                 {
-                                    <td rowspan= @item.TongDA>@item.MaNV</td>
+                                    <td rowspan=@item.TongDA>@item.MaNV</td>
                                     <td rowspan=@item.TongDA>@item.Ten</td>
                                 }
-                                <td>@item.MaDA</td>
+                                <td style="width:100px; ">@item.MaDA</td>
                                 <td>@item.TenDA</td>
                                 <td>@item.Cong</td>
-                                <td>0</td>
-                                @prev_nv = item.MANV;
+                                @if (item.MaNV != prev_nv)
+                                {
+                                    <td rowspan=@item.TongDA>@item.TongCong</td>
+                                }
+                                @{prev_nv = item.MaNV;}
                             </tr>
-                        }
+                                        }
 
-                    }
+                                    }
                 </tbody>
             </table>
 
