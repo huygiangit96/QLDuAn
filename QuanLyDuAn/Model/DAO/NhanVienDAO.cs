@@ -74,7 +74,7 @@ namespace Model.DAO
                 dbEntry.TrinhDo = item.TrinhDo;
                 dbEntry.Email = item.Email;
                 dbEntry.DiaChi = item.DiaChi;
-                db.SaveChanges();            
+                db.SaveChanges();
                 return true;
             }
             catch
@@ -105,7 +105,7 @@ namespace Model.DAO
         public long Login(string username, string password)
         {
             var dbEntry = db.NhanViens.SingleOrDefault(x => x.TaiKhoan == username || x.Email == username);
-            if(dbEntry != null)
+            if (dbEntry != null)
             {
                 if (dbEntry.MatKhau == password) return dbEntry.MaNV;
             }
@@ -129,12 +129,12 @@ namespace Model.DAO
         public List<NhanVien> GetByProjectID(long id)
         {
             var list = (from c in db.ChiTietLichLamViecs
-                       join cv in db.CongViecs
-                       on c.MaCV equals cv.MaCV
-                       join n in db.NhanViens
-                       on c.MaNV equals n.MaNV
-                       where (cv.MaDA == id && c.MaVTri == 1)
-                       select n);
+                        join cv in db.CongViecs
+                        on c.MaCV equals cv.MaCV
+                        join n in db.NhanViens
+                        on c.MaNV equals n.MaNV
+                        where (cv.MaDA == id && c.MaVTri == 1)
+                        select n);
             return list.ToList();
         }
         public List<long> GetProjbyNV(long id)
@@ -145,7 +145,37 @@ namespace Model.DAO
                        join d in db.NhanViens on a.MaNV equals d.MaNV
                        where a.MaNV == id
                        select b.MaDA;
-            return data.Distinct().ToList(); 
+            return data.Distinct().ToList();
+        }
+        private int? GetCongNVbyDA(long manv,long mada)
+        {
+            var data = from a in db.ChiTietLichLamViecs
+                       join b in db.CongViecs on a.MaCV equals b.MaCV
+                       where a.MaNV == manv && b.MaDA == mada && b.Status == 1
+                       select b.Cong;
+            if (data == null) return 0;
+            return data.ToList().Sum();
+        }
+        public List<NhanVienCCPro_ViewModel> GetProj_CCNone_NV()
+        {
+            var data = from a in db.ChiTietLichLamViecs
+                       join b in db.CongViecs on a.MaCV equals b.MaCV
+                       join c in db.DuAns on b.MaDA equals c.MaDA
+                       join d in db.NhanViens on a.MaNV equals d.MaNV
+                       where b.Status == 1
+                       select new NhanVienCCPro_ViewModel()
+                       {
+                           MaNV = a.MaNV,
+                           Ten = d.Ten,
+                           MaDA = b.MaDA,
+                           TenDA = c.Ten                           
+                       };
+            foreach(var item in data)
+            {
+                item.TongDA = new NhanVienDAO().GetProjbyNV(item.MaNV).Count;
+                item.Cong = new NhanVienDAO().GetCongNVbyDA(item.MaNV, item.MaDA);
+            }
+            return data.ToList();
         }
     }
 }

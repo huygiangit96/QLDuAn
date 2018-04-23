@@ -106,5 +106,18 @@ namespace Model.DAO
                        select a.MaDA;
             return data.ToList();
         }
+        public List<NhanVienViewModel> GetNVjoinProject(long mada)
+        {
+            var data = from a in db.CongViecs
+                       join b in db.ChiTietLichLamViecs on a.MaCV equals b.MaCV
+                       join c in db.NhanViens on b.MaNV equals c.MaNV
+                       where a.MaDA == mada
+                       select new NhanVienViewModel()
+                       {
+                           MaNV = b.MaNV,
+                           Ten = c.Ten
+                       };
+            return data.Distinct().ToList();
+        }
     }
 }

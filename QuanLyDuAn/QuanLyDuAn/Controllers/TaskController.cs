@@ -118,7 +118,14 @@ namespace QuanLyDuAn.Controllers
         // chấm công
         public ActionResult Time_keeping()
         {
+            ViewBag.list_da = new DuAnDAO().ListAll();
+            var data = new NhanVienDAO().GetProj_CCNone_NV();
+            ViewBag.FirstShow = data;
             return View();
+        }
+        public JsonResult GetNVProj(long mada)
+        {
+            return Json(new DuAnDAO().GetNVjoinProject(mada), JsonRequestBehavior.AllowGet);
         }
     }
 }

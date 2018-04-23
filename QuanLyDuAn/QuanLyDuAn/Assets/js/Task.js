@@ -170,7 +170,16 @@ $('#save_cv').off('click').on('click', function () {
                 alert('Sửa thành công !');
                 window.location.href = '/Task/Assignment';
             }
-            else { alert('Có lỗi xảy ra ! Xem lại các giá trị !');}
+            else { alert('Có lỗi xảy ra ! Xem lại các giá trị !'); }
         }
     })
+})
+
+
+
+
+// CHẤM CÔNG
+
+$('#choose_project').on('change', function () {
+
 })
