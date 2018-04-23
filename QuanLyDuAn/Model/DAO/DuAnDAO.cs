@@ -36,7 +36,11 @@ namespace Model.DAO
             }
             return list;
         }
-
+        // lay ra bang du an binh thuong
+        public List<DuAn> List(int quan)
+        {
+            return db.DuAns.OrderByDescending(x=>x.NgayTao).Take(quan).ToList();
+        }
         public bool Delete(long id)
         {
             try

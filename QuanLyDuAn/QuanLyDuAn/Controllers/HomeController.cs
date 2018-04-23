@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using QuanLyDuAn.Common;
+using Model.DAO;
 
 namespace QuanLyDuAn.Controllers
 {
@@ -11,8 +12,15 @@ namespace QuanLyDuAn.Controllers
     {
         // GET: Home
         public ActionResult Index()
-        {           
-            return View();
+        {
+            var model = new DuAnDAO().List(4);
+            List<double> t = new List<double>();
+            t.Add(new NhanVienDAO().ListAll().Count());
+            t.Add(new KhachHangDAO().ListAll().Count());
+            t.Add(model.Sum(x => (x.ThoiGianKT - x.ThoiGianBD).Value.TotalHours));
+            t.Add(model.Count());
+            ViewBag.header = t;
+            return View(model);
         }
     }
 }

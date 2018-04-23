@@ -131,3 +131,20 @@ $('.Delete_CV').click(function () {
         })
     }
 })
+
+$('.btn_status_cv').click(function () {
+    var cv_id = $(this).data('id');
+    var pro_id = $(this).data('pro');
+    $.ajax({
+        url: '/Project/Change_status_cv',
+        data: { id: cv_id },
+        type: 'POST',
+        dataType: 'json',
+        success: function (data) {
+                window.location.href = "/Project/Statistic/" + pro_id;
+        },
+        error: function () {
+            alert("sai r");
+        }
+    })
+})
