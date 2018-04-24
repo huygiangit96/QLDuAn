@@ -47,11 +47,16 @@ namespace Model.DAO
         {
             try
             {
-                List<ChiTietLichLamViec> list = db.ChiTietLichLamViecs.Where(x => x.MaCV == id).ToList();
+                List<CongViec> list = db.CongViecs.Where(x => x.MaDA == id).ToList();
 
-                foreach (ChiTietLichLamViec item in list)
+                foreach (CongViec item in list)
                 {
-                    db.ChiTietLichLamViecs.Remove(item);
+                    List<ChiTietLichLamViec> list2 = db.ChiTietLichLamViecs.Where(x => x.MaCV == item.MaCV).ToList();
+                    foreach(ChiTietLichLamViec item2 in list2)
+                    {
+                        db.ChiTietLichLamViecs.Remove(item2);                       
+                    }
+                    db.CongViecs.Remove(item);
                 }
                 db.SaveChanges();
 
@@ -66,7 +71,23 @@ namespace Model.DAO
                 return false;
             }
         }
-
+        public bool Update(DuAn item)
+        {
+            var dbEntry = db.DuAns.SingleOrDefault(x => x.MaDA == item.MaDA);
+            try
+            {
+                dbEntry.MoTa = item.MoTa;
+                dbEntry.ThoiGianBD = item.ThoiGianBD;
+                dbEntry.ThoiGianKT = item.ThoiGianKT;
+                dbEntry.TruongDuAn = item.TruongDuAn;
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public DuAnViewModel GetProjectByID(long id)
         {
             var list = (from c in db.DuAns

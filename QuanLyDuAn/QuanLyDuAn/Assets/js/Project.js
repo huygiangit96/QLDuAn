@@ -1,4 +1,4 @@
-﻿$('#delete_pro').click(function () {
+﻿$('.delete_pro').off('click').on('click',function () {
     var id = $(this).data('id');
     var r = confirm("Bạn có chắc chắn muốn xóa dự án này ?");
     if (r == true) {
@@ -72,7 +72,7 @@ $('#Insert_Project').click(function () {
 
     $.ajax({
         url: '/Project/Insert',
-        data: { name: name, emp_id: emp_id, cus_id: cus_id, time_start: time_start, time_end: time_end, describe: desc },
+        data: { name: name, emp_id: emp_id, cus_id: cus_id, time_start: time_start, time_end: time_end, desc: desc },
         type: 'POST',
         datatype: 'json',
         success: function (data) {
@@ -120,7 +120,7 @@ $('#Insert_CV').click(function () {
             }
         },
         error: function () {
-            alert("Dữ liệu nhập chưa chính xác, bạn hãy kiểm tra lại");
+            alert("Bạn không có quyền thực hiện tác vụ này");
         }
     })
 })
@@ -235,4 +235,42 @@ $('.btn_SuaVC').off('click').on('click', function () {
         }
     })
 
+})
+
+
+$('.edit_pro').off('click').on('click', function () {
+    var mada = $(this).data('id');
+    $.ajax({
+        url: '/Project/GetProjByID',
+        dataType: 'json',
+        type: 'get',
+        data: { mada: mada },
+        success: function (data) {
+            $('#project_name_e').val(data.Ten);
+            $('#select_leader_e').val(data.TruongDuAn);
+            $('#select_customer_e').val(data.KhachHang);
+            $('#time_start_pro_e').val($.formattedDate(new Date(parseInt(data.NgayBatDau.substr(6)))).split("/").reverse().join("-"));
+            $('#time_end_pro_e').val($.formattedDate(new Date(parseInt(data.NgayKetThuc.substr(6)))).split("/").reverse().join("-"));
+            $('#descr_pro_e').val(data.MoTa);
+        }
+    })
+    $('#CalenderModalEdit').modal('show');
+    $('#Edit_Project').attr('data-id', mada);
+})
+$('#Edit_Project').off('click').on('click', function () {
+    var mada = document.getElementById('Edit_Project').getAttribute('data-id');
+    var truongduan = $('#select_leader_e').val();
+    var start_time = $('#time_start_pro_e').val();
+    var end_time = $('#time_end_pro_e').val();
+    var mota = $('#descr_pro_e').val();
+    $.ajax({
+        url: '/Project/Update_DA',
+        type: 'post',
+        dataType: 'json',
+        data: { mada: mada, truongduan: truongduan, start_time: start_time, end_time: end_time, mota: mota },
+        success: function (res) {
+            if (res.status == true) { alert('Sửa thành công'); }
+            else { alert('Có lỗi xảy ra !!');}
+        }
+    })
 })

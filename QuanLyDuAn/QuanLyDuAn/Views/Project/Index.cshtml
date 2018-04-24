@@ -100,8 +100,8 @@
                                         </td>
                                         <td>
                                             <a class="btn btn-primary" href="/Project/Statistic/@item.ID" id="detail_pro"><i class="fa fa-folder"></i> Chi tiết </a>
-                                            <button class="btn btn-info" data-id="@item.ID" id="edit_pro"><i class="fa fa-pencil"></i> Sửa </button>
-                                            <button class="btn btn-danger" data-id="@item.ID" id="delete_pro"><i class="fa fa-trash-o"></i> Xóa </button>
+                                            <button class="btn btn-info edit_pro" data-id="@item.ID"><i class="fa fa-pencil"></i> Sửa </button>
+                                            <button class="btn btn-danger delete_pro" data-id="@item.ID"><i class="fa fa-trash-o"></i> Xóa </button>
                                         </td>
                                     </tr>
                                 }
@@ -181,6 +181,70 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary antosubmit" id="Insert_Project">Thêm</button>
                 <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Đóng</button>                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="CalenderModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Sửa dự án</h4>
+            </div>
+            <div class="modal-body">
+                <div id="testmodal" style="padding: 5px 20px;">
+                    <form id="antoform" class="form-horizontal calender" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Tên dự án</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="project_name_e" disabled/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Chọn trưởng nhóm mới</label>
+                            <div class="col-sm-9">
+                                <select type="text" class="form-control" id="select_leader_e" name="title">
+                                    @foreach (var i in emp)
+                                    {
+                                        <option value="@i.MaNV">@i.Ten</option>
+                                    }
+                                </select>                               
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Khách hàng</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="select_customer_e" name="title" disabled/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Thời gian bắt đầu</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" id="time_start_pro_e" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Thời gian kết thúc</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" id="time_end_pro_e">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Mô tả</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" style="height:55px;" id="descr_pro_e" name="descr"></textarea>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary antosubmit" id="Edit_Project">Lưu</button>
+                <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Đóng</button>
             </div>
         </div>
     </div>

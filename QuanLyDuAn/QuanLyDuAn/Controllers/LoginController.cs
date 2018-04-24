@@ -19,6 +19,7 @@ namespace QuanLyDuAn.Controllers
         [HttpPost]
         public ActionResult Login(string username, string password)
         {
+            ViewBag.Notif = null;
             if (ModelState.IsValid)
             {
                 var Dao = new NhanVienDAO();
@@ -39,7 +40,7 @@ namespace QuanLyDuAn.Controllers
                 else
                 {
                     var UserSession = new UserLogin();
-                    ModelState.AddModelError("LoginError", "Đăng nhập không thành công");
+                    ViewBag.Notif =  "Đăng nhập không thành công";
                 }
             }
             return View("Index");

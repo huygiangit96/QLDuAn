@@ -1,8 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = null;
+    string Notif = ViewBag.Notif;
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Flat Login Form 3.0</title>
+    <title>Quản lý dự án</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 
@@ -21,13 +26,17 @@
     <!-- Button Mixin-->
     <!-- Pen Title-->
     <div class="pen-title">
-        <h1>Hệ thống quản lý công việc </h1>
+        <h1>Hệ thống quản lý dự án </h1>
     </div>
     <!-- Form Module-->
     <div class="module form-module">
         <div class="toggle">
         </div>
         <div class="form">
+            @if (Notif != null)
+            {
+                <div class="alert alert-danger">@Notif</div><br /><br />
+            }
             <form action="/Login/Login" method="post">
                 <fieldset>
                     <input type="text" name="username" placeholder="Tài khoản hoặc Email" />

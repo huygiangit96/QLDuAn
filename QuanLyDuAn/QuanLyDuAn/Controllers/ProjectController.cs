@@ -87,7 +87,7 @@ namespace QuanLyDuAn.Controllers
             bool result = new DuAnDAO().Insert_project(item);
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-
+        [HasCredential(RoleID = "CREATE_CONGVIEC")]
         public JsonResult Insert_CV(string name, string content, long emp_id, long pro_id, DateTime time_start, DateTime time_end, int cong)
         {
             // tạo biến tạm công việc;
@@ -103,7 +103,7 @@ namespace QuanLyDuAn.Controllers
             bool result = new ChiTietLichLamViecDAO().Insert_CTLLV(cv_id, emp_id);
             return Json(true, JsonRequestBehavior.AllowGet);
         }
-
+        [HasCredential(RoleID = "DELETE_CONGVIEC")]
         public JsonResult Delete_CV(long id)
         {
             bool result = new CongViecDAO().Delete_CV(id);
@@ -122,6 +122,24 @@ namespace QuanLyDuAn.Controllers
         public JsonResult GetCVbyID(long macv)
         {
             return Json(new CongViecDAO().ListCV(0).SingleOrDefault(x => x.MaCV == macv), JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetProjByID(long mada)
+        {
+            return Json(new DuAnDAO().GetProjectByID(mada), JsonRequestBehavior.AllowGet);
+        }
+        [HasCredential(RoleID = "UPDATE_DUAN")]
+        public JsonResult Update_DA(long mada, long truongduan, DateTime start_time, DateTime end_time, string mota)
+        {
+            DuAn item = new DuAn();
+            item.MaDA = mada;
+            item.TruongDuAn = truongduan;
+            item.ThoiGianBD = start_time;
+            item.ThoiGianKT = end_time;
+            item.MoTa = mota;
+            return Json(new
+            {
+                status = new DuAnDAO().Update(item)
+            });
         }
     }
 }

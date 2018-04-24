@@ -170,7 +170,7 @@ namespace Model.DAO
             try
             {
                 var item = db.CongViecs.Find(id);
-                item.Status = item.Status == 0 ? 1 : 0;
+                item.Status = 1;
 
                 db.SaveChanges();
 
