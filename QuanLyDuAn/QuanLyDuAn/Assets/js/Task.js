@@ -9,8 +9,12 @@
     return formattedDate;
 };
 
+// tạo biến lưu ID của người reply (ID tự nhận là của người gửi cho nó)
+var ID_NguoiNhan = 0;
 $('.mail_title').off('click').on('click', function () {
     var id = $(this).data('id');
+    ID_NguoiNhan = $(this).data('idr');
+    $('#NguoiNhan_id').val($('#TenNguoiNhan_reply').data('name'));
 
     $.ajax({
         url: '/Task/ChangeMessStatus',
@@ -68,6 +72,27 @@ $('#send_message').off('click').on('click', function () {
         success: function (res) {
             if (res.status == true) {
                 alert('Gửi thành công !');
+                window.location.href = '/Task/Message';
+            }
+        }
+    })
+})
+// reply_message
+$('#reply_message').off('click').on('click', function () {
+    var manv = $('#user_identification').attr('value');
+    var tieude = $('#mess_title_reply').val();
+    if (tieude == "") tieude = '(Không tiêu đề)';
+    var noidung = $('#mess_content_reply').val();
+    var nguoinhan = ID_NguoiNhan;
+    $.ajax({
+        url: '/Task/SendMessage',
+        dataType: 'json',
+        type: 'post',
+        data: { manv: manv, tieude: tieude, noidung: noidung, nguoinhan: nguoinhan },
+        success: function (res) {
+            if (res.status == true) {
+                alert('Gửi thành công !');
+                window.location.href = '/Task/Message';
             }
         }
     })

@@ -52,7 +52,7 @@ namespace Model.DAO
         }
         public List<NhacNhoView> GetByNV(long id)
         {
-            var data = from a in db.NhacNhoes
+            var data = (from a in db.NhacNhoes
                             join b in db.NhanViens on a.MaNV equals b.MaNV
                             join c in db.NhanViens on a.NguoiNhanID equals c.MaNV
                             where (a.MaNV == id || a.NguoiNhanID == id)
@@ -67,8 +67,17 @@ namespace Model.DAO
                                 NguoiNhanID = a.NguoiNhanID,
                                 NguoiNhan = c.Ten,
                                 Status = a.Status
-                            };
-            return data.ToList();
+                            }).ToList();
+            foreach(var item in data)
+            {
+                item.ReplyID = GetIDEmpByName(item.Ten);
+            }
+            return data;
+        }
+        // lấy ra mã nahan viên theo tên
+        public long GetIDEmpByName(string s)
+        {
+            return db.NhanViens.Where(x => x.Ten.ToString() == s).SingleOrDefault().MaNV;
         }
         public void ChangeStatus(long id)
         {

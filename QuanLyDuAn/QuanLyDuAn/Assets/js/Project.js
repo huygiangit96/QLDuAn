@@ -1,4 +1,4 @@
-﻿$('.delete_pro').off('click').on('click',function () {
+﻿$('.delete_pro').off('click').on('click', function () {
     var id = $(this).data('id');
     var r = confirm("Bạn có chắc chắn muốn xóa dự án này ?");
     if (r == true) {
@@ -56,8 +56,21 @@ function check_project() {
     var time_end = $('#time_end_pro').val();
     var desc = $('#descr_pro').val();
 
-    if(name = "" || cus_id == "" || emp_id == "" || time_start == "" || time_end == "")
-    {
+    if (name = "" || cus_id == "" || emp_id == "" || time_start == "" || time_end == "") {
+        return false;
+    }
+}
+//validate công việc
+function check_CV() {
+    var name = $('#name_cv').val();
+    var cong = $('#cong_cv').val();
+    var emp_id = $('#select_leader_cv option:selected ').val();
+    var time_start = $('#time_start_cv').val();
+    var time_end = $('#time_end_cv').val();
+    var content = $('#cong_noidung').val();
+    var pro_id = $(this).data('id');
+
+    if (name == "" || cong == "" || emp_id == "" || time_end == "" || time_start == "" || pro_id == "" || content == "") {
         return false;
     }
 }
@@ -85,18 +98,17 @@ $('#Insert_Project').click(function () {
             }
         },
         error: function () {
-            if (check_project() == false)
-            {
+            if (check_project() == false) {
                 alert("Dữ liệu nhập chưa chính xác, bạn hãy kiểm tra lại");
             }
-            else
-            {
+            else {
                 alert("Bạn không có quyền thực hiện tác vụ này");
-            } 
+            }
         }
     })
 })
 
+// thêm công việc
 $('#Insert_CV').click(function () {
     var name = $('#name_cv').val();
     var cong = $('#cong_cv').val();
@@ -120,7 +132,12 @@ $('#Insert_CV').click(function () {
             }
         },
         error: function () {
-            alert("Bạn không có quyền thực hiện tác vụ này");
+            if (check_CV() == false) {
+                alert("Dữ liệu nhập chưa chính xác, bạn hãy kiểm tra lại");
+            }
+            else {
+                alert("Bạn không có quyền thực hiện tác vụ này");
+            }
         }
     })
 })
@@ -129,21 +146,18 @@ $('.Delete_CV').click(function () {
     var cv_id = $(this).data('id');
     var pro_id = $(this).data('pro');
     var result = confirm("Bạn có chắc chắn muốn xóa bản ghi này");
-    if(result == true)
-    {
+    if (result == true) {
         $.ajax({
             url: '/Project/Delete_CV',
             data: { id: cv_id },
             type: 'POST',
             dataType: 'json',
             success: function (data) {
-                if(data == true)
-                {
+                if (data == true) {
                     alert("Xóa công việc thành công");
                     window.location.href = "/Project/Statistic/" + pro_id;
                 }
-                else
-                {
+                else {
                     alert("Có lỗi trong quá trình xóa");
                 }
             },
@@ -163,7 +177,7 @@ $('.btn_status_cv').click(function () {
         type: 'POST',
         dataType: 'json',
         success: function (data) {
-                window.location.href = "/Project/Statistic/" + pro_id;
+            window.location.href = "/Project/Statistic/" + pro_id;
         },
         error: function () {
             alert("Bạn không có quyền thực hiện tác vụ này");
@@ -210,7 +224,7 @@ $('.btn_SuaVC').off('click').on('click', function () {
         url: '/Task/GetNV_CV_Vtri',
         type: 'GET',
         dataType: 'json',
-        data: { macv: macv},
+        data: { macv: macv },
         success: function (data) {
             var rows = "";
             var count = 0;
@@ -269,8 +283,8 @@ $('#Edit_Project').off('click').on('click', function () {
         dataType: 'json',
         data: { mada: mada, truongduan: truongduan, start_time: start_time, end_time: end_time, mota: mota },
         success: function (res) {
-            if (res.status == true) { alert('Sửa thành công'); }
-            else { alert('Có lỗi xảy ra !!');}
+            if (res.status == true) { alert('Sửa thành công'); window.location.href = '/Project/Index'; }
+            else { alert('Có lỗi xảy ra !!'); }
         }
     })
 })

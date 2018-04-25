@@ -86,6 +86,7 @@ namespace QuanLyDuAn.Controllers
                 cv.Cong = cong;
                 cv.ThoiGianBD = start_time;
                 cv.ThoiGianKT = end_time;
+                cv.Status = 0;
                 CongViecDAO cv_dao = new CongViecDAO();
                 cv_dao.Insert(cv);
                 ChiTietLichLamViec ct = new ChiTietLichLamViec();

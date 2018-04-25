@@ -64,7 +64,7 @@
                                         if (item.NoiDung.Length > 99) { content = item.NoiDung.Substring(0, 98) + "..."; }
                                         else { content = item.NoiDung; }
                                         if (item.MaNV != user.UserID) { act = "Nhận từ: "; sender = item.Ten; }
-                                        <a class="mail_title" data-id=@item.MaNN role="button">
+                                        <a class="mail_title" data-id=@item.MaNN data-idr="@item.ReplyID" role="button">
                                             <div class="mail_list">
                                                 <div class="left">
                                                     <i class="fa fa-circle"></i> <i class="fa fa-edit"></i>
@@ -72,6 +72,7 @@
                                                 <div class="right">
                                                     <h3> @act @sender <small>@item.NgayTao</small></h3>
                                                     <h5>@item.TieuDe</h5>
+                                                    <span id="TenNguoiNhan_reply" data-name="@sender"></span>
                                                     @*98*@
                                                     <p>@content</p>
                                                 </div>
@@ -87,7 +88,7 @@
                                     <div class="mail_heading row">
                                         <div class="col-md-8">
                                             <div class="btn-group">
-                                                <button class="btn btn-sm btn-primary" type="button"><i class="fa fa-reply"></i> Reply</button>
+                                                <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#myModal_reply"><i class="fa fa-reply"></i> Reply</button>
                                                 <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Trash" id="del_mess"><i class="fa fa-trash-o"></i></button>
                                             </div>
                                         </div>
@@ -164,6 +165,48 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="send_message">Gửi</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+        <!-- Modal -->
+    </div>
+
+    <!-- Modal Reply-->
+    <div class="modal fade" id="myModal_reply" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Soạn tin nhắn</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="antoform" class="form-horizontal calender" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Người nhận</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="NguoiNhan_id"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Tiêu đề</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="mess_title_reply" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Nội dung</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" style="height:55px;" id="mess_content_reply" name="descr"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="reply_message">Gửi</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>

@@ -15,6 +15,7 @@ namespace Model.ViewModel
         public string NoiDung { get; set; }
         public DateTime? NgayTao { get; set; }
         public long? NguoiNhanID { get; set; }
+        public long ReplyID { get; set; }
         public string NguoiNhan { get; set; }
         public int? Status { get; set; }
     }
