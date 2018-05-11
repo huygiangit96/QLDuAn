@@ -36,12 +36,21 @@ $('#Insert_Emp').click(function () {
     var sodt = $('#Emp_phone').val();
     var trinhdo = $('#Emp_level').val();
     var email = $('#Emp_email').val();
-
+    var username = $('#Emp_username').val();
+    var pass = $('#Emp_pass').val();
+    var repass = $('#Emp_repass').val();
+    if (pass != repass) {
+        alert('Mật khẩu không khớp');
+        $('#Emp_pass').val() = '';
+        $('#Emp_repass').val() = '';
+        return;
+    }
     $.ajax({
         url: '/Employee/Insert',
         data: {
             name: ten, address: diachi, department: phongban, parts: bophan,
-            role: vaitro, bank: sotk, phone: sodt, level: trinhdo, email: email
+            role: vaitro, bank: sotk, phone: sodt, level: trinhdo, email: email,
+            username: username, pass: pass
         },
         type: 'POST',
         datatype: 'json',

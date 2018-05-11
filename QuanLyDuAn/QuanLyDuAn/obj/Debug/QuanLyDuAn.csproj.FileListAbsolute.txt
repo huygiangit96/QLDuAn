@@ -49,12 +49,15 @@ D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\QuanLyDuAn.dll
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\QuanLyDuAn.pdb
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\Microsoft.Web.Infrastructure.dll
+D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\Model.dll
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\System.Web.Helpers.dll
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\System.Web.Mvc.dll
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\System.Web.Razor.dll
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\System.Web.Webpages.Deployment.dll
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\System.Web.Webpages.dll
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\System.Web.Webpages.Razor.dll
+D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\EntityFramework.dll
+D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\Model.pdb
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\System.Web.Razor.xml
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\System.Web.Webpages.xml
@@ -65,7 +68,3 @@ D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\System.Web.Mvc.xml
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\obj\Debug\QuanLyDuAn.csprojResolveAssemblyReference.cache
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\obj\Debug\QuanLyDuAn.dll
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\obj\Debug\QuanLyDuAn.pdb
-D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\Model.dll
-D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\EntityFramework.dll
-D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\Model.pdb
-D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\QuanLyDuAn\bin\EntityFramework.xml

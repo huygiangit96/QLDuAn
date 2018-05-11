@@ -50,7 +50,7 @@
                     </div>
                     <div class="x_content">
                         <div class="row">
-                            <div class="col-sm-3 mail_list_column">
+                            <div class="col-sm-4 mail_list_column">
                                 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Soạn tin nhắn</button><br /><br />
                                 @if (MessageList.Count == 0)
                                 { <p>Không có tin nhắn để hiển thị</p> }
@@ -83,11 +83,11 @@
                             </div>
                             <!-- /MAIL LIST -->
                             <!-- CONTENT MAIL -->
-                            <div class="col-sm-9 mail_view">
+                            <div class="col-sm-8 mail_view">
                                 <div class="inbox-body">
                                     <div class="mail_heading row">
-                                        <div class="col-md-8">
-                                            <div class="btn-group">
+                                        <div class="col-md-8" style="float: right">
+                                            <div class="btn-group" style="float: right">
                                                 <button class="btn btn-sm btn-primary" type="button" data-toggle="modal" data-target="#myModal_reply"><i class="fa fa-reply"></i> Reply</button>
                                                 <button class="btn btn-sm btn-default" type="button" data-placement="top" data-toggle="tooltip" data-original-title="Trash" id="del_mess"><i class="fa fa-trash-o"></i></button>
                                             </div>

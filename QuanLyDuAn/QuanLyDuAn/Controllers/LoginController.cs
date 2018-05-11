@@ -6,6 +6,10 @@ using System.Web.Mvc;
 using Model.DAO;
 using QuanLyDuAn.Models;
 using QuanLyDuAn.Common;
+using Model.EF;
+using System.Text;
+using System.Security.Cryptography;
+using System.Configuration;
 
 namespace QuanLyDuAn.Controllers
 {
@@ -22,8 +26,9 @@ namespace QuanLyDuAn.Controllers
             ViewBag.Notif = null;
             if (ModelState.IsValid)
             {
+               
                 var Dao = new NhanVienDAO();
-                long result = Dao.Login(username, password);
+                long result = Dao.Login(username, GetMD5(password));
                 if (result != 0)
                 {
                     var user = Dao.GetByUserName(username);
@@ -50,6 +55,24 @@ namespace QuanLyDuAn.Controllers
             Session[CommonConstants.USER_SESSION] = null;
             return RedirectToAction("Index", "Home");
 
+        }
+
+        public JsonResult Change_pass(long id, string old_pass, string new_pass)
+        {
+            int result = new NhanVienDAO().Change_pass(id, old_pass, new_pass);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        private String GetMD5(string txt)
+        {
+            String str = "";
+            Byte[] buffer = System.Text.Encoding.UTF8.GetBytes(txt);
+            System.Security.Cryptography.MD5CryptoServiceProvider md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+            buffer = md5.ComputeHash(buffer);
+            foreach (Byte b in buffer)
+            {
+                str += b.ToString("X2");
+            }
+            return str;
         }
     }
 }

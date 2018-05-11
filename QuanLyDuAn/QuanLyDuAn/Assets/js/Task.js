@@ -295,7 +295,7 @@ $('#choose_project').on('change', function () {
                         }
                         rows += '<td>' + item.MaDA + '</td>' +
                                 '<td>' + item.TenDA + '</td>' +
-                                '<td>' + Math.round(item.Cong * 100) / 100 + '</td>';
+                                '<td style="border-right-width:1px;">' + Math.round(item.Cong * 100) / 100 + '</td>';
                         if (item.MaNV != prev_nv) {
                             rows += '<td rowspan=' + item.TongDA + '>' + Math.round(item.TongCong * 100) / 100 + '</td>';
                         }
@@ -329,7 +329,7 @@ $('#choose_project').on('change', function () {
                         }
                         rows += '<td>' + item.TenCV + '</td>' +
                                 '<td>' + item.ViTri + '</td>';
-                        if (item.CVStatus == 1) rows += '<td>' + Math.round(item.SoCong*100)/100 + '</td>';
+                        if (item.CVStatus == 1) rows += '<td style="border-right-width:1px;">' + Math.round(item.SoCong * 100) / 100 + '</td>';
                         else { rows += '<td>Chưa hoàn thành </td>'; }
                         if (item.MaNV != prev_nv) {
                             rows += '<td rowspan= ' + item.TongCV + '>' + Math.round(item.TongCong*100)/100 + '</td>';
@@ -339,6 +339,7 @@ $('#choose_project').on('change', function () {
                     })
                 }
                 $('#chamcong_table').html(rows);
+                alert('Ngày bắt đầu phải nhỏ hơn ngày kết thúc !');
             }
         })
     }

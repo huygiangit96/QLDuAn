@@ -148,6 +148,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">                                    
                                     <li><a href="javascript:;">Help</a></li>
+                                    <li><a role="button" data-target="#myModal" data-toggle="modal"> Đổi mật khẩu</a></li>
                                     <li><a href="/Login/LogOut"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
                                 </ul>
                             </li>
@@ -231,6 +232,48 @@
         </div>
     </div>
 
+    <!--Model Đổi pass-->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Đổi mật khẩu</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="antoform" class="form-horizontal calender" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Mật khẩu cũ</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="old_pass" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Mật khẩu mới</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="new_pass" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Xác nhận mật khẩu</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="conf_new_pass" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="change_pass" data-id="@session.UserID">Đổi</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+        <!-- Modal -->
+    </div>
+
     <!-- jQuery -->
     <script src="/Assets/vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -298,6 +341,45 @@
     <!-- Custom Theme Scripts -->
     <script src="/Assets/build/js/vi.js"></script>
     <script src="/Assets/build/js/custom.js"></script>
+    <script type="text/javascript">
+        $('#change_pass').click(function () {
+            var id = $(this).data('id');
+            var old_pass = $('#old_pass').val();
+            var new_pass = $('#new_pass').val();
+            var conf_new_pass = $('#conf_new_pass').val();
+            if(new_pass == conf_new_pass)
+            {
+                $.ajax({
+                    url: '/Login/Change_pass',
+                    data: { id: id, old_pass: old_pass, new_pass: new_pass },
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (data) {
+                        if(data == 1)
+                        {
+                            alert("Đổi mật khẩu thành công");
+                            window.location.href = "/Home/Index";
+                        }
+                        else if(data == 0)
+                        {
+                            alert("Mật khẩu cũ không khớp");
+                        }
+                        else
+                        {
+                            alert("Đổi mật khẩu thất bại");
+                        }
+                    },
+                    error: function(){
+                        alert("Đổi mật khẩu thất bại")
+                }
+                })
+            }
+            else
+            {
+                alert("Xác nhận mật khẩu không đúng");
+            }
+        })
+    </script>
     @RenderSection("Customer", required: false)
     @RenderSection("Employee", required: false)
     @RenderSection("Project", required: false)

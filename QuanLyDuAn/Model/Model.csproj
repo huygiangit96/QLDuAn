@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DBEB85CB-6343-40B1-8A94-A16CC5F4C7C5}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{8010E6AB-C9C8-48E3-B3EF-518573BA1ED6}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Model</RootNamespace>
     <AssemblyName>Model</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,37 +30,40 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAO\BangCongDAO.cs" />
+    <Compile Include="DAO\ChiTietLichLamViecDAO.cs" />
+    <Compile Include="DAO\CongViecDAO.cs" />
+    <Compile Include="DAO\DuAnDAO.cs" />
     <Compile Include="DAO\KhachHangDAO.cs" />
     <Compile Include="DAO\NhacNhoDAO.cs" />
     <Compile Include="DAO\NhanVienDAO.cs" />
-    <Compile Include="EF\BangCong.cs" />
-    <Compile Include="EF\BoPhan.cs" />
+    <Compile Include="DAO\PhongBanDAO.cs" />
+    <Compile Include="DAO\VaiTroDAO.cs" />
+    <Compile Include="DAO\ViTriDAO.cs" />
     <Compile Include="EF\ChiTietLichLamViec.cs" />
     <Compile Include="EF\CongViec.cs" />
+    <Compile Include="EF\DuAn.cs" />
     <Compile Include="EF\KhachHang.cs" />
-    <Compile Include="EF\LichLamViec.cs" />
-    <Compile Include="EF\LoaiCongViec.cs" />
     <Compile Include="EF\NhacNho.cs" />
     <Compile Include="EF\NhanVien.cs" />
     <Compile Include="EF\NhanVienQuyen.cs" />
@@ -71,6 +71,37 @@
     <Compile Include="EF\QLDADbContext.cs" />
     <Compile Include="EF\Quyen.cs" />
     <Compile Include="EF\VaiTro.cs" />
+    <Compile Include="EF\ViTri.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ChiTietLLV_NV_ViewModel.cs" />
+    <Compile Include="ViewModel\CongViecViewModel.cs" />
+    <Compile Include="ViewModel\DuAnViewModel.cs" />
+    <Compile Include="ViewModel\GhiChuViewModel.cs" />
+    <Compile Include="ViewModel\LichLamViecView.cs" />
+    <Compile Include="ViewModel\LoginViewModal.cs" />
+    <Compile Include="ViewModel\NhacNhoView.cs" />
+    <Compile Include="ViewModel\NhanVienCCProdetail_ViewModel.cs" />
+    <Compile Include="ViewModel\NhanVienCCPro_ViewModel.cs" />
+    <Compile Include="ViewModel\NhanVienViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="bin\Debug\Model.dll.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\EntityFramework.dll" />
+    <Content Include="bin\Debug\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\Debug\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\Debug\EntityFramework.xml" />
+    <Content Include="bin\Debug\Model.dll" />
+    <Content Include="bin\Debug\Model.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -48,6 +48,8 @@ namespace Model.DAO
         }
         public bool Insert(NhanVien item)
         {
+            var dbEntry = db.NhanViens.Where(x => x.TaiKhoan == item.TaiKhoan);
+            if (dbEntry == null) return false;
             try
             {
                 db.NhanViens.Add(item);
@@ -253,6 +255,27 @@ namespace Model.DAO
                 item.TongCV = data.Where(x => x.MaNV == item.MaNV).Select(n => n.MaNV).Count();
             }
             return data2;
+        }
+        public int Change_pass(long id, string old_pass, string new_pass)
+        {
+            var item = db.NhanViens.Find(id);
+            if(item.MatKhau != old_pass)
+            {
+                return 0;
+            }
+            else
+            {
+                try
+                {
+                    item.MatKhau = new_pass;
+                    db.SaveChanges();
+                    return 1;
+                }
+                catch
+                {
+                    return 2;
+                }
+            }
         }
     }
 }

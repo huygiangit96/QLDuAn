@@ -1,10 +1,6 @@
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\Model\bin\Debug\Model.dll.config
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\Model\bin\Debug\Model.dll
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\Model\bin\Debug\Model.pdb
-D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\Model\bin\Debug\EntityFramework.dll
-D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\Model\bin\Debug\EntityFramework.SqlServer.dll
-D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\Model\bin\Debug\EntityFramework.xml
-D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\Model\bin\Debug\EntityFramework.SqlServer.xml
-D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\Model\obj\Debug\Model.dll
 D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\Model\obj\Debug\Model.pdb
+D:\Lap Trinh\MVC1tr4\QuanLyDuAn\QuanLyDuAn\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
